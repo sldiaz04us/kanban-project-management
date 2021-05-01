@@ -1,0 +1,67 @@
+.app-header {
+  display: flex;
+  position: relative;
+  height: 64px;
+  padding: 0;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+  div:last-of-type {
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+
+  .nav-options {
+    [nz-button] {
+      font-weight: 600;
+    }
+
+    [nz-button]:hover {
+      background-color: #dbeafe;
+      color: #0850fb;
+    }
+
+    .avatar-container {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      transition: background-color 0.5s ease;
+
+      &:hover {
+        background-color: #dbeafe;
+      }
+      nz-avatar:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .create-issue-button {
+    margin-left: 1rem;
+  }
+}
+
+.header-trigger {
+  height: 64px;
+  padding: 0 24px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s, padding 0s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.user-menu {
+  [nz-menu-item] {
+    padding: 10px 12px;
+  }
+}
+
+nz-divider {
+  margin: 10px 0;
+}

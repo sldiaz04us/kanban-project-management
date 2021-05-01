@@ -1,0 +1,23 @@
+{
+  "name": "kanban-project-management",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "install-dependencies": "npm i && cd frontend && npm i",
+    "start:front": "cd frontend && npm start",
+    "build:front": "cd frontend && npm run build",
+    "start": "npm run start:front",
+    "build": "npm run build:front"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sldiaz04us/kanban-project-management.git"
+  },
+  "keywords": [],
+  "author": "Sergio Lopez Diaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sldiaz04us/kanban-project-management/issues"
+  },
+  "homepage": "https://github.com/sldiaz04us/kanban-project-management#readme"
+}

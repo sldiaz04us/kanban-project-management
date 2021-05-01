@@ -1,0 +1,37 @@
+<div class="sidebar-logo">
+  <a href="#" target="_blank">
+    <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
+    <h1>Ant Design Of Angular</h1>
+  </a>
+</div>
+<ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+  <li
+    nz-menu-item
+    nz-tooltip
+    nzTooltipPlacement="right"
+    [nzTooltipTitle]="isCollapsed ? 'Kanban board' : ''"
+    nzSelected
+  >
+    <i nz-icon nzType="appstore"></i>
+    <span>Kanban board</span>
+  </li>
+  <li
+    nz-menu-item
+    nz-tooltip
+    nzTooltipPlacement="right"
+    [nzTooltipTitle]="isCollapsed ? 'Create board' : ''"
+  >
+    <i nz-icon nzType="plus"></i>
+    <span>Create board</span>
+  </li>
+  <nz-divider></nz-divider>
+  <li
+    nz-menu-item
+    nz-tooltip
+    nzTooltipPlacement="right"
+    [nzTooltipTitle]="isCollapsed ? 'Project settings' : ''"
+  >
+    <i nz-icon nzType="setting" nzTheme="outline"></i>
+    <span>Project settings</span>
+  </li>
+</ul>

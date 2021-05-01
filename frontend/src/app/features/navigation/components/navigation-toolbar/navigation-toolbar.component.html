@@ -1,0 +1,95 @@
+<div class="app-header">
+  <span class="header-trigger" (click)="onCollapseSidebar()">
+    <i
+      class="trigger"
+      nz-icon
+      [nzType]="isSidebarCollapsed ? 'menu-unfold' : 'menu-fold'"
+    ></i>
+  </span>
+  <div class="nav-options">
+    <button
+      nz-button
+      nzType="text"
+      nzTrigger="click"
+      nz-dropdown
+      [nzDropdownMenu]="projectsMenu"
+    >
+      Projects
+      <i nz-icon nzType="down"></i>
+    </button>
+    <nz-dropdown-menu #projectsMenu="nzDropdownMenu">
+      <ul nz-menu nzMode="horizontal">
+        <li nz-menu-group nzTitle="Board in Sample Kanban Project">
+          <ul>
+            <li nz-menu-item>Sample Kanban Project</li>
+            <li nz-menu-item>Another Kanban Project</li>
+          </ul>
+        </li>
+        <nz-divider></nz-divider>
+        <li nz-menu-item>View all projects</li>
+        <li nz-menu-item>
+          <i nz-icon nzType="plus" nzTheme="outline"></i>Create project
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+  <div class="nav-options">
+    <button
+      nz-button
+      nzType="text"
+      nzTrigger="click"
+      nz-dropdown
+      [nzDropdownMenu]="peopleMenu"
+    >
+      People
+      <i nz-icon nzType="down"></i>
+    </button>
+    <nz-dropdown-menu #peopleMenu="nzDropdownMenu">
+      <ul nz-menu nzMode="horizontal">
+        <li nz-menu-group nzTitle="Your Collaborators">
+          <ul>
+            <li nz-menu-item>
+              <i nz-icon nzType="plus" nzTheme="outline"></i>Invite a teammate
+            </li>
+          </ul>
+        </li>
+        <li nz-menu-group nzTitle="Your Teams">
+          <ul>
+            <li nz-menu-item>
+              <i nz-icon nzType="plus" nzTheme="outline"></i>Start a team
+            </li>
+          </ul>
+        </li>
+        <nz-divider></nz-divider>
+        <li nz-menu-item>Search people and teams</li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+  <div class="create-issue-button">
+    <button nz-button nzType="primary">
+      <i nz-icon nzType="plus"></i>
+      Create issue
+    </button>
+  </div>
+  <div class="nav-options">
+    <div class="avatar-container">
+      <nz-avatar
+        nz-tooltip
+        nzTooltipTitle="Sergio Lopez Diaz"
+        nzTooltipPlacement="rightBottom"
+        nz-dropdown
+        [nzDropdownMenu]="userMenu"
+        nzTrigger="click"
+        nzIcon="user"
+      ></nz-avatar>
+    </div>
+    <nz-dropdown-menu #userMenu="nzDropdownMenu" nzPlacement="bottomRight">
+      <ul nz-menu class="user-menu">
+        <li nz-menu-item>Profile</li>
+        <li nz-menu-item>Account settings</li>
+        <nz-divider></nz-divider>
+        <li nz-menu-item>Log out</li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+</div>

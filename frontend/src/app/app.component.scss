@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-layout {
+  height: 100vh;
+}
+
+.menu-sidebar {
+  position: relative;
+  z-index: 10;
+  overflow: auto;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+}
+
+.content-layout {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  background: #fff;
+}
+
+nz-header {
+  padding: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+nz-content {
+  flex: 1 1 0%;
+  overflow: auto;
+}
+
+nz-footer {
+  text-align: center;
+  color: #001529;
+}
