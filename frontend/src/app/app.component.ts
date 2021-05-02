@@ -21,6 +21,10 @@ export class AppComponent implements OnInit {
     this.navigationService.sidebarCollapseStatusChanged$.pipe(takeUntil(this.subsNotifier)).subscribe(collapseStatus => this.isSidebarCollapsed = collapseStatus);
   }
 
+  onSidebarCollapsed(sidebarCollapsedStatus: boolean): void {
+    this.navigationService.collapseSidebar(sidebarCollapsedStatus);
+  }
+
   ngOnDestroy(): void {
     this.subsNotifier.next();
     this.subsNotifier.complete();

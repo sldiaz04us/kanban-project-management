@@ -7,6 +7,7 @@
     nzTheme="light"
     [(nzCollapsed)]="isSidebarCollapsed"
     [nzTrigger]="null"
+    (nzCollapsedChange)="onSidebarCollapsed($event)"
   >
     <app-navigation-sidebar></app-navigation-sidebar>
   </nz-sider>
