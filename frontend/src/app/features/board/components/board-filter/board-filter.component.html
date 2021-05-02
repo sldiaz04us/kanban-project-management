@@ -1,0 +1,43 @@
+<form nz-form [nzLayout]="'inline'" [formGroup]="filterForm">
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group nzSuffixIcon="search">
+        <input formControlName="filterQuery" nz-input />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<nz-avatar-group>
+  <nz-avatar
+    nzIcon="user"
+    nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+    nz-tooltip
+    nzTooltipTitle="Richard Hendricks"
+  ></nz-avatar>
+  <nz-avatar
+    style="background-color: #f56a00"
+    nzText="D"
+    nz-tooltip
+    nzTooltipTitle="Dinesh"
+  ></nz-avatar>
+  <nz-avatar
+    style="background-color: #87d068"
+    nzText="G"
+    nz-tooltip
+    nzTooltipTitle="Gilfoyle"
+  ></nz-avatar>
+  <nz-avatar
+    style="background-color: #1890ff"
+    nzText="BH"
+    nz-tooltip
+    nzTooltipTitle="Big Head"
+  ></nz-avatar>
+</nz-avatar-group>
+
+<button nz-button>Only My Issues</button>
+<button nz-button>Recently Updated</button>
+
+<nz-divider nzType="vertical"></nz-divider>
+
+<button nz-button nzType="text">Clear all</button>

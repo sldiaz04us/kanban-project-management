@@ -1,0 +1,13 @@
+[nz-button] {
+  background: rgba(9, 30, 66, 0.04);
+  color: rgb(66, 82, 110) !important;
+  border: none;
+}
+[nz-button]:hover {
+  background: rgba(9, 30, 66, 0.1);
+
+  .linkedin-icon {
+    color: #0a66c2;
+  }
+}
+

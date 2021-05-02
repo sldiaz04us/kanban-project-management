@@ -1,0 +1,51 @@
+:host {
+  display: flex;
+  padding: 16px 24px;
+}
+
+nz-input-group {
+  background: rgba(9, 30, 66, 0.04);
+  input {
+    background: rgba(9, 30, 66, 0);
+  }
+}
+nz-input-group:hover {
+  background: rgba(9, 30, 66, 0.1);
+  border-color: rgba(9, 30, 66, 0.1) !important;
+}
+nz-input-group:focus-within{
+  background: #fff;
+  input {
+    background: #fff;
+  }
+}
+
+nz-avatar {
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+nz-avatar:hover {
+  transform: translateY(-4px);
+  z-index: 11;
+}
+
+[nz-button] {
+  background: rgba(9, 30, 66, 0.04);
+  color: rgb(66, 82, 110) !important;
+  border: none;
+  margin-left: 16px;
+}
+[nz-button]:hover {
+  background: rgba(9, 30, 66, 0.1);
+}
+[nz-button]:last-of-type{
+  background: none;
+  margin-left: 0;
+}
+[nz-button]:last-of-type:hover{
+  background: rgba(9, 30, 66, 0.1);
+}
+
+nz-divider{
+  height: auto;
+}
