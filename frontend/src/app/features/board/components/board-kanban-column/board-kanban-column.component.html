@@ -1,0 +1,4 @@
+<h3>{{ IssueStatusDisplay[status] }}</h3>
+<div *ngFor="let issue of issues$ | async">
+  <app-issue-card [issue]="issue"></app-issue-card>
+</div>

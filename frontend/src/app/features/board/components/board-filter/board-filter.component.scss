@@ -1,6 +1,16 @@
 :host {
   display: flex;
   padding: 16px 24px;
+  flex-wrap: wrap;
+}
+
+form,
+nz-avatar-group {
+  margin: 4px 0;
+}
+
+nz-avatar-group {
+  margin-right: 1rem;
 }
 
 nz-input-group {
@@ -13,7 +23,7 @@ nz-input-group:hover {
   background: rgba(9, 30, 66, 0.1);
   border-color: rgba(9, 30, 66, 0.1) !important;
 }
-nz-input-group:focus-within{
+nz-input-group:focus-within {
   background: #fff;
   input {
     background: #fff;
@@ -33,19 +43,15 @@ nz-avatar:hover {
   background: rgba(9, 30, 66, 0.04);
   color: rgb(66, 82, 110) !important;
   border: none;
-  margin-left: 16px;
+  margin: 4px 0;
+  margin-right: 1rem;
 }
 [nz-button]:hover {
   background: rgba(9, 30, 66, 0.1);
 }
-[nz-button]:last-of-type{
-  background: none;
-  margin-left: 0;
-}
-[nz-button]:last-of-type:hover{
-  background: rgba(9, 30, 66, 0.1);
-}
 
-nz-divider{
+nz-divider {
   height: auto;
+  margin: 4px 0;
+  margin-right: 1rem;
 }

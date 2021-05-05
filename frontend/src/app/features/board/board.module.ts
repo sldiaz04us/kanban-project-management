@@ -14,11 +14,16 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
 import { BoardHeaderComponent } from './components/board-header/board-header.component';
 import { BoardFilterComponent } from './components/board-filter/board-filter.component';
+import { BoardKanbanComponent } from './components/board-kanban/board-kanban.component';
+import { BoardKanbanColumnComponent } from './components/board-kanban-column/board-kanban-column.component';
+import { IssuesModule } from '@features/issues/issues.module';
 
 @NgModule({
   declarations: [
     BoardHeaderComponent,
-    BoardFilterComponent
+    BoardFilterComponent,
+    BoardKanbanComponent,
+    BoardKanbanColumnComponent,
   ],
   imports: [
     CommonModule,
@@ -31,8 +36,13 @@ import { BoardFilterComponent } from './components/board-filter/board-filter.com
     NzInputModule,
     NzAvatarModule,
     NzToolTipModule,
-    NzDividerModule
+    NzDividerModule,
+    IssuesModule
   ],
-  exports: [BoardHeaderComponent, BoardFilterComponent]
+  exports: [
+    BoardHeaderComponent,
+    BoardFilterComponent,
+    BoardKanbanComponent,
+  ]
 })
 export class BoardModule { }

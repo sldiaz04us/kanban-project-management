@@ -5,13 +5,28 @@ import { NZ_ICONS, NzIconModule } from 'ng-zorro-antd/icon';
 import {
   MenuFoldOutline,
   MenuUnfoldOutline,
-  FormOutline,
-  DashboardOutline,
+  AppstoreOutline,
+  PlusOutline,
+  SettingOutline,
+  UserOutline,
   GithubOutline,
-  LinkedinFill
+  LinkedinFill,
+  CheckSquareFill,
+  ArrowUpOutline
 } from '@ant-design/icons-angular/icons';
 
-const icons = [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline, GithubOutline, LinkedinFill];
+const icons = [
+  MenuFoldOutline,
+  MenuUnfoldOutline,
+  AppstoreOutline,
+  PlusOutline,
+  SettingOutline,
+  UserOutline,
+  GithubOutline,
+  LinkedinFill,
+  CheckSquareFill,
+  ArrowUpOutline
+];
 
 @NgModule({
   imports: [NzIconModule],

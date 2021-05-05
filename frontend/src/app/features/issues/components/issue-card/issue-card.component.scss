@@ -1,0 +1,53 @@
+.issue-card {
+  padding: 1.25rem;
+  display: block;
+  border-radius: 0.375rem;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+  p {
+    color: rgba(17, 34, 39, 1);
+    line-height: 1.375;
+    font-weight: 500;
+    display: block;
+    height: 4.28571429em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+
+  .bottom-section {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    .status {
+      display: inline-flex;
+      color: rgba(59, 130, 246, 1);
+
+      i:first-child {
+        margin-right: 0.75rem;
+      }
+    }
+
+    .assignee {
+      display: inline-flex;
+      align-items: center;
+
+      .issue-name {
+        margin-right: 0.5em;
+      }
+    }
+  }
+}
+
+nz-avatar {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

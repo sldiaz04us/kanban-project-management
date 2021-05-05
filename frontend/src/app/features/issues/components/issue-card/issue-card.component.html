@@ -1,0 +1,26 @@
+<div class="issue-card">
+  <p>
+    {{ issue.title }}
+  </p>
+  <div class="bottom-section">
+    <div class="status">
+      <i nz-icon nzType="check-square" nzTheme="fill"></i>
+      <i nz-icon nzType="arrow-up" nzTheme="outline"></i>
+    </div>
+    <div class="assignee">
+      <span class="issue-name"
+        >{{ issue.type | uppercase }}-{{ issue.id }}</span
+      >
+      <nz-avatar-group>
+        <nz-avatar
+          *ngFor="let user of assignees$ | async"
+          nzIcon="user"
+          nzSrc="{{ user.avatarUrl }}"
+          nz-tooltip
+          nzTooltipTitle="Assignee: {{ user.name }}"
+          nzTooltipPlacement="bottom"
+        ></nz-avatar>
+      </nz-avatar-group>
+    </div>
+  </div>
+</div>

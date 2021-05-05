@@ -1,0 +1,8 @@
+<div class="kanban">
+  <div
+    class="kanban-column"
+    app-board-kanban-column
+    *ngFor="let status of issuesStatuses"
+    [status]="status"
+  ></div>
+</div>

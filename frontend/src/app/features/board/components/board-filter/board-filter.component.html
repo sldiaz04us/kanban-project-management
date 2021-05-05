@@ -10,28 +10,11 @@
 
 <nz-avatar-group>
   <nz-avatar
+    *ngFor="let user of users$ | async"
     nzIcon="user"
-    nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+    nzSrc="{{ user.avatarUrl }}"
     nz-tooltip
-    nzTooltipTitle="Richard Hendricks"
-  ></nz-avatar>
-  <nz-avatar
-    style="background-color: #f56a00"
-    nzText="D"
-    nz-tooltip
-    nzTooltipTitle="Dinesh"
-  ></nz-avatar>
-  <nz-avatar
-    style="background-color: #87d068"
-    nzText="G"
-    nz-tooltip
-    nzTooltipTitle="Gilfoyle"
-  ></nz-avatar>
-  <nz-avatar
-    style="background-color: #1890ff"
-    nzText="BH"
-    nz-tooltip
-    nzTooltipTitle="Big Head"
+    nzTooltipTitle="{{ user.name }}"
   ></nz-avatar>
 </nz-avatar-group>
 
@@ -40,4 +23,4 @@
 
 <nz-divider nzType="vertical"></nz-divider>
 
-<button nz-button nzType="text">Clear all</button>
+<button nz-button>Clear all</button>
