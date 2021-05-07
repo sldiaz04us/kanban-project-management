@@ -1,9 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
+import { Store } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
 
 import { Issue, IssueStatus, IssueStatusDisplay } from '@core/interfaces/issue';
-import { IssueService } from '@core/services/issue.service';
+import { State } from '@core/interfaces/app.state';
+import { getIssuesByStatus } from '@features/issues/state/issue.selectors';
+import { IssuePageActions } from '@features/issues/state/actions';
 
 @Component({
   selector: '[app-board-kanban-column]',
@@ -17,11 +21,12 @@ export class BoardKanbanColumnComponent implements OnInit {
 
   IssueStatusDisplay = IssueStatusDisplay;
 
-  constructor(private issueService: IssueService) {
+  constructor(private store: Store<State>) {
   }
 
   ngOnInit(): void {
-    this.issues$ = this.issueService.getIssuesByStatus(this.status);
+    this.store.dispatch(IssuePageActions.loadIssues());
+    this.issues$ = this.store.select(getIssuesByStatus, { status: this.status });
   }
 
 }

@@ -8,6 +8,10 @@ import en from '@angular/common/locales/en';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -32,7 +36,14 @@ registerLocaleData(en);
     environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(AppData, { delay: 10 }),
     BrowserAnimationsModule,
     NzLayoutModule,
-    NavigationModule
+    NavigationModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      name: 'Kanban Project Management',
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
