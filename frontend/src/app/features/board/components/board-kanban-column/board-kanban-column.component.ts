@@ -10,9 +10,9 @@ import { Issue, IssueStatus } from '@core/interfaces/issue';
 import { getIssues } from '@features/issues/state/issue.selectors';
 import { IssuePageActions } from '@features/issues/state/actions';
 import { AppState } from '@core/interfaces/app.state';
-import { IssueService } from '@features/issues/services/issue.service';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[app-board-kanban-column]',
   templateUrl: './board-kanban-column.component.html',
   styleUrls: ['./board-kanban-column.component.scss'],

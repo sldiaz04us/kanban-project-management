@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -9,12 +9,9 @@ import { Project } from '@core/interfaces/project';
   templateUrl: './board-header.component.html',
   styleUrls: ['./board-header.component.scss']
 })
-export class BoardHeaderComponent implements OnInit {
+export class BoardHeaderComponent {
   @Input() currentProject$: Observable<Project>;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

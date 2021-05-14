@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { IssueStatus } from '@core/interfaces/issue';
 
@@ -8,7 +8,7 @@ import { IssueStatus } from '@core/interfaces/issue';
   styleUrls: ['./board-kanban.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BoardKanbanComponent implements OnInit {
+export class BoardKanbanComponent {
   issuesStatuses: IssueStatus[] = [
     IssueStatus.BACKLOG,
     IssueStatus.IN_PROGRESS,
@@ -17,8 +17,5 @@ export class BoardKanbanComponent implements OnInit {
   ];
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
