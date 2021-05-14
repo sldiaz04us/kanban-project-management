@@ -11,20 +11,22 @@ import { IssueCardComponent } from './components/issue-card/issue-card.component
 import { IconsProviderModule } from 'src/app/icons-provider.module';
 import { issueReducer } from './state/issue.reducer';
 import { IssueEffects } from './state/issue.effects';
+import { IssueStatusPipe } from './pipes/issue-status.pipe';
 
 
 @NgModule({
   declarations: [
-    IssueCardComponent
+    IssueCardComponent,
+    IssueStatusPipe
   ],
   imports: [
     CommonModule,
     IconsProviderModule,
     NzAvatarModule,
     NzToolTipModule,
-    StoreModule.forFeature('issues', issueReducer),
+    StoreModule.forFeature('issue', issueReducer),
     EffectsModule.forFeature([IssueEffects])
   ],
-  exports: [IssueCardComponent]
+  exports: [IssueCardComponent, IssueStatusPipe]
 })
 export class IssuesModule { }

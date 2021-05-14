@@ -10,7 +10,7 @@
 
 <nz-avatar-group>
   <nz-avatar
-    *ngFor="let user of users$ | async"
+    *ngFor="let user of assignedUsers$ | async"
     nzIcon="user"
     nzSrc="{{ user.avatarUrl }}"
     nz-tooltip

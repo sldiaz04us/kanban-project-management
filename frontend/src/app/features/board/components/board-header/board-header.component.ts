@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Observable } from 'rxjs';
+
+import { Project } from '@core/interfaces/project';
 
 @Component({
   selector: 'app-board-header',
@@ -6,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-header.component.scss']
 })
 export class BoardHeaderComponent implements OnInit {
+  @Input() currentProject$: Observable<Project>;
 
   constructor() { }
 

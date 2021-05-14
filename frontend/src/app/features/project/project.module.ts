@@ -11,7 +11,7 @@ import { ProjectEffects } from './state/project.effects';
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature('projects', projectReducer),
+    StoreModule.forFeature('project', projectReducer),
     EffectsModule.forFeature([ProjectEffects])
   ]
 })

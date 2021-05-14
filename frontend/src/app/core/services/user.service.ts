@@ -11,8 +11,6 @@ import { User } from '@core/interfaces/user';
 export class UserService {
   private usersUrl = 'api/users';
 
-  users$ = this.http.get<User[]>(this.usersUrl);
-
   constructor(private http: HttpClient) { }
 
   getUserById(userId: string): Observable<User> {

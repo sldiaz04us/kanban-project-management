@@ -2,16 +2,19 @@ import { createReducer, on } from "@ngrx/store";
 
 import { Project } from "@core/interfaces/project";
 import { ProjectPageActions, ProjectApiActions } from './actions';
+import { User } from "@core/interfaces/user";
 
 export interface ProjectState {
   currentProjectId: string | null;
   projects: Project[];
+  assignedUsers: User[];
   error: string;
 }
 
 const initialState: ProjectState = {
-  currentProjectId: null,
+  currentProjectId: '130921',
   projects: [],
+  assignedUsers: [],
   error: ''
 }
 
@@ -20,7 +23,7 @@ export const projectReducer = createReducer<ProjectState>(
   on(ProjectPageActions.setCurrentProject, (state, action): ProjectState => {
     return {
       ...state,
-      currentProjectId: action.currentProjectId
+      currentProjectId: action.projectId
     }
   }),
   on(ProjectApiActions.loadProjectsSuccess, (state, action): ProjectState => {
@@ -35,5 +38,17 @@ export const projectReducer = createReducer<ProjectState>(
       ...state,
       error: action.error
     }
-  })
+  }),
+  on(ProjectApiActions.loadAssignedUsersSuccess, (state, action): ProjectState => {
+    return {
+      ...state,
+      assignedUsers: action.assignedUsers
+    }
+  }),
+  on(ProjectApiActions.loadAssignedUsersFailure, (state, action): ProjectState => {
+    return {
+      ...state,
+      error: action.error
+    }
+  }),
 )

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { UserService } from '@core/services/user.service';
-import { User } from '@core/interfaces/user';
-import { Observable } from 'rxjs';
 
+import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+import { User } from '@core/interfaces/user';
 
 @Component({
   selector: 'app-board-filter',
@@ -12,12 +12,11 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./board-filter.component.scss']
 })
 export class BoardFilterComponent implements OnInit {
-  filterForm!: FormGroup;
-  users$: Observable<User[]>;
+  @Input() assignedUsers$: Observable<User[]>;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
-    this.users$ = this.userService.users$;
-  }
+  filterForm!: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.filterForm = this.fb.group({

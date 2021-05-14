@@ -4,6 +4,7 @@ import { BoardPageRoutingModule } from './board-page-routing.module';
 import { BoardPageComponent } from './board-page.component';
 import { BoardModule } from '@features/board/board.module';
 import { ProjectModule } from '@features/project/project.module';
+import { IssuesModule } from '@features/issues/issues.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ProjectModule } from '@features/project/project.module';
   imports: [
     BoardPageRoutingModule,
     BoardModule,
-    ProjectModule
+    ProjectModule,
+    IssuesModule
   ],
   exports: [BoardPageComponent]
 })

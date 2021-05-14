@@ -1,11 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
-import { from, Observable } from 'rxjs';
-import { mergeMap, toArray } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+
+import { Observable } from 'rxjs';
+import { map, skipWhile } from 'rxjs/operators';
 
 import { Issue } from '@core/interfaces/issue';
 import { User } from '@core/interfaces/user';
-import { UserService } from '@core/services/user.service';
+import { AppState } from '@core/interfaces/app.state';
+import { getAssignedUsers } from '@features/project/state/project.selectors';
 
 @Component({
   selector: 'app-issue-card',
@@ -17,13 +20,13 @@ export class IssueCardComponent implements OnInit {
   @Input() issue: Issue;
   assignees$: Observable<User[]>;
 
-  constructor(private userService: UserService) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.assignees$ = from(this.issue.userIds).pipe(
-      mergeMap(userId => this.userService.getUserById(userId)),
-      toArray()
-    );
+    this.assignees$ = this.store.select(getAssignedUsers).pipe(
+      skipWhile(users => users.length === 0),
+      map(users => this.issue.userIds.map(userId => users.find(u => u.id === userId)))
+    )
   }
 
 }

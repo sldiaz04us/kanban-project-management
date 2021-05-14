@@ -1,13 +1,16 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { tap, filter } from 'rxjs/operators';
 
 import { Project } from '@core/interfaces/project';
-import { State } from '@core/interfaces/app.state';
+import { getAssignedUsers, getCurrentProject, getCurrentProjectId } from '@features/project/state/project.selectors';
+import { IssuePageActions } from '@features/issues/state/actions';
+import { AppState } from '@core/interfaces/app.state';
 import { ProjectPageActions } from '@features/project/state/actions';
-import { getProjects, getCurrentProject } from '@features/project/state/project.selectors';
+import { User } from '@core/interfaces/user';
 
 @Component({
   selector: 'app-board-page',
@@ -15,16 +18,34 @@ import { getProjects, getCurrentProject } from '@features/project/state/project.
   styleUrls: ['./board-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BoardPageComponent implements OnInit {
-  projects$: Observable<Project[]>;
+export class BoardPageComponent implements OnInit, OnDestroy {
   currentProject$: Observable<Project>;
+  assignedUsers$: Observable<User[]>;
 
-  constructor(private store: Store<State>) { }
+  private subs: Subscription;
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.dispatch(ProjectPageActions.loadProjects());
-    this.projects$ = this.store.select(getProjects);
-    this.currentProject$ = this.store.select(getCurrentProject);
+    this.currentProject$ = this.store.select(getCurrentProject)
+      .pipe(
+        filter(project => Boolean(project)),
+        tap(project => this.store.dispatch(ProjectPageActions.loadAssignedUsers({ userIds: project.userIds })))
+      );
+
+    this.subs = this.store.select(getCurrentProjectId).pipe(
+      filter(currentProjectId => Boolean(currentProjectId)),
+      tap(projectId => {
+        this.store.dispatch(IssuePageActions.loadIssues({ projectId }));
+      })).subscribe();
+
+    this.assignedUsers$ = this.store.select(getAssignedUsers);
+  }
+
+  ngOnDestroy(): void {
+    if (this.subs) {
+      this.subs.unsubscribe();
+    }
   }
 
 }

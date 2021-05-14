@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { NavigationService } from '@features/navigation/services/navigation.service';
+import { ProjectPageActions } from '@features/project/state/actions';
+import { AppState } from '@core/interfaces/app.state';
+import { Project } from '@core/interfaces/project';
+import { getProjects } from '@features/project/state/project.selectors';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +18,20 @@ import { NavigationService } from '@features/navigation/services/navigation.serv
 })
 export class AppComponent implements OnInit {
   private subsNotifier = new Subject();
+  projects$: Observable<Project[]>;
 
   isSidebarCollapsed = false;
 
-  constructor(private navigationService: NavigationService) { }
+  constructor(
+    private navigationService: NavigationService,
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit(): void {
     this.navigationService.sidebarCollapseStatusChanged$.pipe(takeUntil(this.subsNotifier)).subscribe(collapseStatus => this.isSidebarCollapsed = collapseStatus);
+
+    this.store.dispatch(ProjectPageActions.loadProjects());
+    this.projects$ = this.store.select(getProjects);
   }
 
   onSidebarCollapsed(sidebarCollapsedStatus: boolean): void {

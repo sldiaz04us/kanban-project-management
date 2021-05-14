@@ -21,6 +21,8 @@ import { AppComponent } from './app.component';
 import { NavigationModule } from '@features/navigation/navigation.module';
 import { environment } from '@environment/environment';
 import { AppData } from '@core/data/app-data';
+import { CoreModule } from '@core/core.module';
+import { ProjectModule } from '@features/project/project.module';
 
 registerLocaleData(en);
 
@@ -37,13 +39,15 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     NzLayoutModule,
     NavigationModule,
+    CoreModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       name: 'Kanban Project Management',
       maxAge: 25,
       logOnly: environment.production
-    })
+    }),
+    ProjectModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

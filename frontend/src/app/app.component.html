@@ -13,7 +13,7 @@
   </nz-sider>
   <nz-layout class="content-layout">
     <nz-header>
-      <app-navigation-toolbar></app-navigation-toolbar>
+      <app-navigation-toolbar [projects$]="projects$"></app-navigation-toolbar>
     </nz-header>
     <nz-content>
       <router-outlet></router-outlet>

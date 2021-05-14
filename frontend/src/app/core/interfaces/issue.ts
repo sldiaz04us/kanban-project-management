@@ -3,13 +3,13 @@ export type IssueType = 'Story' | 'Task' | 'Bug';
 export enum IssueStatus {
   BACKLOG = 'Backlog',
   IN_PROGRESS = 'InProgress',
-  TESTING = 'Testing',
+  IN_REVIEW = 'InReview',
   DONE = 'Done',
 }
 export const IssueStatusDisplay = {
   [IssueStatus.BACKLOG]: 'Backlog',
   [IssueStatus.IN_PROGRESS]: 'In progress',
-  [IssueStatus.TESTING]: 'Testing',
+  [IssueStatus.IN_REVIEW]: 'In review',
   [IssueStatus.DONE]: 'Done',
 }
 

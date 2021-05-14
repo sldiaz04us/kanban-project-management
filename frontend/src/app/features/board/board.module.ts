@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
@@ -37,7 +38,8 @@ import { IssuesModule } from '@features/issues/issues.module';
     NzAvatarModule,
     NzToolTipModule,
     NzDividerModule,
-    IssuesModule
+    IssuesModule,
+    DragDropModule
   ],
   exports: [
     BoardHeaderComponent,

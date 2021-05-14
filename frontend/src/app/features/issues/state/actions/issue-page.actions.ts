@@ -1,3 +1,13 @@
-import { createAction } from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
 
-export const loadIssues = createAction('[Issue Page] Load');
+import { Issue } from "@core/interfaces/issue";
+
+export const loadIssues = createAction(
+  '[Issue Page] Load',
+  props<{ projectId: string }>()
+);
+
+export const updateIssue = createAction(
+  '[Issue Page] Update Issue',
+  props<{ issue: Issue }>()
+);

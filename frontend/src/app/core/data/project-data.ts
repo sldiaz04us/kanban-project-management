@@ -32,6 +32,31 @@ export class ProjectData {
         '9665',
         '9667'
       ],
+    },
+    {
+      id: '130921',
+      name: 'Another Kanban Project',
+      key: 'AKP',
+      url: 'https://github.com/sldiaz04us/kanban-project-management',
+      description: '',
+      avatar: '',
+      category: 'Software',
+      createdAt: '2021-04-03T16:00:00.000Z',
+      updatedAt: '2021-04-03T16:00:00.000Z',
+      userIds: [
+        'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        '7ac265f9-b9ac-443f-a2b2-795682e579a4',
+        '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+        '610451aa-10c8-4d7e-9363-311357c0b0dd'
+      ],
+      issueIds: [
+        '8542',
+        '8543',
+        '8544',
+        '8545',
+        '8546',
+        '8547'
+      ],
     }
   ];
 }

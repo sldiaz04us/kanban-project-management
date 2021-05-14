@@ -19,10 +19,15 @@
     </button>
     <nz-dropdown-menu #projectsMenu="nzDropdownMenu">
       <ul nz-menu nzMode="horizontal">
-        <li nz-menu-group nzTitle="Board in Sample Kanban Project">
+        <li nz-menu-group nzTitle="Recent">
           <ul>
-            <li nz-menu-item>Sample Kanban Project</li>
-            <li nz-menu-item>Another Kanban Project</li>
+            <li
+              nz-menu-item
+              *ngFor="let project of projects$ | async"
+              (click)="changeCurrentProject(project.id)"
+            >
+              {{ project.name }}
+            </li>
           </ul>
         </li>
         <nz-divider></nz-divider>

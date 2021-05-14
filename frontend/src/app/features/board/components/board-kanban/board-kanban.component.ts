@@ -12,12 +12,11 @@ export class BoardKanbanComponent implements OnInit {
   issuesStatuses: IssueStatus[] = [
     IssueStatus.BACKLOG,
     IssueStatus.IN_PROGRESS,
-    IssueStatus.TESTING,
+    IssueStatus.IN_REVIEW,
     IssueStatus.DONE,
   ];
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
