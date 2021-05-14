@@ -5,8 +5,28 @@
     </p>
     <div class="bottom-section">
       <div class="status">
-        <i nz-icon nzType="check-square" nzTheme="fill"></i>
-        <i nz-icon nzType="arrow-up" nzTheme="outline"></i>
+        <app-svg-icon
+          [name]="issueTypeIcon | async"
+          nz-tooltip
+          [nzTooltipMouseEnterDelay]="0.3"
+          [nzTooltipTitle]="issue.type"
+          nzTooltipPlacement="bottom"
+          [size]="18"
+        >
+        </app-svg-icon>
+        <app-svg-icon
+          *ngIf="priorityIcon | async as priorityIcon"
+          [name]="priorityIcon.icon"
+          nz-tooltip
+          [nzTooltipMouseEnterDelay]="0.3"
+          [nzTooltipTitle]="priorityIcon.value"
+          nzTooltipPlacement="bottom"
+          [style.color]="priorityIcon.color"
+          [size]="18"
+        >
+        </app-svg-icon>
+        <!-- <i nz-icon nzType="check-square" nzTheme="fill"></i>
+        <i nz-icon nzType="arrow-up" nzTheme="outline"></i> -->
       </div>
       <div class="assignee">
         <span class="issue-name"

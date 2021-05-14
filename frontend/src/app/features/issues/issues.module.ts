@@ -12,6 +12,7 @@ import { IconsProviderModule } from 'src/app/icons-provider.module';
 import { issueReducer } from './state/issue.reducer';
 import { IssueEffects } from './state/issue.effects';
 import { IssueStatusPipe } from './pipes/issue-status.pipe';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { IssueStatusPipe } from './pipes/issue-status.pipe';
     NzAvatarModule,
     NzToolTipModule,
     StoreModule.forFeature('issue', issueReducer),
-    EffectsModule.forFeature([IssueEffects])
+    EffectsModule.forFeature([IssueEffects]),
+    SharedModule
   ],
   exports: [IssueCardComponent, IssueStatusPipe]
 })

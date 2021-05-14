@@ -11,6 +11,10 @@
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
+    &:hover {
+      background: #ebecf0;
+    }
+
     p {
       color: rgba(17, 34, 39, 1);
       line-height: 1.375;
@@ -26,15 +30,18 @@
 
     .bottom-section {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
 
       .status {
         display: inline-flex;
-        color: rgba(59, 130, 246, 1);
+        align-items: center;
 
-        i:first-child {
-          margin-right: 0.75rem;
+        app-svg-icon {
+          height: 16px;
+          &:first-child {
+            margin-right: 0.5rem;
+          }
         }
       }
 
