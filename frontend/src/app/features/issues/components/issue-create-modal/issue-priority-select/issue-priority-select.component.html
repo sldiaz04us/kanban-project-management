@@ -1,0 +1,29 @@
+<div [formGroup]="form">
+  <nz-select formControlName="priority" [nzCustomTemplate]="priorityTempl">
+    <nz-option
+      nzCustomContent
+      *ngFor="let priority of priorities"
+      [nzValue]="priority.value"
+    >
+      <div class="issue-priority-select">
+        <app-svg-icon
+          [name]="priority.icon"
+          [style.color]="priority.color"
+          [size]="18"
+        ></app-svg-icon>
+        <span>{{ priority.value }}</span>
+      </div>
+    </nz-option>
+  </nz-select>
+
+  <ng-template #priorityTempl let-selected>
+    <div class="issue-priority-select">
+      <app-svg-icon
+        [name]="getPriorityIcon(selected.nzValue)?.icon"
+        [style.color]="getPriorityIcon(selected.nzValue)?.color"
+        [size]="18"
+      ></app-svg-icon>
+      <span>{{ selected.nzValue }}</span>
+    </div>
+  </ng-template>
+</div>

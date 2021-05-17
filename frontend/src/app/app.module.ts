@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import en from '@angular/common/locales/en';
@@ -23,6 +23,7 @@ import { environment } from '@environment/environment';
 import { AppData } from '@core/data/app-data';
 import { CoreModule } from '@core/core.module';
 import { ProjectModule } from '@features/project/project.module';
+import { UserModule } from '@features/user/user.module';
 
 registerLocaleData(en);
 
@@ -34,6 +35,7 @@ registerLocaleData(en);
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(AppData, { delay: 10 }),
     BrowserAnimationsModule,
@@ -47,7 +49,8 @@ registerLocaleData(en);
       maxAge: 25,
       logOnly: environment.production
     }),
-    ProjectModule
+    ProjectModule,
+    UserModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

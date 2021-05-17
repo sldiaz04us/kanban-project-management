@@ -5,10 +5,13 @@ import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { NzModalService } from 'ng-zorro-antd/modal';
+
 import { NavigationService } from '@features/navigation/services/navigation.service';
 import { Project } from '@core/interfaces/project';
 import { AppState } from '@core/interfaces/app.state';
 import { setCurrentProject } from '@features/project/state/actions/project-page.actions';
+import { IssueCreateModalComponent } from '@features/issues/components/issue-create-modal/issue-create-modal.component';
 
 @Component({
   selector: 'app-navigation-toolbar',
@@ -24,7 +27,8 @@ export class NavigationToolbarComponent implements OnInit, OnDestroy {
 
   constructor(
     private navigationService: NavigationService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private modalService: NzModalService
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +42,16 @@ export class NavigationToolbarComponent implements OnInit, OnDestroy {
 
   changeCurrentProject(projectId: string): void {
     this.store.dispatch(setCurrentProject({ projectId }));
+  }
+
+  openCreateIssueModal() {
+    this.modalService.create({
+      nzTitle: 'Create Issue',
+      nzContent: IssueCreateModalComponent,
+      nzFooter: null,
+      nzKeyboard: false,
+      nzMaskClosable: false
+    });
   }
 
   ngOnDestroy(): void {

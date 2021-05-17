@@ -7,6 +7,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 
 import { IssueService } from "../services/issue.service"
 import { IssueApiActions, IssuePageActions } from "./actions"
+import { ProjectPageActions } from "@features/project/state/actions";
 
 @Injectable()
 export class IssueEffects {
@@ -26,6 +27,23 @@ export class IssueEffects {
       })
     )
   });
+
+  createIssue$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(IssuePageActions.createIssue),
+      mergeMap(action => {
+        return this.issueService.createIssue(action.issue).pipe(
+          mergeMap(issue => {
+            return [
+              IssueApiActions.createIssueSuccess({ issue }),
+              ProjectPageActions.updateProject({ project: action.project })
+            ];
+          }),
+          catchError(error => of(IssueApiActions.createIssueFailure({ error })))
+        )
+      })
+    );
+  })
 
   updateIssue$ = createEffect(() => {
     return this.actions$.pipe(

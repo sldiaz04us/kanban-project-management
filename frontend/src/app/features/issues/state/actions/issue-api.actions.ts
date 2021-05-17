@@ -11,6 +11,15 @@ export const loadIssuesFailure = createAction(
   props<{ error: string }>()
 );
 
+export const createIssueSuccess = createAction(
+  '[Issue API] Create Issue Success',
+  props<{ issue: Issue }>()
+);
+export const createIssueFailure = createAction(
+  '[Issue API] Create Issue Fail',
+  props<{ error: string }>()
+);
+
 export const updateIssueSuccess = createAction(
   '[Issue API] Update Issue Success',
   props<{ issue: Issue }>()

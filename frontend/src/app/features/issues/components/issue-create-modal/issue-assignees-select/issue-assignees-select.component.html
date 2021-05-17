@@ -1,0 +1,35 @@
+<div [formGroup]="form">
+  <nz-select
+    nzMode="multiple"
+    formControlName="userIds"
+    [nzCustomTemplate]="assigneesTempl"
+    (ngModelChange)="onSelected($event)"
+  >
+    <nz-option
+      nzCustomContent
+      *ngFor="let user of users"
+      [nzValue]="user.id"
+      [nzHide]="!isNotSelected(user.id)"
+    >
+      <div class="issue-assignees-select">
+        <nz-avatar
+          nzIcon="user"
+          [nzSrc]="user.avatarUrl"
+          [nzSize]="20"
+        ></nz-avatar>
+        <span>{{ user.name }}</span>
+      </div>
+    </nz-option>
+  </nz-select>
+
+  <ng-template #assigneesTempl let-selected>
+    <div class="issue-assignees-select">
+      <nz-avatar
+        nzIcon="user"
+        [nzSize]="20"
+        [nzSrc]="getUser(selected.nzValue).avatarUrl"
+      ></nz-avatar>
+      <span>{{ getUser(selected.nzValue).name }}</span>
+    </div>
+  </ng-template>
+</div>

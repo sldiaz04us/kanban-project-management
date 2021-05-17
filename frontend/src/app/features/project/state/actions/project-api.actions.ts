@@ -20,3 +20,12 @@ export const loadAssignedUsersFailure = createAction(
   '[Project API] Load Assigned Users Fail',
   props<{ error: string }>()
 );
+
+export const updateProjectSuccess = createAction(
+  '[Project API] Update Project Success',
+  props<{ project: Project }>()
+)
+export const updateProjectFailure = createAction(
+  '[Project API] Update Project Fail',
+  props<{ error: string }>()
+);

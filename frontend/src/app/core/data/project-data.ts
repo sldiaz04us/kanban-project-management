@@ -16,8 +16,7 @@ export class ProjectData {
         'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
         '7ac265f9-b9ac-443f-a2b2-795682e579a4',
         '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
-        '610451aa-10c8-4d7e-9363-311357c0b0dd',
-        '081ccaa1-5595-4621-8074-ede4927e67b0'
+        '610451aa-10c8-4d7e-9363-311357c0b0dd'
       ],
       issueIds: [
         '9013',
@@ -46,8 +45,7 @@ export class ProjectData {
       userIds: [
         'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
         '7ac265f9-b9ac-443f-a2b2-795682e579a4',
-        '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
-        '610451aa-10c8-4d7e-9363-311357c0b0dd'
+        '94502aad-c97f-43e1-a9d1-28cf3e4937a7'
       ],
       issueIds: [
         '8542',

@@ -1,0 +1,25 @@
+<div [formGroup]="form">
+  <nz-select formControlName="reporterId" [nzCustomTemplate]="reporterTempl">
+    <nz-option nzCustomContent *ngFor="let user of users" [nzValue]="user.id">
+      <div class="issue-reporter-select">
+        <nz-avatar
+          nzIcon="user"
+          [nzSrc]="user.avatarUrl"
+          [nzSize]="20"
+        ></nz-avatar>
+        <span>{{ user.name }}</span>
+      </div>
+    </nz-option>
+  </nz-select>
+
+  <ng-template #reporterTempl let-selected>
+    <div class="issue-reporter-select">
+      <nz-avatar
+        nzIcon="user"
+        [nzSize]="20"
+        [nzSrc]="getUser(selected.nzValue).avatarUrl"
+      ></nz-avatar>
+      <span>{{ getUser(selected.nzValue).name }}</span>
+    </div>
+  </ng-template>
+</div>

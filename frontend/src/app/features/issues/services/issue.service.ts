@@ -12,6 +12,9 @@ import { Issue, IssueStatus } from '@core/interfaces/issue';
 })
 export class IssueService {
   private issuesUrl = 'api/issues';
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -27,10 +30,15 @@ export class IssueService {
     return this.http.get<Issue[]>(`${this.issuesUrl}?projectId=^${projectId}`);
   }
 
+  createIssue(issue: Issue): Observable<Issue> {
+    return this.http.post<Issue>(this.issuesUrl, issue, this.httpOptions).pipe(
+      map(() => issue)
+    );
+  }
+
   updateIssue(issue: Issue): Observable<Issue> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.issuesUrl}/${issue.id}`;
-    return this.http.put<Issue>(url, issue, { headers }).pipe(
+    return this.http.put<Issue>(url, issue, this.httpOptions).pipe(
       map(() => issue)
     );
   }

@@ -2,11 +2,11 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 import { from, of } from "rxjs";
-import { catchError, map, switchMap, mergeMap, toArray } from 'rxjs/operators';
+import { catchError, map, mergeMap, toArray } from 'rxjs/operators';
 
 import { ProjectService } from "../services/project.service";
-import { ProjectPageActions, ProjectApiActions } from '../state/actions';
-import { UserService } from "@core/services/user.service";
+import { ProjectPageActions, ProjectApiActions } from '@features/project/state/actions';
+import { UserService } from "@features/user/services/user.service";
 
 @Injectable()
 export class ProjectEffects {
@@ -40,5 +40,17 @@ export class ProjectEffects {
         )
       })
     )
+  });
+
+  updateProject$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProjectPageActions.updateProject),
+      mergeMap(action => {
+        return this.projectService.updateProject(action.project).pipe(
+          map(project => ProjectApiActions.updateProjectSuccess({ project })),
+          catchError(error => of(ProjectApiActions.updateProjectFailure({ error })))
+        )
+      })
+    );
   });
 }

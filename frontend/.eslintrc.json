@@ -23,7 +23,10 @@
         "@angular-eslint/component-selector": [
           "error",
           {
-            "prefix": "app",
+            "prefix": [
+              "app",
+              "issue"
+            ],
             "style": "kebab-case",
             "type": "element"
           }

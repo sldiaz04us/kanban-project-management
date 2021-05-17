@@ -10,7 +10,7 @@ export class UserData {
     },
     {
       id: '7ac265f9-b9ac-443f-a2b2-795682e579a4',
-      name: 'Gilfoy',
+      name: 'Gilfoyle',
       avatarUrl:
         'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/gilfoyle.png',
     },

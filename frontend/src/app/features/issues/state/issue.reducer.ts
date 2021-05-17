@@ -28,6 +28,19 @@ export const issueReducer = createReducer<IssueState>(
       error: action.error
     }
   }),
+  on(IssueApiActions.createIssueSuccess, (state, action): IssueState => {
+    const updatedIssues = [...state.issues, action.issue];
+    return {
+      ...state,
+      issues: updatedIssues
+    }
+  }),
+  on(IssueApiActions.createIssueFailure, (state, action): IssueState => {
+    return {
+      ...state,
+      error: action.error
+    }
+  }),
   on(IssueApiActions.updateIssueSuccess, (state, action): IssueState => {
     const updatedIssues = state.issues.map(
       issue => action.issue.id === issue.id ? action.issue : issue

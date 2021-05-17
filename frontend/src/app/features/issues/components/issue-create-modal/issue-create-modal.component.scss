@@ -1,0 +1,16 @@
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button:first-of-type {
+    margin-right: 1rem;
+    &:hover {
+      background: rgba(9, 30, 66, 0.1);
+    }
+  }
+  button:disabled {
+    color: #fff;
+    background: #40a9ff;
+    border-color: #40a9ff;
+  }
+}

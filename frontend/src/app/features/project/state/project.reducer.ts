@@ -51,4 +51,20 @@ export const projectReducer = createReducer<ProjectState>(
       error: action.error
     }
   }),
+  on(ProjectApiActions.updateProjectSuccess, (state, action): ProjectState => {
+    const updatedProjects = state.projects.map(
+      project => action.project.id === project.id ? action.project : project
+    );
+    return {
+      ...state,
+      projects: updatedProjects,
+      error: ''
+    }
+  }),
+  on(ProjectApiActions.updateProjectFailure, (state, action): ProjectState => {
+    return {
+      ...state,
+      error: action.error
+    }
+  }),
 )

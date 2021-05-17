@@ -9,6 +9,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 import { IconsProviderModule } from 'src/app/icons-provider.module';
 import { NavigationSidebarComponent } from './components/navigation-sidebar/navigation-sidebar.component';
@@ -31,7 +32,8 @@ import { NavigationToolbarComponent } from './components/navigation-toolbar/navi
     NzDividerModule,
     NzToolTipModule,
     NzButtonModule,
-    NzAvatarModule
+    NzAvatarModule,
+    NzModalModule
   ],
   exports: [
     NavigationSidebarComponent,

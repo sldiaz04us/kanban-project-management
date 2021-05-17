@@ -37,11 +37,8 @@
         display: inline-flex;
         align-items: center;
 
-        app-svg-icon {
-          height: 16px;
-          &:first-child {
-            margin-right: 0.5rem;
-          }
+        app-svg-icon:first-child {
+          margin-right: 0.5rem;
         }
       }
 
