@@ -10,6 +10,9 @@ import { ProjectPageActions } from '@features/project/state/actions';
 import { AppState } from '@core/interfaces/app.state';
 import { Project } from '@core/interfaces/project';
 import { getProjects } from '@features/project/state/project.selectors';
+import { User } from '@core/interfaces/user';
+import { getCurrentUser } from '@features/user/state/user.selectors';
+import { loadUsers } from '@features/user/state/actions/user.actions';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +22,7 @@ import { getProjects } from '@features/project/state/project.selectors';
 export class AppComponent implements OnInit, OnDestroy {
   private subsNotifier = new Subject();
   projects$: Observable<Project[]>;
+  currentUser$: Observable<User>;
 
   isSidebarCollapsed = false;
 
@@ -32,6 +36,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(ProjectPageActions.loadProjects());
     this.projects$ = this.store.select(getProjects);
+    this.store.dispatch(loadUsers());
+    this.currentUser$ = this.store.select(getCurrentUser);
   }
 
   onSidebarCollapsed(sidebarCollapsedStatus: boolean): void {

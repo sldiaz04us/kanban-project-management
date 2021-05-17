@@ -80,7 +80,7 @@
     <div class="avatar-container">
       <nz-avatar
         nz-tooltip
-        nzTooltipTitle="Sergio Lopez Diaz"
+        [nzTooltipTitle]="currentUser?.name"
         nzTooltipPlacement="rightBottom"
         nz-dropdown
         [nzDropdownMenu]="userMenu"

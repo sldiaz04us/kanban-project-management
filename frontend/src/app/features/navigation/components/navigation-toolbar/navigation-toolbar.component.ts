@@ -12,6 +12,7 @@ import { Project } from '@core/interfaces/project';
 import { AppState } from '@core/interfaces/app.state';
 import { setCurrentProject } from '@features/project/state/actions/project-page.actions';
 import { IssueCreateModalComponent } from '@features/issues/components/issue-create-modal/issue-create-modal.component';
+import { User } from '@core/interfaces/user';
 
 @Component({
   selector: 'app-navigation-toolbar',
@@ -20,6 +21,7 @@ import { IssueCreateModalComponent } from '@features/issues/components/issue-cre
 })
 export class NavigationToolbarComponent implements OnInit, OnDestroy {
   @Input() projects$: Observable<Project[]>;
+  @Input() currentUser: User;
 
   private subsNotifier = new Subject();
 
