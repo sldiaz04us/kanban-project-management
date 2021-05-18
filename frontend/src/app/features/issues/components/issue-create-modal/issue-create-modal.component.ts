@@ -8,6 +8,8 @@ import { takeUntil } from 'rxjs/operators';
 
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
+import { QuillModules } from 'ngx-quill';
+
 import { AppState } from '@core/interfaces/app.state';
 import { Project } from '@core/interfaces/project';
 import { getAssignedUsers, getCurrentProject, getCurrentProjectId, getProjects } from '@features/project/state/project.selectors';
@@ -33,6 +35,18 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
   currentProject: Project;
   currentProjectId: string;
   currentUserId: string;
+
+  customTextEditorOptions: QuillModules = {
+    toolbar: [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{ 'list': 'ordered' }, { list: 'bullet' }],
+      [{ 'color': [] }, { 'background': [] }],
+      ['link'],
+      ['clean'],
+    ],
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -86,12 +100,13 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
 
   private initForm(): void {
     this.issueForm = this.fb.group({
-      projectId: [this.currentProjectId, Validators.required],
+      projectId: [this.currentProjectId],
       type: ['Story', Validators.required],
+      priority: [IssuePriority.MEDIUM, Validators.required],
       title: ['', [Validators.required, Validators.minLength(5)]],
+      description: [''],
       reporterId: [this.currentUserId, Validators.required],
-      userIds: [[], Validators.required],
-      priority: [IssuePriority.MEDIUM, Validators.required]
+      userIds: [[], Validators.required]
     });
   }
 

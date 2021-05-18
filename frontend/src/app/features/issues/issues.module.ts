@@ -24,6 +24,7 @@ import { IssueTypeSelectComponent } from './components/issue-create-modal/issue-
 import { IssueReporterSelectComponent } from './components/issue-create-modal/issue-reporter-select/issue-reporter-select.component';
 import { IssuePrioritySelectComponent } from './components/issue-create-modal/issue-priority-select/issue-priority-select.component';
 import { IssueAssigneesSelectComponent } from './components/issue-create-modal/issue-assignees-select/issue-assignees-select.component';
+import { TextEditorModule } from '@features/text-editor/text-editor.module';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { IssueAssigneesSelectComponent } from './components/issue-create-modal/i
     NzSelectModule,
     NzButtonModule,
     NzInputModule,
-    NzDividerModule
+    NzDividerModule,
+    TextEditorModule
   ],
   exports: [IssueCardComponent, IssueStatusPipe]
 })

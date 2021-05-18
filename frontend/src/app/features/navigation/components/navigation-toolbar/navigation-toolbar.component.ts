@@ -52,7 +52,8 @@ export class NavigationToolbarComponent implements OnInit, OnDestroy {
       nzContent: IssueCreateModalComponent,
       nzFooter: null,
       nzKeyboard: false,
-      nzMaskClosable: false
+      nzMaskClosable: false,
+      nzWidth: 700
     });
   }
 

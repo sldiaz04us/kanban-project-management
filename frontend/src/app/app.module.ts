@@ -16,6 +16,8 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
+import { QuillModule } from 'ngx-quill';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationModule } from '@features/navigation/navigation.module';
@@ -50,7 +52,8 @@ registerLocaleData(en);
       logOnly: environment.production
     }),
     ProjectModule,
-    UserModule
+    UserModule,
+    QuillModule.forRoot()
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

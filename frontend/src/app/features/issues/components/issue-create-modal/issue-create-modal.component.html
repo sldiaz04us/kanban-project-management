@@ -1,20 +1,20 @@
 <form nz-form nzLayout="vertical" [formGroup]="issueForm">
   <nz-form-item>
-    <nz-form-label nzRequired="true">Issue type</nz-form-label>
+    <nz-form-label nzRequired>Issue type</nz-form-label>
     <nz-form-control>
       <issue-type-select [form]="issueForm"></issue-type-select>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label nzRequired="true">Issue priority</nz-form-label>
+    <nz-form-label nzRequired>Issue priority</nz-form-label>
     <nz-form-control>
       <issue-priority-select [form]="issueForm"></issue-priority-select>
     </nz-form-control>
   </nz-form-item>
   <nz-divider></nz-divider>
   <nz-form-item>
-    <nz-form-label nzRequired="true">Summary</nz-form-label>
+    <nz-form-label nzRequired>Summary</nz-form-label>
     <nz-form-control nzHasFeedback [nzErrorTip]="summaryErrorTempl">
       <input nz-input formControlName="title" />
       <ng-template #summaryErrorTempl let-control>
@@ -29,7 +29,17 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label nzRequired="true">Reporter</nz-form-label>
+    <nz-form-label>Description</nz-form-label>
+    <nz-form-control>
+      <app-text-editor
+        [form]="issueForm"
+        [textEditorOptions]="customTextEditorOptions"
+      ></app-text-editor>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>Reporter</nz-form-label>
     <nz-form-control>
       <issue-reporter-select
         [form]="issueForm"
@@ -39,7 +49,7 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label nzRequired="true">Assignees</nz-form-label>
+    <nz-form-label nzRequired>Assignees</nz-form-label>
     <nz-form-control>
       <issue-assignees-select
         [form]="issueForm"
