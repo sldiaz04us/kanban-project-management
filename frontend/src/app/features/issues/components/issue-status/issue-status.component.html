@@ -1,0 +1,25 @@
+<app-button
+  nz-dropdown
+  nzTrigger="click"
+  [nzDropdownMenu]="menu"
+  [icon]="'chevron-down'"
+  [iconBeforeContent]="false"
+  className="{{ statusFeedback[issue.status] }} font-semibold uppercase"
+  >{{ issue.status | issueStatus }}</app-button
+>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzNoAnimation>
+    <ng-container *ngFor="let option of issueStatuses">
+      <li
+        nz-menu-item
+        *ngIf="!isStatusSelected(option.value)"
+        (click)="updateIssue(option.value)"
+      >
+        <div class="dropdown-items">
+          <span>{{ option.label }}</span>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</nz-dropdown-menu>

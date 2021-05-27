@@ -1,0 +1,25 @@
+@import "src/assets/variables.scss";
+
+.issue-assignees {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.25rem;
+  color: rgba(94, 108, 132, 1);
+}
+.issue-assignees-select {
+  display: flex;
+  align-items: center;
+  nz-avatar {
+    margin-right: 0.5rem;
+  }
+}
+.unassigned {
+  min-width: 110px;
+  background: $secondary;
+  border-radius: 0.125rem;
+
+  &:hover {
+    background-color: darken($secondary, 5%);
+  }
+}

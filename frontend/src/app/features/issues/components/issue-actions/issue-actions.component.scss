@@ -1,0 +1,10 @@
+.ant-dropdown-menu-item {
+  padding: 10px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  app-svg-icon {
+    margin-right: 0.75rem;
+  }
+}

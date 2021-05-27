@@ -1,0 +1,53 @@
+<div *ngIf="issue$ | async as issue" class="issue-detail">
+  <div class="issue-toolbar">
+    <issue-type [issue]="issue"></issue-type>
+    <div class="side-options">
+      <a
+        target="_blank"
+        href="https://github.com/sldiaz04us/kanban-project-management/issues/new"
+      >
+        <app-button icon="feedback" className="btn-empty font-semibold">
+          Give feedback
+        </app-button>
+      </a>
+      <issue-actions [issue]="issue" (delete)="closeModal()"></issue-actions>
+      <app-button
+        icon="times"
+        [iconSize]="24"
+        [className]="'btn-empty'"
+        nz-tooltip
+        nzTooltipTitle="Close"
+        (click)="closeModal()"
+      ></app-button>
+    </div>
+  </div>
+  <div class="issue-content">
+    <div class="main-content">
+      <issue-title [issue]="issue"></issue-title>
+      <issue-description [issue]="issue"></issue-description>
+    </div>
+    <div class="side-content">
+      <issue-status [issue]="issue"></issue-status>
+      <issue-assignees
+        [issue]="issue"
+        [assignees]="assignees$ | async"
+      ></issue-assignees>
+      <issue-reporter
+        [issue]="issue"
+        [assignees]="assignees$ | async"
+      ></issue-reporter>
+      <issue-priority [issue]="issue"></issue-priority>
+      <nz-divider></nz-divider>
+      <div class="info-issue-dates">
+        <div>Created: {{ issue.createdAt | date: "MMM d, y, h:mm a" }}</div>
+        <div
+          nz-tooltip
+          [nzTooltipTitle]="issue.updatedAt | date: 'MMM d, y, h:mm a'"
+        >
+          Updated:
+          {{ issue.updatedAt | issueTimeElapsed: (refreshCount | async) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

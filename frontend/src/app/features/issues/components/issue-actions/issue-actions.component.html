@@ -1,0 +1,34 @@
+<app-button
+  nz-dropdown
+  nzTrigger="click"
+  [nzDropdownMenu]="menu"
+  nzPlacement="bottomRight"
+  icon="more-horiz"
+  [iconSize]="20"
+  [className]="'btn-empty'"
+  nz-tooltip
+  nzTooltipTitle="Actions"
+>
+</app-button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item>
+      <app-svg-icon name="file-move" [size]="20"></app-svg-icon>Move
+    </li>
+    <li nz-menu-item>
+      <app-svg-icon name="file-copy" [size]="20"></app-svg-icon>Clone
+    </li>
+    <li nz-menu-item (click)="onDeleteIssue(templContent)">
+      <app-svg-icon name="file-delete" [size]="20"></app-svg-icon>Delete
+    </li>
+  </ul>
+</nz-dropdown-menu>
+
+<ng-template #templContent>
+  <p>
+    You're about to permanently delete this issue, its comments and attachments,
+    and all of its data.
+  </p>
+  <p>If you're not sure, you can resolve or close this issue instead.</p>
+</ng-template>

@@ -1,0 +1,135 @@
+@import "src/assets/variables.scss";
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 2rem;
+  padding: 0 10px;
+  vertical-align: middle;
+  line-height: 1;
+  white-space: nowrap;
+  border: 0 solid #e2e8f0;
+  border-radius: 0.125rem;
+  transition-property: all;
+  transition-duration: 0.1s;
+  appearance: none;
+  user-select: none;
+  cursor: pointer;
+
+  &.icon-only {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    .with-padding {
+      padding: 0;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &:focus,
+  &:active {
+    outline-color: #1890ff;
+  }
+
+  &.no-padding-left {
+    padding-left: 0;
+  }
+
+  &.no-padding-right {
+    padding-right: 0;
+  }
+}
+
+@mixin buttonBackground($btn-variant, $background) {
+  $background-dark: darken($background, 10%);
+  $background-light: lighten($background, 10%);
+
+  .btn-#{$btn-variant} {
+    color: white;
+    font-weight: 500;
+    background: $background;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: lighten($background, 30%);
+    }
+
+    &:not(:disabled) {
+      &:hover {
+        background: $background-light;
+      }
+      &:active {
+        background: $background-dark;
+      }
+      &.active {
+        background: $background-dark !important;
+      }
+    }
+  }
+}
+@include buttonBackground(primary, $primary);
+@include buttonBackground(success, $success);
+
+.btn-secondary {
+  color: #42526e;
+  font-weight: 400;
+  background: $secondary;
+
+  &:not(:disabled) {
+    &:hover {
+      background-color: #ebecf0;
+    }
+
+    &:active {
+      background-color: #d2e5fe;
+      color: $primary;
+    }
+  }
+}
+
+.btn-empty {
+  background: white;
+  outline: none;
+  color: #42526e;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &:not(:disabled) {
+    &:hover {
+      background: #ebecf0;
+    }
+    &:active {
+      background: #d2e5fe;
+      color: $primary;
+    }
+    &.is-active {
+      background-color: rgb(222, 235, 255);
+      color: #42526e;
+    }
+  }
+}
+
+.with-padding {
+  padding: 0 0.5rem;
+}
+
+.is-active {
+  color: #0052cc;
+  background-color: #d2e5fe;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+.font-semibold {
+  font-weight: 600;
+}

@@ -55,5 +55,18 @@ export const issueReducer = createReducer<IssueState>(
       ...state,
       error: action.error
     }
-  })
+  }),
+  on(IssueApiActions.deleteIssueSuccess, (state, action): IssueState => {
+    const issuesUpdated = state.issues.filter(i => i.id !== action.issueId);
+    return {
+      ...state,
+      issues: issuesUpdated
+    }
+  }),
+  on(IssueApiActions.deleteIssueFailure, (state, action): IssueState => {
+    return {
+      ...state,
+      error: action.error
+    }
+  }),
 );

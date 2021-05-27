@@ -1,0 +1,10 @@
+.dropdown-items {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-left: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}

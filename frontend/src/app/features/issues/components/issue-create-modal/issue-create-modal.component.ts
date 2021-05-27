@@ -8,17 +8,16 @@ import { takeUntil } from 'rxjs/operators';
 
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
-import { QuillModules } from 'ngx-quill';
-
 import { AppState } from '@core/interfaces/app.state';
 import { Project } from '@core/interfaces/project';
-import { getAssignedUsers, getCurrentProject, getCurrentProjectId, getProjects } from '@features/project/state/project.selectors';
+import { getAssignedUsers, getCurrentProject, getCurrentProjectId } from '@features/project/state/project.selectors';
 import { User } from '@core/interfaces/user';
 import { getCurrentUserId } from '@features/user/state/user.selectors';
 import { Issue, IssuePriority, IssueStatus } from '@core/interfaces/issue';
 import { DateUtil } from '@core/utils/date';
 import { IssuePageActions } from '@features/issues/state/actions';
 import { IssueUtil } from '@core/utils/issue';
+import { QuillEditorUtil } from '@core/utils/quill';
 
 
 @Component({
@@ -36,17 +35,7 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
   currentProjectId: string;
   currentUserId: string;
 
-  customTextEditorOptions: QuillModules = {
-    toolbar: [
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      ['blockquote', 'code-block'],
-      [{ 'list': 'ordered' }, { list: 'bullet' }],
-      [{ 'color': [] }, { 'background': [] }],
-      ['link'],
-      ['clean'],
-    ],
-  };
+  defaultEditorOptions = QuillEditorUtil.getDefaultModuleOptions();
 
   constructor(
     private fb: FormBuilder,
@@ -106,7 +95,7 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
       title: ['', [Validators.required, Validators.minLength(5)]],
       description: [''],
       reporterId: [this.currentUserId, Validators.required],
-      userIds: [[], Validators.required]
+      userIds: [[]]
     });
   }
 

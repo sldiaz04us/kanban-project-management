@@ -1,0 +1,37 @@
+<div class="issue-reporter">Repoter</div>
+<app-button
+  className="btn-secondary"
+  nz-dropdown
+  nzTrigger="click"
+  [nzDropdownMenu]="menu"
+>
+  <div class="reporter-content">
+    <nz-avatar
+      nzIcon="user"
+      nzSrc="{{ reporter?.avatarUrl }}"
+      nzSize="small"
+    ></nz-avatar>
+    <span>{{ reporter?.name }}</span>
+  </div>
+</app-button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzNoAnimation>
+    <ng-container *ngFor="let option of assignees">
+      <li
+        nz-menu-item
+        *ngIf="!isUserSelected(option)"
+        (click)="updateIssue(option)"
+      >
+        <div class="reporter-content">
+          <nz-avatar
+            nzIcon="user"
+            nzSrc="{{ option?.avatarUrl }}"
+            nzSize="small"
+          ></nz-avatar>
+          <span>{{ option?.name }}</span>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</nz-dropdown-menu>

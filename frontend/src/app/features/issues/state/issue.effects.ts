@@ -57,4 +57,21 @@ export class IssueEffects {
     )
   });
 
+  deleteIssue$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(IssuePageActions.deleteIssue),
+      mergeMap(action => {
+        return this.issueService.deleteIssue(action.issueId).pipe(
+          mergeMap(issueId => {
+            return [
+              IssueApiActions.deleteIssueSuccess({ issueId }),
+              ProjectPageActions.updateProject({ project: action.project })
+            ];
+          }),
+          catchError(error => of(IssueApiActions.deleteIssueFailure({ error })))
+        )
+      })
+    );
+  });
+
 }

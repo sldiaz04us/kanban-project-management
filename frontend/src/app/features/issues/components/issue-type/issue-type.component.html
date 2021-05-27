@@ -1,0 +1,29 @@
+<app-button
+  nz-dropdown
+  nzTrigger="click"
+  [nzDropdownMenu]="menu"
+  [icon]="selectedIssueTypeIcon"
+  [iconSize]="20"
+  [className]="'btn-empty font-semibold uppercase'"
+  nz-tooltip
+  nzTooltipTitle="{{ issue.type }} - Change issue type"
+>
+  {{ issue.type }}-{{ issue.id }}
+</app-button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzNoAnimation>
+    <ng-container *ngFor="let option of issueTypes">
+      <li
+        nz-menu-item
+        *ngIf="!isTypeSelected(option.value)"
+        (click)="updateIssue(option.value)"
+      >
+        <div class="dropdown-items">
+          <app-svg-icon [name]="option.icon" [size]="20"> </app-svg-icon>
+          <span>{{ option.value }}</span>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</nz-dropdown-menu>

@@ -28,3 +28,12 @@ export const updateIssueFailure = createAction(
   '[Issue API] Update Issue Fail',
   props<{ error: string }>()
 );
+
+export const deleteIssueSuccess = createAction(
+  '[Issue API] Delete Issue Success',
+  props<{ issueId: string }>()
+);
+export const deleteIssueFailure = createAction(
+  '[Issue API] Delete Issue Fail',
+  props<{ error: string }>()
+);

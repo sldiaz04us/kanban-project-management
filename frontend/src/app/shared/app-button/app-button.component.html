@@ -1,0 +1,24 @@
+<button
+  [type]="type"
+  [ngClass]="[
+    'btn',
+    className,
+    isActive ? 'is-active' : '',
+    content?.innerHTML?.trim() ? '' : 'icon-only'
+  ]"
+  [disabled]="disabled"
+>
+  <app-svg-icon
+    *ngIf="iconBeforeContent && icon"
+    [name]="icon"
+    [size]="iconSize"
+  ></app-svg-icon>
+  <span #content [class.with-padding]="icon">
+    <ng-content></ng-content>
+  </span>
+  <app-svg-icon
+    *ngIf="!iconBeforeContent && icon"
+    [name]="icon"
+    [size]="iconSize"
+  ></app-svg-icon>
+</button>

@@ -1,0 +1,16 @@
+.issue-priority {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.25rem;
+  color: rgba(94, 108, 132, 1);
+}
+
+.priority-content {
+  display: flex;
+  align-items: center;
+
+  app-svg-icon {
+    margin-right: 0.5rem;
+  }
+}

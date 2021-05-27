@@ -17,3 +17,8 @@ export const updateIssue = createAction(
   '[Issue Page] Update Issue',
   props<{ issue: Issue }>()
 );
+
+export const deleteIssue = createAction(
+  '[Issue Page] Delete Issue',
+  props<{ issueId: string, project: Project }>()
+);

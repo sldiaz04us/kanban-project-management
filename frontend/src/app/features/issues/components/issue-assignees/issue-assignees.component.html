@@ -1,0 +1,40 @@
+<div class="issue-assignees">Assignees</div>
+<nz-select
+  nzMode="multiple"
+  nzPlaceHolder="Unassigned"
+  [nzBorderless]="listOfSelectedValue.length === 0 ? true : false"
+  [ngClass]="listOfSelectedValue.length === 0 ? 'unassigned' : ''"
+  nzAllowClear
+  [nzFilterOption]="nzFilterOption"
+  [nzDropdownMatchSelectWidth]="false"
+  [nzCustomTemplate]="assigneesTempl"
+  (ngModelChange)="onSelected($event)"
+  [ngModel]="listOfSelectedValue"
+>
+  <nz-option
+    nzCustomContent
+    *ngFor="let user of assignees"
+    [nzValue]="user"
+    [nzHide]="isSelected(user)"
+  >
+    <div class="issue-assignees-select">
+      <nz-avatar
+        nzIcon="user"
+        [nzSrc]="user.avatarUrl"
+        [nzSize]="20"
+      ></nz-avatar>
+      <span>{{ user.name }}</span>
+    </div>
+  </nz-option>
+</nz-select>
+
+<ng-template #assigneesTempl let-selected>
+  <div class="issue-assignees-select">
+    <nz-avatar
+      nzIcon="user"
+      [nzSize]="20"
+      [nzSrc]="selected.nzValue.avatarUrl"
+    ></nz-avatar>
+    <span>{{ selected.nzValue.name }}</span>
+  </div>
+</ng-template>

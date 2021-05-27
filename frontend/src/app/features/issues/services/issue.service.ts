@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Issue, IssueStatus } from '@core/interfaces/issue';
+import { DateUtil } from '@core/utils/date';
 
 
 @Injectable({
@@ -38,8 +39,19 @@ export class IssueService {
 
   updateIssue(issue: Issue): Observable<Issue> {
     const url = `${this.issuesUrl}/${issue.id}`;
-    return this.http.put<Issue>(url, issue, this.httpOptions).pipe(
-      map(() => issue)
+    const issueUpdated: Issue = {
+      ...issue,
+      updatedAt: DateUtil.getNow()
+    }
+    return this.http.put<Issue>(url, issueUpdated, this.httpOptions).pipe(
+      map(() => issueUpdated)
+    );
+  }
+
+  deleteIssue(issueId: string): Observable<string> {
+    const url = `${this.issuesUrl}/${issueId}`;
+    return this.http.delete<string>(url, this.httpOptions).pipe(
+      map(() => issueId)
     );
   }
 

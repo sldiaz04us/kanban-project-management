@@ -1,0 +1,31 @@
+textarea {
+  border-color: transparent;
+  padding: 10px 8px;
+  line-height: 1.28;
+  resize: none;
+  box-shadow: 0 0 0 1px transparent;
+  transition: background 0.1s ease 0s;
+  overflow: auto;
+  overflow-y: hidden;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: auto;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: -8px;
+  color: rgba(23, 43, 77, 1);
+
+  &:hover:not(:focus) {
+    background-color: rgba(235, 236, 240, 1);
+  }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid #4c9aff;
+    box-shadow: 0 0 0 1px #4c9aff;
+    outline: none;
+  }
+}

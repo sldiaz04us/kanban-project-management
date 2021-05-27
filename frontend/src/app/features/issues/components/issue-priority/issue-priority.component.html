@@ -1,0 +1,37 @@
+<div class="issue-priority">Priority</div>
+<app-button
+  className="btn-secondary"
+  nz-dropdown
+  nzTrigger="click"
+  [nzDropdownMenu]="menu"
+>
+  <div class="priority-content">
+    <app-svg-icon
+      [name]="selectedPriorityIcon.icon"
+      [size]="20"
+      [style.color]="selectedPriorityIcon.color"
+    ></app-svg-icon>
+    <span>{{ selectedPriorityIcon.value }}</span>
+  </div>
+</app-button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzNoAnimation>
+    <ng-container *ngFor="let option of priorities">
+      <li
+        nz-menu-item
+        *ngIf="!isPrioritySelected(option.value)"
+        (click)="updateIssue(option.value)"
+      >
+        <div class="priority-content">
+          <app-svg-icon
+            [name]="option.icon"
+            [size]="20"
+            [style.color]="option.color"
+          ></app-svg-icon>
+          <span>{{ option.value }}</span>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</nz-dropdown-menu>

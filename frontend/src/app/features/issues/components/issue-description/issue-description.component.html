@@ -1,0 +1,22 @@
+<div class="issue-description">Description</div>
+<ng-container *ngIf="isEditing; else readonlyModeTempl">
+  <quill-editor
+    [formControl]="descriptionControl"
+    [modules]="defaultEditorOptions"
+    format="object"
+    [styles]="{ 'min-height': '200px' }"
+    (onEditorCreated)="editorCreated($event)"
+  ></quill-editor>
+  <div class="actions">
+    <app-button (click)="save()">Save</app-button>
+    <app-button className="btn-empty" (click)="cancel()">Cancel</app-button>
+  </div>
+</ng-container>
+
+<ng-template #readonlyModeTempl>
+  <quill-view
+    [content]="issue.description || ops"
+    format="object"
+    (click)="isEditing = !isEditing"
+  ></quill-view>
+</ng-template>
