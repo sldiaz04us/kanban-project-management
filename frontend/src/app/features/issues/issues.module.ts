@@ -11,6 +11,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzCommentModule } from 'ng-zorro-antd/comment';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -19,8 +20,7 @@ import { QuillModule } from 'ngx-quill';
 
 import { IssueCardComponent } from './components/issue-card/issue-card.component';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
-import { issueReducer } from './state/issue.reducer';
-import { IssueEffects } from './state/issue.effects';
+import { IssueEffects } from './state/effects/issue.effects';
 import { IssueStatusPipe } from './pipes/issue-status.pipe';
 import { SharedModule } from '@shared/shared.module';
 import { IssueCreateModalComponent } from './components/issue-create-modal/issue-create-modal.component';
@@ -38,6 +38,11 @@ import { IssueReporterComponent } from './components/issue-reporter/issue-report
 import { IssueAssigneesComponent } from './components/issue-assignees/issue-assignees.component';
 import { IssuePriorityComponent } from './components/issue-priority/issue-priority.component';
 import { IssueTimeElapsedPipe } from './pipes/issue-time-elapsed.pipe';
+import { IssueCommentsComponent } from './components/issue-comments/issue-comments.component';
+import { IssueCommentsItemComponent } from './components/issue-comments-item/issue-comments-item.component';
+import { reducers } from './state/reducers';
+import * as fromIssues from './state/selectors';
+import { CommentEffects } from './state/effects/comment.effects';
 
 @NgModule({
   declarations: [
@@ -58,14 +63,16 @@ import { IssueTimeElapsedPipe } from './pipes/issue-time-elapsed.pipe';
     IssueAssigneesComponent,
     IssuePriorityComponent,
     IssueTimeElapsedPipe,
+    IssueCommentsComponent,
+    IssueCommentsItemComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IconsProviderModule,
-    StoreModule.forFeature('issue', issueReducer),
-    EffectsModule.forFeature([IssueEffects]),
+    StoreModule.forFeature(fromIssues.issueFeatureKey, reducers),
+    EffectsModule.forFeature([IssueEffects, CommentEffects]),
     SharedModule,
     NzAvatarModule,
     NzToolTipModule,
@@ -76,7 +83,8 @@ import { IssueTimeElapsedPipe } from './pipes/issue-time-elapsed.pipe';
     NzDividerModule,
     NzDropDownModule,
     TextFieldModule,
-    QuillModule
+    QuillModule,
+    NzCommentModule
   ],
   exports: [IssueCardComponent, IssueStatusPipe]
 })

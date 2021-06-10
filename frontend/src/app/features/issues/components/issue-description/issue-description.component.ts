@@ -7,6 +7,7 @@ import { Issue } from '@core/interfaces/issue';
 import { IssuePageActions } from '@features/issues/state/actions';
 import { AppState } from '@core/interfaces/app.state';
 import { QuillEditorUtil } from '@core/utils/quill';
+import { setIssueEditing } from '@features/issues/state/actions/issue-page.actions';
 
 @Component({
   selector: 'issue-description',
@@ -40,6 +41,7 @@ export class IssueDescriptionComponent implements OnChanges {
 
   changeEditMode(): void {
     this.isEditing = !this.isEditing;
+    this.store.dispatch(setIssueEditing({ isEditing: this.isEditing }));
   }
 
   save(): void {

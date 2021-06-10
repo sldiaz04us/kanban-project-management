@@ -6,6 +6,7 @@ import { User } from '@core/interfaces/user';
 import { AppState } from '@core/interfaces/app.state';
 import { Issue } from '@core/interfaces/issue';
 import { IssuePageActions } from '@features/issues/state/actions';
+import { setIssueEditing } from '@features/issues/state/actions/issue-page.actions';
 
 @Component({
   selector: 'issue-assignees',
@@ -42,6 +43,14 @@ export class IssueAssigneesComponent implements OnInit {
 
   nzFilterOption(inputValue: string, item: any): boolean {
     return item.nzValue.name.toLowerCase().match(inputValue.toLowerCase());
+  }
+
+  onFocus(): void {
+    this.store.dispatch(setIssueEditing({ isEditing: true }));
+  }
+
+  onBlur(): void {
+    this.store.dispatch(setIssueEditing({ isEditing: false }));
   }
 
 }

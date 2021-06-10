@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { Issue } from '@core/interfaces/issue';
 import { AppState } from '@core/interfaces/app.state';
 import { IssuePageActions } from '@features/issues/state/actions';
+import { setIssueEditing } from '@features/issues/state/actions/issue-page.actions';
 
 @Component({
   selector: 'issue-title',
@@ -25,13 +26,20 @@ export class IssueTitleComponent implements OnChanges {
     }
   }
 
+  onFocus(): void {
+    this.store.dispatch(setIssueEditing({ isEditing: true }));
+  }
+
   onBlur(): void {
+    this.store.dispatch(setIssueEditing({ isEditing: false }));
+
     if (this.titleControl.invalid) {
       return;
     }
     this.store.dispatch(IssuePageActions.updateIssue({
       issue: { ...this.issue, title: this.titleControl.value }
     }));
+
   }
 
 }

@@ -15,8 +15,9 @@
 
 <ng-template #readonlyModeTempl>
   <quill-view
+    class="description"
     [content]="issue.description || ops"
     format="object"
-    (click)="isEditing = !isEditing"
+    (click)="changeEditMode()"
   ></quill-view>
 </ng-template>

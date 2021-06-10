@@ -1,0 +1,66 @@
+@import "src/assets/variables.scss";
+
+.actions {
+  display: flex;
+  align-items: center;
+  padding-top: 0.75rem;
+
+  button:first-of-type {
+    margin-right: 0.5rem;
+  }
+  button:disabled {
+    color: #fff;
+    background-color: lighten($primary, 30%);
+  }
+}
+
+quill-view.comments {
+  .ql-container {
+    .ql-editor {
+      border: transparent;
+      padding-left: 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+  }
+}
+
+.issue-comment .ant-comment-inner {
+  padding-bottom: 0;
+}
+
+.comment-actions {
+  a:not(:first-child)::before {
+    color: rgb(66, 82, 110);
+    content: "·";
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    width: 16px;
+    height: 28px;
+  }
+  a {
+    color: #6b778c;
+    font-weight: 500;
+    font-size: 1.1em;
+    padding: 0;
+    &:hover {
+      color: lighten($color: #6b778c, $amount: 10);
+      text-decoration: underline;
+    }
+  }
+}
+
+.ant-comment-content-author-name {
+  color: #42526e;
+  font-weight: 500;
+}
+.comment-date-info {
+  display: flex;
+  align-items: center;
+
+  color: #42526e;
+  span:first-of-type {
+    margin-right: 0.5rem;
+  }
+}

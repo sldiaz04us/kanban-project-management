@@ -1,0 +1,66 @@
+<nz-comment
+  [nzAuthor]="comment.user.name"
+  [nzDatetime]="displayTime"
+  class="issue-comment"
+>
+  <nz-avatar
+    nz-comment-avatar
+    nzIcon="user"
+    [nzSrc]="comment.user.avatarUrl"
+  ></nz-avatar>
+  <nz-comment-content>
+    <ng-container *ngIf="isEditing; else readonlyCommentTempl">
+      <quill-editor
+        [formControl]="commentEditControl"
+        [modules]="defaultEditorOptions"
+        format="object"
+        [styles]="{ 'min-height': '100px' }"
+        placeholder="Add a comment"
+        (onEditorCreated)="editorCreated($event)"
+        [trimOnValidation]="true"
+        [required]="true"
+      ></quill-editor>
+      <div class="actions">
+        <button
+          nz-button
+          nzType="primary"
+          [nzLoading]="isLoading"
+          [disabled]="commentEditControl.invalid"
+          (click)="editComment(comment.id)"
+        >
+          Save
+        </button>
+        <app-button className="btn-empty" (click)="cancel()">Cancel</app-button>
+      </div>
+    </ng-container>
+    <ng-template #readonlyCommentTempl>
+      <quill-view
+        class="comments"
+        [content]="comment.content"
+        format="object"
+      ></quill-view>
+    </ng-template>
+  </nz-comment-content>
+  <ng-container *ngIf="canBeEditByCurrentUser && !isEditing">
+    <div class="comment-actions">
+      <a (click)="onEditComment(comment.content)">Edit</a>
+      <a (click)="onDeleteComment(comment.id)">Delete</a>
+    </div>
+  </ng-container>
+</nz-comment>
+
+<ng-template #displayTime>
+  <div class="comment-date-info">
+    <span
+      nz-tooltip
+      [nzTooltipTitle]="comment.createdAt | date: 'MMM d, y, h:mm a'"
+      >{{ comment.createdAt | issueTimeElapsed }}</span
+    >
+    <span
+      *ngIf="comment.isEdited"
+      nz-tooltip
+      [nzTooltipTitle]="comment.updatedAt | issueTimeElapsed"
+      >Edited</span
+    >
+  </div>
+</ng-template>

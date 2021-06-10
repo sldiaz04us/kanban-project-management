@@ -27,7 +27,7 @@ import { QuillEditorUtil } from '@core/utils/quill';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IssueCreateModalComponent implements OnInit, OnDestroy {
-  private subsNotifier = new Subject();
+  private destroy$ = new Subject();
   issueForm: FormGroup;
 
   users$: Observable<User[]>;
@@ -61,7 +61,8 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
       listPosition: 0,
       status: IssueStatus.BACKLOG,
       createdAt: now,
-      updatedAt: now
+      updatedAt: now,
+      comments: []
     }
 
     const projectUpdated: Project = {
@@ -76,13 +77,13 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
   private loadData(): void {
     this.users$ = this.store.select(getAssignedUsers);
 
-    this.store.select(getCurrentProjectId).pipe(takeUntil(this.subsNotifier))
+    this.store.select(getCurrentProjectId).pipe(takeUntil(this.destroy$))
       .subscribe(projectId => this.currentProjectId = projectId);
 
-    this.store.select(getCurrentProject).pipe(takeUntil(this.subsNotifier)).
+    this.store.select(getCurrentProject).pipe(takeUntil(this.destroy$)).
       subscribe(currentProject => this.currentProject = currentProject);
 
-    this.store.select(getCurrentUserId).pipe(takeUntil(this.subsNotifier))
+    this.store.select(getCurrentUserId).pipe(takeUntil(this.destroy$))
       .subscribe(userId => this.currentUserId = userId);
 
   }
@@ -104,8 +105,8 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subsNotifier.next();
-    this.subsNotifier.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

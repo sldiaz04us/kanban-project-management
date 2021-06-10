@@ -10,6 +10,8 @@
   [nzCustomTemplate]="assigneesTempl"
   (ngModelChange)="onSelected($event)"
   [ngModel]="listOfSelectedValue"
+  (nzFocus)="onFocus()"
+  (nzBlur)="onBlur()"
 >
   <nz-option
     nzCustomContent

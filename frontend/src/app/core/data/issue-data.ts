@@ -16,7 +16,8 @@ export class IssueData {
       userIds: [
         '7ac265f9-b9ac-443f-a2b2-795682e579a4',
       ],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9210',
@@ -33,7 +34,8 @@ export class IssueData {
         'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
         '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
       ],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9361',
@@ -47,7 +49,8 @@ export class IssueData {
       updatedAt: '2021-05-03T14:40:01.346Z',
       reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
       userIds: ['94502aad-c97f-43e1-a9d1-28cf3e4937a7'],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9451',
@@ -61,7 +64,8 @@ export class IssueData {
       updatedAt: '2021-05-03T14:48:00.807Z',
       reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
       userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9631',
@@ -79,7 +83,8 @@ export class IssueData {
         '610451aa-10c8-4d7e-9363-311357c0b0dd',
         '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
       ],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9546',
@@ -93,7 +98,8 @@ export class IssueData {
       updatedAt: '2021-05-03T14:52:02.173Z',
       reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
       userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9548',
@@ -107,7 +113,8 @@ export class IssueData {
       updatedAt: '2021-05-03T14:52:02.173Z',
       reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
       userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9584',
@@ -124,7 +131,8 @@ export class IssueData {
         '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
         '610451aa-10c8-4d7e-9363-311357c0b0dd',
       ],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9554',
@@ -138,7 +146,8 @@ export class IssueData {
       updatedAt: '2021-05-03T14:51:00.000Z',
       reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
       userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9665',
@@ -155,7 +164,8 @@ export class IssueData {
         '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
         '7ac265f9-b9ac-443f-a2b2-795682e579a4',
       ],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '9667',
@@ -170,7 +180,8 @@ export class IssueData {
       updatedAt: '2021-04-28T16:30:00.000Z',
       reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
       userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
-      projectId: '140892'
+      projectId: '140892',
+      comments: []
     },
     {
       id: '8542',
@@ -185,7 +196,8 @@ export class IssueData {
       updatedAt: '2021-04-04T16:30:00.000Z',
       reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
       userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
-      projectId: '130921'
+      projectId: '130921',
+      comments: []
     },
     {
       id: '8543',
@@ -200,7 +212,8 @@ export class IssueData {
       updatedAt: '2021-04-04T17:30:00.000Z',
       reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
       userIds: ['7ac265f9-b9ac-443f-a2b2-795682e579a4'],
-      projectId: '130921'
+      projectId: '130921',
+      comments: []
     },
     {
       id: '8544',
@@ -218,7 +231,8 @@ export class IssueData {
         'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
         '94502aad-c97f-43e1-a9d1-28cf3e4937a7'
       ],
-      projectId: '130921'
+      projectId: '130921',
+      comments: []
     },
     {
       id: '8545',
@@ -236,7 +250,8 @@ export class IssueData {
         '7ac265f9-b9ac-443f-a2b2-795682e579a4',
         '94502aad-c97f-43e1-a9d1-28cf3e4937a7'
       ],
-      projectId: '130921'
+      projectId: '130921',
+      comments: []
     },
     {
       id: '8546',
@@ -251,7 +266,8 @@ export class IssueData {
       updatedAt: '2021-04-05T19:30:00.000Z',
       reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
       userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
-      projectId: '130921'
+      projectId: '130921',
+      comments: []
     },
     {
       id: '8547',
@@ -270,7 +286,8 @@ export class IssueData {
         '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
         '7ac265f9-b9ac-443f-a2b2-795682e579a4'
       ],
-      projectId: '130921'
+      projectId: '130921',
+      comments: []
     },
   ]
 }

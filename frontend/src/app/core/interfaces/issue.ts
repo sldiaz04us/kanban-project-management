@@ -1,3 +1,5 @@
+import { Comment } from "./comment";
+
 export type IssueType = 'Story' | 'Task' | 'Bug';
 
 export enum IssueStatus {
@@ -41,5 +43,6 @@ export interface Issue {
   reporterId: string;
   userIds: string[];
   projectId: string;
+  comments: Comment[];
 }
 

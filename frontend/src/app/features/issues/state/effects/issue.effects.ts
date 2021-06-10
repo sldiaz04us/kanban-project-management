@@ -5,8 +5,8 @@ import { Actions, createEffect, ofType } from "@ngrx/effects"
 import { of } from "rxjs"
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
-import { IssueService } from "../services/issue.service"
-import { IssueApiActions, IssuePageActions } from "./actions"
+import { IssueService } from "@features/issues/services/issue.service"
+import { IssueApiActions, IssuePageActions } from "@features/issues/state/actions"
 import { ProjectPageActions } from "@features/project/state/actions";
 
 @Injectable()

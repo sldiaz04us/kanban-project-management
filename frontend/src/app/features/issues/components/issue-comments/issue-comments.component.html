@@ -1,0 +1,56 @@
+<div class="issue-comments">Comments</div>
+<nz-comment>
+  <nz-avatar
+    nz-comment-avatar
+    nzIcon="user"
+    [nzSrc]="currentUser.avatarUrl"
+  ></nz-avatar>
+  <nz-comment-content>
+    <ng-container *ngIf="isEditing; else readonlyModeTempl">
+      <quill-editor
+        [formControl]="commentControl"
+        [modules]="defaultEditorOptions"
+        format="object"
+        [styles]="{ 'min-height': '100px' }"
+        placeholder="Add a comment"
+        (onEditorCreated)="editorCreated($event)"
+        [trimOnValidation]="true"
+        [required]="true"
+      ></quill-editor>
+      <div class="actions">
+        <button
+          nz-button
+          nzType="primary"
+          [nzLoading]="isLoading"
+          [disabled]="commentControl.invalid"
+          (click)="addComment()"
+        >
+          Save
+        </button>
+        <app-button className="btn-empty" (click)="cancel()">Cancel</app-button>
+      </div>
+    </ng-container>
+
+    <ng-template #readonlyModeTempl>
+      <nz-form-item>
+        <input
+          nz-input
+          placeholder="Add a comment"
+          nzSize="large"
+          (focus)="onFocus()"
+        />
+        <div class="pro-tip">
+          <strong>Pro tip: </strong>press<span>M</span>to comment
+        </div>
+      </nz-form-item>
+    </ng-template>
+  </nz-comment-content>
+</nz-comment>
+
+<issue-comments-item
+  *ngFor="let comment of comments"
+  [comment]="comment"
+  [canBeEditByCurrentUser]="currentUser.id === comment.user.id"
+  (editCommentEvent)="onEditComment($event)"
+  (deleteCommentEvent)="onDeleteComment($event)"
+></issue-comments-item>

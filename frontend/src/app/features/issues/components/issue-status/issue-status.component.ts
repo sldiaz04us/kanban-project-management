@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 import { Issue, IssueStatus, IssueStatusDisplay } from '@core/interfaces/issue';
 import { AppState } from '@core/interfaces/app.state';
 import { IssuePageActions } from '@features/issues/state/actions';
-import { getIssuesCountByStatus } from '@features/issues/state/issue.selectors';
+import { getIssuesCountByStatus } from '@features/issues/state/selectors/issue.selectors';
 
 @Component({
   selector: 'issue-status',

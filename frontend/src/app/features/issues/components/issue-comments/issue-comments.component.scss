@@ -1,0 +1,42 @@
+@import "src/assets/variables.scss";
+
+.issue-comments {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  padding-top: 0.75rem;
+
+  button:first-of-type {
+    margin-right: 0.5rem;
+  }
+  button:disabled {
+    color: #fff;
+    background-color: lighten($primary, 30%);
+  }
+}
+
+.pro-tip {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  strong,
+  span {
+    color: rgb(66, 82, 110);
+  }
+  span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background-color: #d8d9db;
+    border-radius: 2px;
+    padding: 0 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+}

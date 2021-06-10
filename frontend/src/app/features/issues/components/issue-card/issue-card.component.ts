@@ -19,7 +19,8 @@ import { getAssignedUsers } from '@features/project/state/project.selectors';
 import { IssuePriorityIcon } from '@core/interfaces/issue-priority-icon';
 import { IssueUtil } from '@core/utils/issue';
 import { IssueDetailModalComponent } from '../issue-detail-modal/issue-detail-modal.component';
-import { getIssueById } from '@features/issues/state/issue.selectors';
+import { getIssueById } from '@features/issues/state/selectors/issue.selectors';
+import { CommentPageActions } from '@features/issues/state/actions';
 
 @Component({
   selector: 'app-issue-card',
@@ -49,6 +50,8 @@ export class IssueCardComponent implements OnInit {
   }
 
   openIssueDetailModal(issueId: string): void {
+    this.store.dispatch(CommentPageActions.loadCommentsByIssueId({ issueId }));
+
     this.modalService.create({
       nzContent: IssueDetailModalComponent,
       nzWidth: 1040,

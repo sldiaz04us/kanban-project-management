@@ -31,7 +31,7 @@ export class IssueActionsComponent implements OnInit, OnDestroy {
   @Input() issue: Issue;
   @Output() delete = new EventEmitter();
 
-  private subsNotifier = new Subject();
+  private destroy$ = new Subject();
   currentProject: Project;
 
   constructor(
@@ -41,7 +41,7 @@ export class IssueActionsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.store.select(getCurrentProject).pipe(takeUntil(this.subsNotifier))
+    this.store.select(getCurrentProject).pipe(takeUntil(this.destroy$))
       .subscribe(project => this.currentProject = project)
   }
 
@@ -50,9 +50,10 @@ export class IssueActionsComponent implements OnInit, OnDestroy {
       nzTitle: `Delete ${this.issue.type}-${this.issue.id}`,
       nzContent: templContent,
       nzOkText: 'Delete',
+      nzOkDanger: true,
       nzOnOk: () => new Promise(resolve => {
         this.actionSubject.pipe(
-          takeUntil(this.subsNotifier),
+          takeUntil(this.destroy$),
           ofType(IssueApiActions.deleteIssueSuccess)
         ).subscribe(_ => {
           this.delete.next();
@@ -73,8 +74,8 @@ export class IssueActionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subsNotifier.next();
-    this.subsNotifier.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

@@ -1,4 +1,4 @@
-import { IssueState } from "@features/issues/state/issue.reducer";
+import { IssueState } from "@features/issues/state/reducers";
 import { ProjectState } from "@features/project/state/project.reducer";
 
 export interface AppState {

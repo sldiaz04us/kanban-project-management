@@ -3,6 +3,7 @@ import { createAction, props } from "@ngrx/store";
 import { Issue } from "@core/interfaces/issue";
 import { Project } from "@core/interfaces/project";
 
+
 export const loadIssues = createAction(
   '[Issue Page] Load',
   props<{ projectId: string }>()
@@ -21,4 +22,9 @@ export const updateIssue = createAction(
 export const deleteIssue = createAction(
   '[Issue Page] Delete Issue',
   props<{ issueId: string, project: Project }>()
+);
+
+export const setIssueEditing = createAction(
+  '[Issue Page] Set Issue Editing',
+  props<{ isEditing: boolean }>()
 );

@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 
 import { Issue, IssueStatus } from '@core/interfaces/issue';
-import { getIssues } from '@features/issues/state/issue.selectors';
+import { getAllIssues } from '@features/issues/state/selectors/issue.selectors';
 import { IssuePageActions } from '@features/issues/state/actions';
 import { AppState } from '@core/interfaces/app.state';
 
@@ -28,7 +28,7 @@ export class BoardKanbanColumnComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.issues$ = this.store.select(getIssues)
+    this.issues$ = this.store.select(getAllIssues)
       .pipe(
         map(issues => issues
           .filter(i => i.status === this.status)
