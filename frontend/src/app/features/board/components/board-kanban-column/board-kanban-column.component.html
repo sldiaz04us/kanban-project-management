@@ -1,6 +1,10 @@
 <div *ngIf="issues$ | async as issues" class="column">
   <h3 class="column-title">
-    {{ status | issueStatus }} {{ issuesCount$ | async }}
+    {{ status | issueStatus }}
+    <ng-container *ngIf="anyFilter | async"
+      >{{ totalIssuesFiltered | async }} of
+    </ng-container>
+    {{ issuesCount$ | async }}
   </h3>
   <div
     cdkDropList

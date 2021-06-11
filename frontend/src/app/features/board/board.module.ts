@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
+import { StoreModule } from '@ngrx/store';
+
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -18,6 +20,7 @@ import { BoardFilterComponent } from './components/board-filter/board-filter.com
 import { BoardKanbanComponent } from './components/board-kanban/board-kanban.component';
 import { BoardKanbanColumnComponent } from './components/board-kanban-column/board-kanban-column.component';
 import { IssuesModule } from '@features/issues/issues.module';
+import * as fromFilter from './state/filter.reducer';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { IssuesModule } from '@features/issues/issues.module';
     NzToolTipModule,
     NzDividerModule,
     IssuesModule,
-    DragDropModule
+    DragDropModule,
+    StoreModule.forFeature(fromFilter.filterFeatureKey, fromFilter.reducer)
   ],
   exports: [
     BoardHeaderComponent,

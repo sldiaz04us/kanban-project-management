@@ -4,13 +4,41 @@
   flex-wrap: wrap;
 }
 
-form,
-nz-avatar-group {
+form {
   margin: 4px 0;
 }
 
-nz-avatar-group {
+.avatar-group {
+  display: flex;
+  align-items: center;
+
   margin-right: 1rem;
+  margin-left: 0.5rem;
+
+  .avatar {
+    display: flex;
+
+    border-radius: 50%;
+    margin-left: -0.25rem;
+
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+
+    nz-avatar {
+      box-shadow: 0 0 0 2px #fff;
+      user-select: none;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      z-index: 11;
+    }
+
+    &.is-active {
+      box-shadow: 0 0 0 4px #1255b9;
+      z-index: 1;
+    }
+  }
 }
 
 nz-input-group {
@@ -30,15 +58,6 @@ nz-input-group:focus-within {
   }
 }
 
-nz-avatar {
-  cursor: pointer;
-  transition: transform 0.1s ease-in-out;
-}
-nz-avatar:hover {
-  transform: translateY(-4px);
-  z-index: 11;
-}
-
 [nz-button] {
   background: rgba(9, 30, 66, 0.04);
   color: rgb(66, 82, 110) !important;
@@ -54,4 +73,12 @@ nz-divider {
   height: auto;
   margin: 4px 0;
   margin-right: 1rem;
+}
+
+.is-active {
+  color: rgb(244, 245, 247) !important;
+  background-color: #253858;
+  &:hover {
+    background-color: lighten(#253858, 10%);
+  }
 }

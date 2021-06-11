@@ -8,19 +8,46 @@
   </nz-form-item>
 </form>
 
-<nz-avatar-group>
-  <nz-avatar
+<div class="avatar-group">
+  <div
+    class="avatar"
     *ngFor="let user of assignedUsers$ | async"
-    nzIcon="user"
-    nzSrc="{{ user.avatarUrl }}"
+    [class.is-active]="isUserSelected(user.id)"
     nz-tooltip
-    nzTooltipTitle="{{ user.name }}"
-  ></nz-avatar>
-</nz-avatar-group>
+    [nzTooltipTitle]="user.name"
+  >
+    <nz-avatar
+      nzIcon="user"
+      [nzSrc]="user.avatarUrl"
+      (click)="toggleUser(user.id)"
+    ></nz-avatar>
+  </div>
+  <div
+    class="avatar"
+    [class.is-active]="isUserSelected()"
+    nz-tooltip
+    nzTooltipTitle="Unassigned"
+  >
+    <nz-avatar nzIcon="user" (click)="toggleUser()"></nz-avatar>
+  </div>
+</div>
 
-<button nz-button>Only My Issues</button>
-<button nz-button>Recently Updated</button>
+<button
+  nz-button
+  [class.is-active]="onlyMyIssues | async"
+  (click)="toggleOnlyMyIssues()"
+>
+  Only My Issues
+</button>
+<button
+  nz-button
+  [class.is-active]="recentlyUpdatedIssues | async"
+  (click)="toggleRecentlyUpdatedIssues()"
+>
+  Recently Updated
+</button>
 
-<nz-divider nzType="vertical"></nz-divider>
-
-<button nz-button>Clear all</button>
+<ng-container *ngIf="anyFilter | async">
+  <nz-divider nzType="vertical"></nz-divider>
+  <button nz-button (click)="clearAll()">Clear all</button>
+</ng-container>
