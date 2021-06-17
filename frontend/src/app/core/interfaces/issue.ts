@@ -1,4 +1,5 @@
 import { Comment } from "./comment";
+import { User } from "./user";
 
 export type IssueType = 'Story' | 'Task' | 'Bug';
 
@@ -40,8 +41,8 @@ export interface Issue {
   description: string;
   createdAt: string;
   updatedAt: string;
-  reporterId: string;
-  userIds: string[];
+  reporter: User;
+  assignees: User[];
   projectId: string;
   comments: Comment[];
 }

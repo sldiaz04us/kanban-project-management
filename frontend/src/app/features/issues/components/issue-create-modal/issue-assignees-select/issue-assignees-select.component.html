@@ -1,15 +1,18 @@
 <div [formGroup]="form">
   <nz-select
     nzMode="multiple"
-    formControlName="userIds"
+    nzPlaceHolder="Assign users"
+    formControlName="assignees"
+    nzAllowClear
+    [nzFilterOption]="nzFilterOption"
     [nzCustomTemplate]="assigneesTempl"
     (ngModelChange)="onSelected($event)"
   >
     <nz-option
       nzCustomContent
-      *ngFor="let user of users"
-      [nzValue]="user.id"
-      [nzHide]="!isNotSelected(user.id)"
+      *ngFor="let user of assignees"
+      [nzValue]="user"
+      [nzHide]="isSelected(user)"
     >
       <div class="issue-assignees-select">
         <nz-avatar
@@ -27,9 +30,9 @@
       <nz-avatar
         nzIcon="user"
         [nzSize]="20"
-        [nzSrc]="getUser(selected.nzValue).avatarUrl"
+        [nzSrc]="selected.nzValue.avatarUrl"
       ></nz-avatar>
-      <span>{{ getUser(selected.nzValue).name }}</span>
+      <span>{{ selected.nzValue.name }}</span>
     </div>
   </ng-template>
 </div>

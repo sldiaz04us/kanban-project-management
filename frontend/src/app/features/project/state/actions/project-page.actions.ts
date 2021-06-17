@@ -7,12 +7,7 @@ export const setCurrentProject = createAction(
   props<{ projectId: string }>()
 )
 
-export const loadProjects = createAction('[Project Page] Load');
-
-export const loadAssignedUsers = createAction(
-  '[Project Page] Load Assigned Users',
-  props<{ userIds: string[] }>()
-);
+export const loadProjects = createAction('[Project Page] Load Projects');
 
 export const updateProject = createAction(
   '[Project Page] Update Project',

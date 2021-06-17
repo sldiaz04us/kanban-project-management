@@ -11,12 +11,10 @@ import { User } from '@core/interfaces/user';
 })
 export class IssueReporterSelectComponent {
   @Input() form: FormGroup;
-  @Input() users: User[];
+  @Input() assignees: User[];
 
   constructor() { }
 
-  getUser(userId: string): User {
-    return this.users.find(u => u.id === userId);
-  }
+  compareFn = (o1: User, o2: User) => (o1 && o2 ? o1.id === o2.id : o1 === o2);
 
 }

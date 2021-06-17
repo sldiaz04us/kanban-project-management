@@ -9,10 +9,9 @@ import { takeUntil } from 'rxjs/operators';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
 import { AppState } from '@core/interfaces/app.state';
-import { Project } from '@core/interfaces/project';
-import { getAssignedUsers, getCurrentProject, getCurrentProjectId } from '@features/project/state/project.selectors';
+import { getAssignedUsers, getCurrentProjectId } from '@features/project/state/project.selectors';
 import { User } from '@core/interfaces/user';
-import { getCurrentUserId } from '@features/user/state/user.selectors';
+import { getCurrentUser } from '@features/user/state/user.selectors';
 import { Issue, IssuePriority, IssueStatus } from '@core/interfaces/issue';
 import { DateUtil } from '@core/utils/date';
 import { IssuePageActions } from '@features/issues/state/actions';
@@ -31,9 +30,8 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
   issueForm: FormGroup;
 
   users$: Observable<User[]>;
-  currentProject: Project;
   currentProjectId: string;
-  currentUserId: string;
+  currentUser: User;
 
   defaultEditorOptions = QuillEditorUtil.getDefaultModuleOptions();
 
@@ -65,12 +63,7 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
       comments: []
     }
 
-    const projectUpdated: Project = {
-      ...this.currentProject,
-      issueIds: [...this.currentProject.issueIds, issueId]
-    };
-
-    this.store.dispatch(IssuePageActions.createIssue({ issue, project: projectUpdated }));
+    this.store.dispatch(IssuePageActions.createIssue({ issue }));
     this.closeModal();
   }
 
@@ -80,11 +73,8 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
     this.store.select(getCurrentProjectId).pipe(takeUntil(this.destroy$))
       .subscribe(projectId => this.currentProjectId = projectId);
 
-    this.store.select(getCurrentProject).pipe(takeUntil(this.destroy$)).
-      subscribe(currentProject => this.currentProject = currentProject);
-
-    this.store.select(getCurrentUserId).pipe(takeUntil(this.destroy$))
-      .subscribe(userId => this.currentUserId = userId);
+    this.store.select(getCurrentUser).pipe(takeUntil(this.destroy$))
+      .subscribe(user => this.currentUser = user);
 
   }
 
@@ -95,8 +85,8 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
       priority: [IssuePriority.MEDIUM, Validators.required],
       title: ['', [Validators.required, Validators.minLength(5)]],
       description: [''],
-      reporterId: [this.currentUserId, Validators.required],
-      userIds: [[]]
+      reporter: [this.currentUser, Validators.required],
+      assignees: [[]]
     });
   }
 

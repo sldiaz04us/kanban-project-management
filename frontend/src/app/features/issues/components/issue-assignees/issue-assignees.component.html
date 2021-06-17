@@ -2,14 +2,14 @@
 <nz-select
   nzMode="multiple"
   nzPlaceHolder="Unassigned"
-  [nzBorderless]="listOfSelectedValue.length === 0 ? true : false"
-  [ngClass]="listOfSelectedValue.length === 0 ? 'unassigned' : ''"
+  [nzBorderless]="listOfSelectedValues.length === 0 ? true : false"
+  [ngClass]="listOfSelectedValues.length === 0 ? 'unassigned' : ''"
   nzAllowClear
   [nzFilterOption]="nzFilterOption"
   [nzDropdownMatchSelectWidth]="false"
   [nzCustomTemplate]="assigneesTempl"
   (ngModelChange)="onSelected($event)"
-  [ngModel]="listOfSelectedValue"
+  [ngModel]="listOfSelectedValues"
   (nzFocus)="onFocus()"
   (nzBlur)="onBlur()"
 >

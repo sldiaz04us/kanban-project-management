@@ -11,7 +11,7 @@ export const loadIssues = createAction(
 
 export const createIssue = createAction(
   '[Issue Page] Create',
-  props<{ issue: Issue, project: Project }>()
+  props<{ issue: Issue }>()
 );
 
 export const updateIssue = createAction(
@@ -21,7 +21,7 @@ export const updateIssue = createAction(
 
 export const deleteIssue = createAction(
   '[Issue Page] Delete Issue',
-  props<{ issueId: string, project: Project }>()
+  props<{ issueId: string }>()
 );
 
 export const setIssueEditing = createAction(

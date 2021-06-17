@@ -1,6 +1,7 @@
 import { IssuePriority } from "@core/interfaces/issue";
 import { IssuePriorityIcon } from "@core/interfaces/issue-priority-icon";
 import { IssueTypeWithIcon } from "@core/interfaces/issue-type-icon";
+import { ProjectCategory } from "@core/interfaces/project";
 import { IssueUtil } from "@core/utils/issue";
 
 export class ProjectConst {
@@ -17,4 +18,6 @@ export class ProjectConst {
     new IssueTypeWithIcon('Story'),
     new IssueTypeWithIcon('Task'),
   ];
+
+  static ProjectCategories: ProjectCategory[] = ['Software', 'Marketing', 'Business']
 }

@@ -60,15 +60,7 @@ export class IssueActionsComponent implements OnInit, OnDestroy {
           resolve();
         })
 
-        const issueIdsUpdated = this.currentProject.issueIds
-          .filter(issueId => issueId !== this.issue.id);
-
-        const projectUpdated: Project = {
-          ...this.currentProject,
-          issueIds: issueIdsUpdated
-        }
-
-        this.store.dispatch(IssuePageActions.deleteIssue({ issueId: this.issue.id, project: projectUpdated }));
+        this.store.dispatch(IssuePageActions.deleteIssue({ issueId: this.issue.id }));
       })
     })
   }

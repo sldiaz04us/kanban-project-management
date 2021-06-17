@@ -45,7 +45,7 @@
     <nz-form-control>
       <issue-reporter-select
         [form]="issueForm"
-        [users]="users$ | async"
+        [assignees]="users$ | async"
       ></issue-reporter-select>
     </nz-form-control>
   </nz-form-item>
@@ -55,7 +55,7 @@
     <nz-form-control>
       <issue-assignees-select
         [form]="issueForm"
-        [users]="users$ | async"
+        [assignees]="users$ | async"
       ></issue-assignees-select>
     </nz-form-control>
   </nz-form-item>

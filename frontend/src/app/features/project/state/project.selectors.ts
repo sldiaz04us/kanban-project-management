@@ -27,8 +27,11 @@ export const getProjects = createSelector(
 
 export const getAssignedUsers = createSelector(
   getProjectFeatureState,
-  state => state.assignedUsers
-);
+  getCurrentProjectId,
+  (state, currentProjectId) => {
+    return state.projects.find(p => p.id === currentProjectId)?.users;
+  }
+)
 
 export const getError = createSelector(
   getProjectFeatureState,

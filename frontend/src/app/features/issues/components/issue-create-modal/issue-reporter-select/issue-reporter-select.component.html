@@ -1,6 +1,10 @@
 <div [formGroup]="form">
-  <nz-select formControlName="reporterId" [nzCustomTemplate]="reporterTempl">
-    <nz-option nzCustomContent *ngFor="let user of users" [nzValue]="user.id">
+  <nz-select
+    formControlName="reporter"
+    [compareWith]="compareFn"
+    [nzCustomTemplate]="reporterTempl"
+  >
+    <nz-option nzCustomContent *ngFor="let user of assignees" [nzValue]="user">
       <div class="issue-reporter-select">
         <nz-avatar
           nzIcon="user"
@@ -17,9 +21,9 @@
       <nz-avatar
         nzIcon="user"
         [nzSize]="20"
-        [nzSrc]="getUser(selected.nzValue).avatarUrl"
+        [nzSrc]="selected.nzValue.avatarUrl"
       ></nz-avatar>
-      <span>{{ getUser(selected.nzValue).name }}</span>
+      <span>{{ selected.nzValue.name }}</span>
     </div>
   </ng-template>
 </div>

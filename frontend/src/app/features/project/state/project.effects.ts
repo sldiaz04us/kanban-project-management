@@ -28,20 +28,6 @@ export class ProjectEffects {
     )
   });
 
-  loadAssignedUsers$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ProjectPageActions.loadAssignedUsers),
-      mergeMap(action => {
-        return from(action.userIds).pipe(
-          mergeMap(userId => this.userService.getUserById(userId)),
-          toArray(),
-          map(assignedUsers => ProjectApiActions.loadAssignedUsersSuccess({ assignedUsers })),
-          catchError(error => of(ProjectApiActions.loadAssignedUsersFailure({ error })))
-        )
-      })
-    )
-  });
-
   updateProject$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProjectPageActions.updateProject),

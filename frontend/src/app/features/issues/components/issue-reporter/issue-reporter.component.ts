@@ -22,22 +22,21 @@ export class IssueReporterComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const issueChange = changes.issue;
     if (this.assignees && issueChange.currentValue !== issueChange.previousValue) {
-      this.reporter = this.assignees.find(u => u.id === this.issue.reporterId)
+      this.reporter = this.assignees.find(u => u.id === this.issue.reporter.id)
     }
   }
 
   isUserSelected(user: User): boolean {
-    return this.issue.reporterId === user.id;
+    return this.issue.reporter.id === user.id;
   }
 
   updateIssue(user: User): void {
     this.store.dispatch(IssuePageActions.updateIssue({
       issue: {
         ...this.issue,
-        reporterId: user.id
+        reporter: user
       }
     }));
   }
-
 
 }

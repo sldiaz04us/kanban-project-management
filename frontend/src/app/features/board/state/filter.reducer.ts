@@ -51,7 +51,7 @@ export const reducer = createReducer(
       recentlyUpdated: !state.recentlyUpdated
     }
   }),
-  on(FilterActions.clearAllFilters, state => {
+  on(FilterActions.clearAllFilters, () => {
     return initialState;
   })
 

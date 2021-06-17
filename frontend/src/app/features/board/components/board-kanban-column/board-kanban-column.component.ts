@@ -86,7 +86,7 @@ export class BoardKanbanColumnComponent implements OnInit, OnDestroy {
         ? issue.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
         : true;
 
-      const issueUserIds = [...issue.userIds];
+      const issueUserIds = issue.assignees.map(u => u.id);
 
       if (!issueUserIds.length) { // no user assigned in the issue
         issueUserIds.push('unassigned');

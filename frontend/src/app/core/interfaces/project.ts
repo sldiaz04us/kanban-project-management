@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export interface Project {
   id: string;
   name: string;
@@ -8,8 +10,7 @@ export interface Project {
   category: ProjectCategory;
   createdAt: string;
   updatedAt: string;
-  issueIds: string[];
-  userIds: string[];
+  users: User[];
 }
 
-export type ProjectCategory = 'Software' | 'Marketin' | 'Business';
+export type ProjectCategory = 'Software' | 'Marketing' | 'Business';

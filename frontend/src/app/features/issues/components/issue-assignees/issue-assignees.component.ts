@@ -17,26 +17,25 @@ export class IssueAssigneesComponent implements OnInit {
   @Input() issue: Issue;
   @Input() assignees: User[];
 
-  listOfSelectedValue: User[] = [];
+  listOfSelectedValues: User[] = [];
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.listOfSelectedValue = this.issue.userIds
-      .map(userId => this.assignees.find(a => a.id === userId));
+    this.listOfSelectedValues = this.issue.assignees
+      .map(user => this.assignees.find(a => a.id === user.id));
   }
 
   isSelected(user: User): boolean {
-    return !!this.listOfSelectedValue.find(u => u.id === user.id);
+    return !!this.listOfSelectedValues.find(u => u.id === user.id);
   }
 
   onSelected(users: any): void {
-    this.listOfSelectedValue = users;
-    const userIds = this.listOfSelectedValue.map(u => u.id);
+    this.listOfSelectedValues = users;
     this.store.dispatch(IssuePageActions.updateIssue({
       issue: {
         ...this.issue,
-        userIds
+        assignees: users
       }
     }));
   }

@@ -10,21 +10,23 @@ import { User } from '@core/interfaces/user';
 })
 export class IssueAssigneesSelectComponent {
   @Input() form: FormGroup;
-  @Input() users: User[];
-  listOfSelectedValue: string[] = [];
+  @Input() assignees: User[];
+
+  listOfSelectedValues: User[] = [];
 
   constructor() { }
 
-  isNotSelected(value: string): boolean {
-    return this.listOfSelectedValue.indexOf(value) === -1;
+  isSelected(user: User): boolean {
+    return !!this.listOfSelectedValues.find(u => u.id === user.id);
   }
 
-  getUser(userId: string): User {
-    return this.users.find(u => u.id === userId);
+  onSelected(users: User[]): void {
+    this.listOfSelectedValues = users;
   }
 
-  onSelected(userIds: string[]): void {
-    this.listOfSelectedValue = userIds;
+  nzFilterOption(inputValue: string, item: any): boolean {
+    return item.nzValue.name.toLowerCase().match(inputValue.toLowerCase());
   }
+
 
 }

@@ -9,7 +9,6 @@ import { Project } from '@core/interfaces/project';
 import { getAssignedUsers, getCurrentProject, getCurrentProjectId } from '@features/project/state/project.selectors';
 import { IssuePageActions } from '@features/issues/state/actions';
 import { AppState } from '@core/interfaces/app.state';
-import { ProjectPageActions } from '@features/project/state/actions';
 import { User } from '@core/interfaces/user';
 
 @Component({
@@ -20,8 +19,7 @@ import { User } from '@core/interfaces/user';
 })
 export class BoardPageComponent implements OnInit, OnDestroy {
   currentProject$: Observable<Project>;
-  assignedUsers$: Observable<User[]>;
-
+  assignees$: Observable<User[]>;
   private subs: Subscription;
 
   constructor(private store: Store<AppState>) { }
@@ -29,17 +27,16 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentProject$ = this.store.select(getCurrentProject)
       .pipe(
-        filter(project => Boolean(project)),
-        tap(project => this.store.dispatch(ProjectPageActions.loadAssignedUsers({ userIds: project.userIds })))
+        filter(project => Boolean(project))
       );
+
+    this.assignees$ = this.store.select(getAssignedUsers);
 
     this.subs = this.store.select(getCurrentProjectId).pipe(
       filter(currentProjectId => Boolean(currentProjectId)),
       tap(projectId => {
         this.store.dispatch(IssuePageActions.loadIssues({ projectId }));
       })).subscribe();
-
-    this.assignedUsers$ = this.store.select(getAssignedUsers);
   }
 
   ngOnDestroy(): void {

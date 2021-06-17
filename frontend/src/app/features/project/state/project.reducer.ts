@@ -39,18 +39,6 @@ export const projectReducer = createReducer<ProjectState>(
       error: action.error
     }
   }),
-  on(ProjectApiActions.loadAssignedUsersSuccess, (state, action): ProjectState => {
-    return {
-      ...state,
-      assignedUsers: action.assignedUsers
-    }
-  }),
-  on(ProjectApiActions.loadAssignedUsersFailure, (state, action): ProjectState => {
-    return {
-      ...state,
-      error: action.error
-    }
-  }),
   on(ProjectApiActions.updateProjectSuccess, (state, action): ProjectState => {
     const updatedProjects = state.projects.map(
       project => action.project.id === project.id ? action.project : project

@@ -25,8 +25,6 @@
           [size]="20"
         >
         </app-svg-icon>
-        <!-- <i nz-icon nzType="check-square" nzTheme="fill"></i>
-        <i nz-icon nzType="arrow-up" nzTheme="outline"></i> -->
       </div>
       <div class="assignee">
         <span class="issue-name"
@@ -34,7 +32,7 @@
         >
         <nz-avatar-group>
           <nz-avatar
-            *ngFor="let user of assignees$ | async"
+            *ngFor="let user of issue.assignees"
             nzIcon="user"
             nzSrc="{{ user?.avatarUrl }}"
             nz-tooltip

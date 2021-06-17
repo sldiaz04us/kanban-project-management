@@ -12,9 +12,19 @@ export class IssueData {
       listPosition: 0,
       createdAt: '2021-05-03T14:40:01.262Z',
       updatedAt: '2021-05-03T14:40:01.262Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: [
-        '7ac265f9-b9ac-443f-a2b2-795682e579a4',
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [
+        {
+          id: '7ac265f9-b9ac-443f-a2b2-795682e579a4',
+          name: 'Gilfoyle',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/gilfoyle.png',
+        },
       ],
       projectId: '140892',
       comments: []
@@ -29,10 +39,25 @@ export class IssueData {
       listPosition: 0,
       createdAt: '2021-05-03T14:40:01.262Z',
       updatedAt: '2021-05-03T14:40:01.262Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: [
-        'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-        '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [
+        {
+          id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+          name: 'Sergio Lopez Diaz',
+          avatarUrl:
+            'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+        },
+        {
+          id: '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+          name: 'Richard Hendricks',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/richard-hendricks.png',
+        },
       ],
       projectId: '140892',
       comments: []
@@ -47,8 +72,18 @@ export class IssueData {
       listPosition: 0,
       createdAt: '2021-05-03T14:40:01.346Z',
       updatedAt: '2021-05-03T14:40:01.346Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: ['94502aad-c97f-43e1-a9d1-28cf3e4937a7'],
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [{
+        id: '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+        name: 'Richard Hendricks',
+        avatarUrl:
+          'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/richard-hendricks.png',
+      }],
       projectId: '140892',
       comments: []
     },
@@ -62,8 +97,18 @@ export class IssueData {
       listPosition: 1,
       createdAt: '2021-05-03T14:40:01.262Z',
       updatedAt: '2021-05-03T14:48:00.807Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [{
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      }],
       projectId: '140892',
       comments: []
     },
@@ -78,10 +123,25 @@ export class IssueData {
       listPosition: 0,
       createdAt: '2021-05-03T14:40:01.350Z',
       updatedAt: '2021-05-03T14:51:09.653Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: [
-        '610451aa-10c8-4d7e-9363-311357c0b0dd',
-        '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [
+        {
+          id: '610451aa-10c8-4d7e-9363-311357c0b0dd',
+          name: 'Dinesh',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/dinesh.jpg',
+        },
+        {
+          id: '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+          name: 'Richard Hendricks',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/richard-hendricks.png',
+        },
       ],
       projectId: '140892',
       comments: []
@@ -96,8 +156,18 @@ export class IssueData {
       listPosition: 1,
       createdAt: '2021-05-03T14:40:01.304Z',
       updatedAt: '2021-05-03T14:52:02.173Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [{
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      }],
       projectId: '140892',
       comments: []
     },
@@ -111,8 +181,18 @@ export class IssueData {
       listPosition: 1,
       createdAt: '2021-05-03T14:40:01.304Z',
       updatedAt: '2021-05-03T14:52:02.173Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [{
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      }],
       projectId: '140892',
       comments: []
     },
@@ -126,10 +206,25 @@ export class IssueData {
       listPosition: 1,
       createdAt: '2021-05-03T14:40:00.000Z',
       updatedAt: '2021-05-03T14:51:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: [
-        '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
-        '610451aa-10c8-4d7e-9363-311357c0b0dd',
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [
+        {
+          id: '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+          name: 'Richard Hendricks',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/richard-hendricks.png',
+        },
+        {
+          id: '610451aa-10c8-4d7e-9363-311357c0b0dd',
+          name: 'Dinesh',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/dinesh.jpg',
+        },
       ],
       projectId: '140892',
       comments: []
@@ -144,8 +239,18 @@ export class IssueData {
       listPosition: 2,
       createdAt: '2021-05-03T14:40:00.000Z',
       updatedAt: '2021-05-03T14:51:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [{
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      }],
       projectId: '140892',
       comments: []
     },
@@ -159,10 +264,25 @@ export class IssueData {
       listPosition: 2,
       createdAt: '2021-04-12T14:40:00.000Z',
       updatedAt: '2021-04-12T14:51:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: [
-        '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
-        '7ac265f9-b9ac-443f-a2b2-795682e579a4',
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [
+        {
+          id: '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+          name: 'Richard Hendricks',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/richard-hendricks.png',
+        },
+        {
+          id: '7ac265f9-b9ac-443f-a2b2-795682e579a4',
+          name: 'Gilfoyle',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/gilfoyle.png',
+        },
       ],
       projectId: '140892',
       comments: []
@@ -178,8 +298,18 @@ export class IssueData {
       listPosition: 2,
       createdAt: '2021-04-28T15:30:00.000Z',
       updatedAt: '2021-04-28T16:30:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [{
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      }],
       projectId: '140892',
       comments: []
     },
@@ -194,8 +324,18 @@ export class IssueData {
       listPosition: 0,
       createdAt: '2021-04-04T15:30:00.000Z',
       updatedAt: '2021-04-04T16:30:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [{
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      }],
       projectId: '130921',
       comments: []
     },
@@ -210,8 +350,18 @@ export class IssueData {
       listPosition: 0,
       createdAt: '2021-04-04T16:30:00.000Z',
       updatedAt: '2021-04-04T17:30:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: ['7ac265f9-b9ac-443f-a2b2-795682e579a4'],
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [{
+        id: '7ac265f9-b9ac-443f-a2b2-795682e579a4',
+        name: 'Gilfoyle',
+        avatarUrl:
+          'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/gilfoyle.png',
+      }],
       projectId: '130921',
       comments: []
     },
@@ -226,10 +376,25 @@ export class IssueData {
       listPosition: 1,
       createdAt: '2021-04-04T16:40:00.000Z',
       updatedAt: '2021-04-04T17:40:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: [
-        'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-        '94502aad-c97f-43e1-a9d1-28cf3e4937a7'
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [
+        {
+          id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+          name: 'Sergio Lopez Diaz',
+          avatarUrl:
+            'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+        },
+        {
+          id: '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+          name: 'Richard Hendricks',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/richard-hendricks.png',
+        }
       ],
       projectId: '130921',
       comments: []
@@ -245,10 +410,25 @@ export class IssueData {
       listPosition: 0,
       createdAt: '2021-04-04T16:50:00.000Z',
       updatedAt: '2021-04-04T17:50:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: [
-        '7ac265f9-b9ac-443f-a2b2-795682e579a4',
-        '94502aad-c97f-43e1-a9d1-28cf3e4937a7'
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [
+        {
+          id: '7ac265f9-b9ac-443f-a2b2-795682e579a4',
+          name: 'Gilfoyle',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/gilfoyle.png',
+        },
+        {
+          id: '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+          name: 'Richard Hendricks',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/richard-hendricks.png',
+        }
       ],
       projectId: '130921',
       comments: []
@@ -264,8 +444,18 @@ export class IssueData {
       listPosition: 0,
       createdAt: '2021-04-05T18:30:00.000Z',
       updatedAt: '2021-04-05T19:30:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [{
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      }],
       projectId: '130921',
       comments: []
     },
@@ -280,11 +470,31 @@ export class IssueData {
       listPosition: 1,
       createdAt: '2021-04-06T15:30:00.000Z',
       updatedAt: '2021-04-06T16:30:00.000Z',
-      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-      userIds: [
-        'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
-        '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
-        '7ac265f9-b9ac-443f-a2b2-795682e579a4'
+      reporter: {
+        id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+        name: 'Sergio Lopez Diaz',
+        avatarUrl:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+      },
+      assignees: [
+        {
+          id: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+          name: 'Sergio Lopez Diaz',
+          avatarUrl:
+            'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+        },
+        {
+          id: '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
+          name: 'Richard Hendricks',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/richard-hendricks.png',
+        },
+        {
+          id: '7ac265f9-b9ac-443f-a2b2-795682e579a4',
+          name: 'Gilfoyle',
+          avatarUrl:
+            'https://res.cloudinary.com/comparte/image/upload/c_scale,w_48/v1620181672/gilfoyle.png',
+        }
       ],
       projectId: '130921',
       comments: []
