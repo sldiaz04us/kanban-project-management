@@ -21,4 +21,9 @@ export class UserService {
     return this.http.get<User>(`${this.usersUrl}/${userId}`);
   }
 
+  searchUsersByName(userName: string): Observable<User[]> {
+    const url = `${this.usersUrl}?name=${userName}`;
+    return this.http.get<User[]>(url);
+  }
+
 }

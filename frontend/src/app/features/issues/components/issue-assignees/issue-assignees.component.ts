@@ -22,8 +22,7 @@ export class IssueAssigneesComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.listOfSelectedValues = this.issue.assignees
-      .map(user => this.assignees.find(a => a.id === user.id));
+    this.listOfSelectedValues = this.issue.assignees;
   }
 
   isSelected(user: User): boolean {
@@ -43,6 +42,8 @@ export class IssueAssigneesComponent implements OnInit {
   nzFilterOption(inputValue: string, item: any): boolean {
     return item.nzValue.name.toLowerCase().match(inputValue.toLowerCase());
   }
+
+  compareFn = (o1: User, o2: User) => (o1 && o2 ? o1.id === o2.id : o1 === o2);
 
   onFocus(): void {
     this.store.dispatch(setIssueEditing({ isEditing: true }));

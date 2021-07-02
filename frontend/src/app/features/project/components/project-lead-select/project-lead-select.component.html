@@ -1,0 +1,31 @@
+<div [formGroup]="form">
+  <nz-select
+    formControlName="leader"
+    nzShowSearch
+    [compareWith]="compareFn"
+    [nzFilterOption]="nzFilterOption"
+    [nzCustomTemplate]="leaderTempl"
+  >
+    <nz-option nzCustomContent *ngFor="let user of assignees" [nzValue]="user">
+      <div class="project-lead-select">
+        <nz-avatar
+          nzIcon="user"
+          [nzSrc]="user.avatarUrl"
+          [nzSize]="20"
+        ></nz-avatar>
+        <span>{{ user.name }}</span>
+      </div>
+    </nz-option>
+  </nz-select>
+
+  <ng-template #leaderTempl let-selected>
+    <div class="project-lead-select">
+      <nz-avatar
+        nzIcon="user"
+        [nzSize]="20"
+        [nzSrc]="selected.nzValue.avatarUrl"
+      ></nz-avatar>
+      <span>{{ selected.nzValue.name }}</span>
+    </div>
+  </ng-template>
+</div>

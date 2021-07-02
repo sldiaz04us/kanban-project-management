@@ -1,0 +1,74 @@
+<div class="projects-header">
+  <h1>Projects</h1>
+  <button nz-button nzType="primary" routerLink="/projects/new">
+    Create project
+  </button>
+</div>
+<div class="projects-content">
+  <form nz-form [nzLayout]="'inline'" [formGroup]="projectsForm">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzSuffixIcon="search">
+          <input formControlName="search" nz-input />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <nz-table
+    #projectsTable
+    [nzData]="projects$ | async"
+    nzSize="middle"
+    [nzPageSize]="5"
+    nzHideOnSinglePage
+  >
+    <thead>
+      <tr>
+        <th
+          [nzSortOrder]="null"
+          [nzSortDirections]="['ascend', 'descend', null]"
+          [nzSortFn]="sortByNameFn"
+        >
+          Name
+        </th>
+        <th
+          [nzSortOrder]="null"
+          [nzSortDirections]="['ascend', 'descend', null]"
+          [nzSortFn]="sortByKeyFn"
+        >
+          Key
+        </th>
+        <th>Category</th>
+        <th
+          [nzSortOrder]="null"
+          [nzSortDirections]="['ascend', 'descend', null]"
+          [nzSortFn]="sortByLeaderFn"
+        >
+          Lead
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of projectsTable.data">
+        <td class="hover" (click)="changeCurrentProject(data.id)">
+          <div class="project-info">
+            <img [src]="data.avatar" alt="Project logo" />
+            <span>{{ data.name }}</span>
+          </div>
+        </td>
+        <td>{{ data.key | uppercase }}</td>
+        <td>{{ data.category }}</td>
+        <td>
+          <div class="leader-info">
+            <img [src]="data.leader.avatarUrl" alt="User picture" />
+            <span>{{ data.leader.name }}</span>
+          </div>
+        </td>
+        <td nzAlign="right">
+          <project-actions [project]="data"></project-actions>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

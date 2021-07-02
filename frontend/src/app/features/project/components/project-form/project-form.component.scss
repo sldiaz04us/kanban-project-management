@@ -1,0 +1,44 @@
+@import "src/assets/variables.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .project-form {
+    width: 500px;
+    max-width: 500px;
+    h1 {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-start;
+
+  button:first-of-type {
+    margin-right: 1rem;
+  }
+  button:disabled {
+    color: #fff;
+    background-color: lighten($primary, 30%);
+  }
+}
+
+.default-form-item {
+  max-width: 300px;
+}
+.small-form-item {
+  max-width: 150px;
+}
+
+input {
+  text-overflow: ellipsis;
+}
+
+.input-key {
+  text-transform: uppercase;
+}

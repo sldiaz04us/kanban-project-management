@@ -2,19 +2,16 @@ import { createReducer, on } from "@ngrx/store";
 
 import { Project } from "@core/interfaces/project";
 import { ProjectPageActions, ProjectApiActions } from './actions';
-import { User } from "@core/interfaces/user";
 
 export interface ProjectState {
   currentProjectId: string | null;
   projects: Project[];
-  assignedUsers: User[];
   error: string;
 }
 
 const initialState: ProjectState = {
   currentProjectId: '130921',
   projects: [],
-  assignedUsers: [],
   error: ''
 }
 
@@ -39,6 +36,19 @@ export const projectReducer = createReducer<ProjectState>(
       error: action.error
     }
   }),
+  on(ProjectApiActions.createProjectSuccess, (state, action): ProjectState => {
+    return {
+      ...state,
+      projects: [...state.projects, action.project],
+      error: ''
+    }
+  }),
+  on(ProjectApiActions.createProjectFailure, (state, action): ProjectState => {
+    return {
+      ...state,
+      error: action.error
+    }
+  }),
   on(ProjectApiActions.updateProjectSuccess, (state, action): ProjectState => {
     const updatedProjects = state.projects.map(
       project => action.project.id === project.id ? action.project : project
@@ -50,6 +60,20 @@ export const projectReducer = createReducer<ProjectState>(
     }
   }),
   on(ProjectApiActions.updateProjectFailure, (state, action): ProjectState => {
+    return {
+      ...state,
+      error: action.error
+    }
+  }),
+  on(ProjectApiActions.deleteProjectSuccess, (state, action): ProjectState => {
+    const updatedProjects = state.projects.filter(p => p.id !== action.projectId)
+    return {
+      ...state,
+      projects: updatedProjects,
+      error: ''
+    }
+  }),
+  on(ProjectApiActions.deleteProjectFailure, (state, action): ProjectState => {
     return {
       ...state,
       error: action.error

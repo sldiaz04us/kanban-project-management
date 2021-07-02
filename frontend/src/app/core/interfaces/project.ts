@@ -8,6 +8,7 @@ export interface Project {
   description: string;
   avatar: string;
   category: ProjectCategory;
+  leader: User;
   createdAt: string;
   updatedAt: string;
   users: User[];

@@ -4,7 +4,6 @@ import {
   Input,
   Output,
   TemplateRef,
-  OnInit,
   OnDestroy
 } from '@angular/core';
 
@@ -18,8 +17,6 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { Issue } from '@core/interfaces/issue';
 import { AppState } from '@core/interfaces/app.state';
-import { getCurrentProject } from '@features/project/state/project.selectors';
-import { Project } from '@core/interfaces/project';
 import { IssueApiActions, IssuePageActions } from '@features/issues/state/actions';
 
 @Component({
@@ -27,12 +24,11 @@ import { IssueApiActions, IssuePageActions } from '@features/issues/state/action
   templateUrl: './issue-actions.component.html',
   styleUrls: ['./issue-actions.component.scss']
 })
-export class IssueActionsComponent implements OnInit, OnDestroy {
+export class IssueActionsComponent implements OnDestroy {
   @Input() issue: Issue;
   @Output() delete = new EventEmitter();
 
   private destroy$ = new Subject();
-  currentProject: Project;
 
   constructor(
     private modalService: NzModalService,
@@ -40,10 +36,6 @@ export class IssueActionsComponent implements OnInit, OnDestroy {
     private actionSubject: ActionsSubject
   ) { }
 
-  ngOnInit(): void {
-    this.store.select(getCurrentProject).pipe(takeUntil(this.destroy$))
-      .subscribe(project => this.currentProject = project)
-  }
 
   onDeleteIssue(templContent: TemplateRef<{}>): void {
     this.modalService.confirm({
@@ -54,7 +46,10 @@ export class IssueActionsComponent implements OnInit, OnDestroy {
       nzOnOk: () => new Promise(resolve => {
         this.actionSubject.pipe(
           takeUntil(this.destroy$),
-          ofType(IssueApiActions.deleteIssueSuccess)
+          ofType(
+            IssueApiActions.deleteIssueSuccess,
+            IssueApiActions.deleteIssueFailure
+          )
         ).subscribe(_ => {
           this.delete.next();
           resolve();

@@ -14,6 +14,10 @@
     margin-right: 0.5rem;
   }
 }
+nz-select {
+  min-width: 100px;
+}
+
 .unassigned {
   min-width: 110px;
   background: $secondary;

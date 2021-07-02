@@ -4,34 +4,42 @@
     <h1>Ant Design Of Angular</h1>
   </a>
 </div>
+<div
+  *ngIf="currentProject"
+  class="sidebar-project"
+  [ngClass]="isCollapsed ? 'justify' : ''"
+>
+  <img [src]="currentProject?.avatar" alt="Project logo" />
+  <div class="content" [ngClass]="isCollapsed ? 'opacity-0' : 'opacity-1'">
+    <h2>{{ currentProject?.name }}</h2>
+    <span>{{ currentProject?.category }}</span>
+  </div>
+</div>
 <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
   <li
     nz-menu-item
     nz-tooltip
     nzTooltipPlacement="right"
     [nzTooltipTitle]="isCollapsed ? 'Kanban board' : ''"
-    nzSelected
+    routerLink="board"
+    nzMatchRouter
   >
     <i nz-icon nzType="appstore"></i>
     <span>Kanban board</span>
   </li>
-  <li
-    nz-menu-item
-    nz-tooltip
-    nzTooltipPlacement="right"
-    [nzTooltipTitle]="isCollapsed ? 'Create board' : ''"
-  >
-    <i nz-icon nzType="plus"></i>
-    <span>Create board</span>
-  </li>
   <nz-divider></nz-divider>
-  <li
-    nz-menu-item
-    nz-tooltip
-    nzTooltipPlacement="right"
-    [nzTooltipTitle]="isCollapsed ? 'Project settings' : ''"
-  >
-    <i nz-icon nzType="setting" nzTheme="outline"></i>
-    <span>Project settings</span>
+  <li nz-submenu nzTitle="Project settings" nzIcon="setting">
+    <ul>
+      <li
+        nz-menu-item
+        [routerLink]="['/projects', currentProject?.id, 'settings', 'details']"
+        nzMatchRouter
+      >
+        Details
+      </li>
+      <li nz-menu-item routerLink="projects/settings/people" nzMatchRouter>
+        People
+      </li>
+    </ul>
   </li>
 </ul>

@@ -1,0 +1,57 @@
+<nz-select
+  nzMode="multiple"
+  nzPlaceHolder="Add users"
+  [nzLoading]="isSearching"
+  [nzShowArrow]="true"
+  nzShowSearch
+  nzServerSearch
+  [nzCustomTemplate]="assigneesTempl"
+  [nzNotFoundContent]="notFoundContentTempl"
+  [ngModel]="listOfSelectedValues"
+  (nzOnSearch)="onSearch($event)"
+  (ngModelChange)="onSelected($event)"
+>
+  <nz-option
+    nzCustomContent
+    *ngFor="let user of listOfOptions | async"
+    [nzValue]="user"
+    [nzHide]="isSelected(user)"
+  >
+    <div class="add-peoples-select">
+      <nz-avatar
+        nzIcon="user"
+        [nzSrc]="user.avatarUrl"
+        [nzSize]="20"
+      ></nz-avatar>
+      <span>{{ user.name }}</span>
+    </div>
+  </nz-option>
+</nz-select>
+
+<ng-template #assigneesTempl let-selected>
+  <div class="add-peoples-select">
+    <nz-avatar
+      nzIcon="user"
+      [nzSize]="20"
+      [nzSrc]="selected.nzValue.avatarUrl"
+    ></nz-avatar>
+    <span>{{ selected.nzValue.name }}</span>
+  </div>
+</ng-template>
+<ng-template #notFoundContentTempl>
+  <ng-container *ngIf="isSearching"></ng-container>
+  <ng-container *ngIf="!isSearching && listOfOptions">No Matches</ng-container>
+</ng-template>
+
+<div class="action-buttons">
+  <button
+    nz-button
+    nzType="primary"
+    [nzLoading]="isLoading"
+    [disabled]="listOfSelectedValues?.length === 0"
+    (click)="addPeople()"
+  >
+    Add
+  </button>
+  <button nz-button (click)="closeModal()">Cancel</button>
+</div>

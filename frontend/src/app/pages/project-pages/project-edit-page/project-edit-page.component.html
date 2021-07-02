@@ -1,0 +1,16 @@
+<div
+  *ngIf="currentProject$ | async as selectedProject; else projectNotSelected"
+>
+  <project-header
+    [subTitle]="'Project settings'"
+    [title]="'Details'"
+  ></project-header>
+  <project-form
+    [currentProject]="selectedProject"
+    [editMode]="true"
+  ></project-form>
+</div>
+
+<ng-template #projectNotSelected>
+  <project-not-selected></project-not-selected>
+</ng-template>

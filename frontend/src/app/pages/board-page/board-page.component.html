@@ -1,3 +1,9 @@
-<app-board-header [currentProject$]="currentProject$"></app-board-header>
-<app-board-filter [assignedUsers$]="assignees$"></app-board-filter>
-<app-board-kanban></app-board-kanban>
+<div *ngIf="currentProject$ | async; else projectNotSelected">
+  <app-board-header [currentProject$]="currentProject$"></app-board-header>
+  <app-board-filter [assignedUsers$]="assignees$"></app-board-filter>
+  <app-board-kanban></app-board-kanban>
+</div>
+
+<ng-template #projectNotSelected>
+  <project-not-selected></project-not-selected>
+</ng-template>

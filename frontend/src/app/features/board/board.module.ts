@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { RouterModule } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
 
@@ -32,6 +33,7 @@ import * as fromFilter from './state/filter.reducer';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
     IconsProviderModule,
     NzPageHeaderModule,
     NzBreadCrumbModule,

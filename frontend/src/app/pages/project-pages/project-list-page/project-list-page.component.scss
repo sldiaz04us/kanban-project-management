@@ -1,0 +1,63 @@
+.projects-header {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0 24px;
+}
+
+.projects-content {
+  padding: 0 24px;
+
+  nz-table {
+    margin-top: 1rem;
+  }
+
+  .hover {
+    cursor: pointer;
+  }
+
+  .project-info {
+    display: inline-flex;
+    align-items: center;
+    color: #0052cc;
+    &:hover {
+      text-decoration: underline;
+    }
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 3px;
+      margin-right: 0.5rem;
+    }
+  }
+  .leader-info {
+    display: inline-flex;
+    align-items: center;
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+nz-input-group {
+  background: rgba(9, 30, 66, 0.04);
+  input {
+    background: rgba(9, 30, 66, 0);
+  }
+}
+nz-input-group:hover {
+  background: rgba(9, 30, 66, 0.1);
+  border-color: rgba(9, 30, 66, 0.1) !important;
+}
+nz-input-group:focus-within {
+  background: #fff;
+  input {
+    background: #fff;
+  }
+}

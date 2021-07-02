@@ -1,0 +1,28 @@
+@import "src/assets/variables.scss";
+
+nz-select {
+  width: 100%;
+}
+
+.add-peoples-select {
+  display: flex;
+  align-items: center;
+  nz-avatar {
+    margin-right: 0.5rem;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 1rem;
+
+  button:first-of-type {
+    margin-right: 1rem;
+  }
+  button:disabled {
+    color: #fff;
+    background-color: lighten($primary, 30%);
+  }
+}

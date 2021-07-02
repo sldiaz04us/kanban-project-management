@@ -71,6 +71,13 @@ export const reducer = createReducer<State>(
       error: action.error
     }
   }),
+  on(IssuePageActions.deleteAllIssuesByProjectId, (state, action): State => {
+    const issues = state.issues.filter(i => i.projectId !== action.projectId);
+    return {
+      ...state,
+      issues
+    }
+  }),
   on(IssuePageActions.setIssueEditing, (state, action): State => {
     return {
       ...state,

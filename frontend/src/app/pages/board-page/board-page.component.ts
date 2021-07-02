@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { Store } from '@ngrx/store';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { tap, filter } from 'rxjs/operators';
 
 import { Project } from '@core/interfaces/project';
-import { getAssignedUsers, getCurrentProject, getCurrentProjectId } from '@features/project/state/project.selectors';
+import { getAssignedUsers, getCurrentProject } from '@features/project/state/project.selectors';
 import { IssuePageActions } from '@features/issues/state/actions';
 import { AppState } from '@core/interfaces/app.state';
 import { User } from '@core/interfaces/user';
@@ -17,32 +18,23 @@ import { User } from '@core/interfaces/user';
   styleUrls: ['./board-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BoardPageComponent implements OnInit, OnDestroy {
+export class BoardPageComponent implements OnInit {
   currentProject$: Observable<Project>;
   assignees$: Observable<User[]>;
-  private subs: Subscription;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private titleService: Title) {
+    this.titleService.setTitle('Project board - Kanban Project Management');
+  }
 
   ngOnInit() {
     this.currentProject$ = this.store.select(getCurrentProject)
       .pipe(
-        filter(project => Boolean(project))
+        filter(project => Boolean(project)),
+        tap(project => this.store.dispatch(IssuePageActions.loadIssues({ projectId: project.id }))
+        )
       );
 
     this.assignees$ = this.store.select(getAssignedUsers);
-
-    this.subs = this.store.select(getCurrentProjectId).pipe(
-      filter(currentProjectId => Boolean(currentProjectId)),
-      tap(projectId => {
-        this.store.dispatch(IssuePageActions.loadIssues({ projectId }));
-      })).subscribe();
-  }
-
-  ngOnDestroy(): void {
-    if (this.subs) {
-      this.subs.unsubscribe();
-    }
   }
 
 }

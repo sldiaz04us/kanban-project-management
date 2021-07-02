@@ -8,10 +8,10 @@
   <div class="reporter-content">
     <nz-avatar
       nzIcon="user"
-      nzSrc="{{ reporter?.avatarUrl }}"
+      [nzSrc]="issue.reporter.avatarUrl"
       nzSize="small"
     ></nz-avatar>
-    <span>{{ reporter?.name }}</span>
+    <span>{{ issue.reporter.name }}</span>
   </div>
 </app-button>
 
@@ -26,7 +26,7 @@
         <div class="reporter-content">
           <nz-avatar
             nzIcon="user"
-            nzSrc="{{ option?.avatarUrl }}"
+            [nzSrc]="option?.avatarUrl"
             nzSize="small"
           ></nz-avatar>
           <span>{{ option?.name }}</span>

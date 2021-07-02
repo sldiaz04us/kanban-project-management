@@ -1,7 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 
 import { Issue } from "@core/interfaces/issue";
-import { Project } from "@core/interfaces/project";
 
 
 export const loadIssues = createAction(
@@ -22,6 +21,11 @@ export const updateIssue = createAction(
 export const deleteIssue = createAction(
   '[Issue Page] Delete Issue',
   props<{ issueId: string }>()
+);
+
+export const deleteAllIssuesByProjectId = createAction(
+  '[Issue Page] Delete All Issues By ProjectId',
+  props<{ projectId: string }>()
 );
 
 export const setIssueEditing = createAction(

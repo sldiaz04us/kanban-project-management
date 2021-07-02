@@ -24,3 +24,53 @@
   font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
   vertical-align: middle;
 }
+
+.sidebar-project {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  padding-left: 24px;
+  transition: padding-left 0.15s;
+
+  img {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border-radius: 2px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .content {
+    display: inline-block;
+    padding: 10px 16px 10px 0;
+    font-size: 10px;
+    overflow-wrap: break-word;
+    color: #001529;
+
+    transition: opacity 0.3s;
+    transition: width 0.3s;
+    line-height: 1.2;
+
+    h2 {
+      margin-bottom: 3px;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.justify {
+  left: 0;
+  height: 64px;
+  padding: 0 calc(50% - 16px / 2);
+}
+
+.opacity-0 {
+  max-width: 0;
+  opacity: 0;
+}
+.opacity-1 {
+  min-width: 208px;
+  opacity: 1;
+}

@@ -3,11 +3,13 @@
     nz-page-header-breadcrumb
     *ngIf="currentProject$ | async as project"
   >
-    <nz-breadcrumb-item>Projects</nz-breadcrumb-item>
+    <nz-breadcrumb-item
+      ><a routerLink="/projects/all">Projects</a></nz-breadcrumb-item
+    >
     <nz-breadcrumb-item>
-      <a>{{ project.name }}</a>
+      <a routerLink="/board">{{ project.name }}</a>
     </nz-breadcrumb-item>
-    <nz-breadcrumb-item>{{ project.key }} board</nz-breadcrumb-item>
+    <nz-breadcrumb-item>{{ project.key | uppercase }} board</nz-breadcrumb-item>
   </nz-breadcrumb>
 
   <nz-page-header-extra>

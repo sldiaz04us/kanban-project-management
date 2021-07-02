@@ -25,7 +25,8 @@
           {
             "prefix": [
               "app",
-              "issue"
+              "issue",
+              "project"
             ],
             "style": "kebab-case",
             "type": "element"

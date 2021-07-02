@@ -1,0 +1,18 @@
+<nz-page-header [nzTitle]="title">
+  <nz-breadcrumb
+    nz-page-header-breadcrumb
+    *ngIf="currentProject$ | async as project"
+  >
+    <nz-breadcrumb-item
+      ><a routerLink="/projects/all">Projects</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a routerLink="/board">{{ project.name }}</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>{{ subTitle }}</nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <ng-content></ng-content>
+  </nz-page-header-extra>
+</nz-page-header>

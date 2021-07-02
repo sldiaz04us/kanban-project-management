@@ -63,7 +63,10 @@ export class IssueCommentsComponent implements OnInit, OnDestroy {
 
     this.actionSubject.pipe(
       takeUntil(this.destroy$),
-      ofType(CommentApiActions.createCommentSuccess)
+      ofType(
+        CommentApiActions.createCommentSuccess,
+        CommentApiActions.createCommentFailure
+      )
     ).subscribe(() => {
       this.isLoading = false;
       this.cancel();

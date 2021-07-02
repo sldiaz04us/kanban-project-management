@@ -6,6 +6,7 @@
   [ngClass]="listOfSelectedValues.length === 0 ? 'unassigned' : ''"
   nzAllowClear
   [nzFilterOption]="nzFilterOption"
+  [compareWith]="compareFn"
   [nzDropdownMatchSelectWidth]="false"
   [nzCustomTemplate]="assigneesTempl"
   (ngModelChange)="onSelected($event)"

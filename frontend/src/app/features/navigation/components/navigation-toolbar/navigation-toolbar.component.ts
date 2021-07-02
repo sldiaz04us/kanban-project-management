@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
@@ -13,6 +14,8 @@ import { AppState } from '@core/interfaces/app.state';
 import { setCurrentProject } from '@features/project/state/actions/project-page.actions';
 import { IssueCreateModalComponent } from '@features/issues/components/issue-create-modal/issue-create-modal.component';
 import { User } from '@core/interfaces/user';
+import { isCurrentProject } from '@features/project/state/project.selectors';
+import * as fromFilterActions from '@features/board/state/filter.actions';
 
 @Component({
   selector: 'app-navigation-toolbar',
@@ -22,19 +25,24 @@ import { User } from '@core/interfaces/user';
 export class NavigationToolbarComponent implements OnInit, OnDestroy {
   @Input() projects$: Observable<Project[]>;
   @Input() currentUser: User;
+  isCurrentProject$: Observable<boolean>;
 
-  private subsNotifier = new Subject();
+  private destroy$ = new Subject();
 
   isSidebarCollapsed = false;
 
   constructor(
     private navigationService: NavigationService,
     private store: Store<AppState>,
-    private modalService: NzModalService
+    private modalService: NzModalService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.navigationService.sidebarCollapseStatusChanged$.pipe(takeUntil(this.subsNotifier)).subscribe(collapseStatus => this.isSidebarCollapsed = collapseStatus);
+    this.navigationService.sidebarCollapseStatusChanged$.pipe(takeUntil(this.destroy$))
+      .subscribe(collapseStatus => this.isSidebarCollapsed = collapseStatus);
+
+    this.isCurrentProject$ = this.store.select(isCurrentProject);
   }
 
   onCollapseSidebar(): void {
@@ -44,6 +52,8 @@ export class NavigationToolbarComponent implements OnInit, OnDestroy {
 
   changeCurrentProject(projectId: string): void {
     this.store.dispatch(setCurrentProject({ projectId }));
+    this.store.dispatch(fromFilterActions.clearAllFilters());
+    this.router.navigateByUrl('board');
   }
 
   openCreateIssueModal() {
@@ -58,8 +68,8 @@ export class NavigationToolbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subsNotifier.next();
-    this.subsNotifier.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

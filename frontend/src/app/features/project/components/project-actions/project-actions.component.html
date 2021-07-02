@@ -1,0 +1,24 @@
+<app-button
+  nz-dropdown
+  nzTrigger="click"
+  [nzDropdownMenu]="menu"
+  nzPlacement="bottomRight"
+  icon="more-horiz"
+  [iconSize]="20"
+  [className]="'btn-empty'"
+  nz-tooltip
+  nzTooltipTitle="Actions"
+>
+</app-button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li
+      nz-menu-item
+      [routerLink]="['/projects', project.id, 'settings', 'details']"
+    >
+      Project settings
+    </li>
+    <li nz-menu-item (click)="onDeleteProject()">Move to trash</li>
+  </ul>
+</nz-dropdown-menu>

@@ -26,13 +26,21 @@
               *ngFor="let project of projects$ | async"
               (click)="changeCurrentProject(project.id)"
             >
-              {{ project.name }}
+              <div class="project-info">
+                <img [src]="project.avatar" alt="Project logo" />
+                <div class="content">
+                  <span
+                    >{{ project.name }} ({{ project.key | uppercase }})</span
+                  >
+                  <span>{{ project.category }} project</span>
+                </div>
+              </div>
             </li>
           </ul>
         </li>
         <nz-divider></nz-divider>
-        <li nz-menu-item>View all projects</li>
-        <li nz-menu-item>
+        <li nz-menu-item routerLink="projects/all">View all projects</li>
+        <li nz-menu-item routerLink="projects/new">
           <i nz-icon nzType="plus" nzTheme="outline"></i>Create project
         </li>
       </ul>
@@ -71,9 +79,13 @@
     </nz-dropdown-menu>
   </div>
   <div class="create-issue-button">
-    <button nz-button nzType="primary" (click)="openCreateIssueModal()">
-      <i nz-icon nzType="plus"></i>
-      Create issue
+    <button
+      nz-button
+      nzType="primary"
+      (click)="openCreateIssueModal()"
+      [disabled]="(isCurrentProject$ | async) === false"
+    >
+      Create
     </button>
   </div>
   <div class="nav-options">

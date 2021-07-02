@@ -1,0 +1,67 @@
+<div class="content" *ngIf="isCurrentProject$ | async; else projectNotSelected">
+  <project-header [subTitle]="'Project settings'" [title]="'People'">
+    <button nz-button nzType="primary" (click)="onAddPeople()">
+      Add people
+    </button>
+  </project-header>
+  <div class="people">
+    <form nz-form [nzLayout]="'inline'" [formGroup]="peopleForm">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group nzSuffixIcon="search">
+            <input
+              formControlName="search"
+              nz-input
+              placeholder="Filter for names"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  <nz-table
+    #peopleTable
+    [nzData]="assignedUsers$ | async"
+    nzSize="middle"
+    [nzPageSize]="5"
+    nzHideOnSinglePage
+  >
+    <thead>
+      <tr>
+        <th
+          [nzSortOrder]="null"
+          [nzSortDirections]="['ascend', 'descend', null]"
+          [nzSortFn]="sortFn"
+        >
+          Name
+        </th>
+        <th
+          [nzSortOrder]="null"
+          [nzSortDirections]="['ascend', 'descend', null]"
+          [nzSortFn]="sortFn"
+        >
+          Email
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of peopleTable.data">
+        <td>
+          <div class="user-info">
+            <img [src]="data.avatarUrl" alt="User picture" />
+            <span>{{ data.name }}</span>
+          </div>
+        </td>
+        <td>{{ data.email }}</td>
+        <td nzAlign="right">
+          <a (click)="onDeletePeople(data)">Remove</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<ng-template #projectNotSelected>
+  <project-not-selected></project-not-selected>
+</ng-template>

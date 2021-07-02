@@ -7,9 +7,24 @@ export const setCurrentProject = createAction(
   props<{ projectId: string }>()
 )
 
-export const loadProjects = createAction('[Project Page] Load Projects');
+export const loadProjects = createAction('[Project Page] Load');
+
+export const createProject = createAction(
+  '[Project Page] Create Project',
+  props<{ project: Project }>()
+);
 
 export const updateProject = createAction(
   '[Project Page] Update Project',
   props<{ project: Project }>()
+);
+
+export const deleteProject = createAction(
+  '[Project Page] Delete Project',
+  props<{ projectId: string }>()
+);
+
+export const removePeople = createAction(
+  '[Project Page] Remove People',
+  props<{ userId: string }>()
 );

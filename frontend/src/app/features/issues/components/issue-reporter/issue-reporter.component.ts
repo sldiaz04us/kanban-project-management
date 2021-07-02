@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
@@ -10,21 +10,14 @@ import { IssuePageActions } from '@features/issues/state/actions';
 @Component({
   selector: 'issue-reporter',
   templateUrl: './issue-reporter.component.html',
-  styleUrls: ['./issue-reporter.component.scss']
+  styleUrls: ['./issue-reporter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class IssueReporterComponent implements OnChanges {
+export class IssueReporterComponent {
   @Input() issue: Issue;
   @Input() assignees: User[];
-  reporter: User;
 
   constructor(private store: Store<AppState>) { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const issueChange = changes.issue;
-    if (this.assignees && issueChange.currentValue !== issueChange.previousValue) {
-      this.reporter = this.assignees.find(u => u.id === this.issue.reporter.id)
-    }
-  }
 
   isUserSelected(user: User): boolean {
     return this.issue.reporter.id === user.id;

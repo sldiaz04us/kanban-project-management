@@ -56,7 +56,10 @@ export class IssueCommentsItemComponent {
     }
     this.isLoading = true;
     this.actionSubject.pipe(
-      ofType(CommentApiActions.updateCommentSuccess),
+      ofType(
+        CommentApiActions.updateCommentSuccess,
+        CommentApiActions.updateCommentFailure
+      ),
       take(1)
     ).subscribe(() => {
       this.isLoading = false;
@@ -75,7 +78,10 @@ export class IssueCommentsItemComponent {
       nzOnOk: () => new Promise(resolve => {
         this.actionSubject.pipe(
           skip(1), // because actionSubject is a BehaviorSubject and the user can delete more than one comment.
-          ofType(CommentApiActions.deleteCommentSuccess),
+          ofType(
+            CommentApiActions.deleteCommentSuccess,
+            CommentApiActions.deleteCommentFailure
+          ),
           take(1)
         ).subscribe(() => {
           resolve();
