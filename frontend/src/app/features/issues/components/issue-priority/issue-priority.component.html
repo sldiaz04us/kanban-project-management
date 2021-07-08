@@ -6,12 +6,8 @@
   [nzDropdownMenu]="menu"
 >
   <div class="priority-content">
-    <app-svg-icon
-      [name]="selectedPriorityIcon.icon"
-      [size]="20"
-      [style.color]="selectedPriorityIcon.color"
-    ></app-svg-icon>
-    <span>{{ selectedPriorityIcon.value }}</span>
+    <app-svg-icon [name]="selectedPriorityIcon" [size]="20"></app-svg-icon>
+    <span>{{ selectedPriority }}</span>
   </div>
 </app-button>
 
@@ -24,11 +20,7 @@
         (click)="updateIssue(option.value)"
       >
         <div class="priority-content">
-          <app-svg-icon
-            [name]="option.icon"
-            [size]="20"
-            [style.color]="option.color"
-          ></app-svg-icon>
+          <app-svg-icon [name]="option.icon" [size]="20"></app-svg-icon>
           <span>{{ option.value }}</span>
         </div>
       </li>

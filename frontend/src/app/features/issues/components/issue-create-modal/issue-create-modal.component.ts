@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Store } from '@ngrx/store';
+import { ActionsSubject, Store } from '@ngrx/store';
+import { ofType } from '@ngrx/effects';
 
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { skip, takeUntil } from 'rxjs/operators';
 
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
@@ -14,7 +15,7 @@ import { User } from '@core/interfaces/user';
 import { getCurrentUser } from '@features/user/state/user.selectors';
 import { Issue, IssuePriority, IssueStatus } from '@core/interfaces/issue';
 import { DateUtil } from '@core/utils/date';
-import { IssuePageActions } from '@features/issues/state/actions';
+import { IssueApiActions, IssuePageActions } from '@features/issues/state/actions';
 import { IssueUtil } from '@core/utils/issue';
 import { QuillEditorUtil } from '@core/utils/quill';
 
@@ -34,22 +35,37 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
   currentUser: User;
 
   defaultEditorOptions = QuillEditorUtil.getDefaultModuleOptions();
+  isLoading: boolean;
 
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
-    private modalRef: NzModalRef
+    private modalRef: NzModalRef,
+    private actionSubject: ActionsSubject,
   ) { }
 
   ngOnInit(): void {
     this.loadData();
     this.initForm();
+
+    this.actionSubject.pipe(
+      skip(1),
+      ofType(
+        IssueApiActions.createIssueSuccess,
+        IssueApiActions.createIssueFailure,
+      ),
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.isLoading = false;
+      this.closeModal();
+    })
   }
 
   submitForm() {
     if (this.issueForm.invalid) {
       return;
     }
+    this.isLoading = true;
 
     const now = DateUtil.getNow();
     const issueId = IssueUtil.getRandomId();
@@ -64,7 +80,6 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
     }
 
     this.store.dispatch(IssuePageActions.createIssue({ issue }));
-    this.closeModal();
   }
 
   private loadData(): void {

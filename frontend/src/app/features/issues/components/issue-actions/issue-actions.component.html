@@ -2,6 +2,7 @@
   nz-dropdown
   nzTrigger="click"
   [nzDropdownMenu]="menu"
+  [nzOverlayStyle]="{ 'min-width': '176px' }"
   nzPlacement="bottomRight"
   icon="more-horiz"
   [iconSize]="20"
@@ -13,11 +14,15 @@
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu>
-    <li nz-menu-item>
-      <app-svg-icon name="file-move" [size]="20"></app-svg-icon>Move
+    <li nz-menu-item class="toggle-on-hover">
+      <app-svg-icon name="file-move" [size]="20"></app-svg-icon>
+      <span>Move</span>
+      <span class="not-implemented">Not implemented</span>
     </li>
-    <li nz-menu-item>
-      <app-svg-icon name="file-copy" [size]="20"></app-svg-icon>Clone
+    <li nz-menu-item class="toggle-on-hover">
+      <app-svg-icon name="file-copy" [size]="20"></app-svg-icon>
+      <span>Clone</span>
+      <span class="not-implemented">Not implemented</span>
     </li>
     <li nz-menu-item (click)="onDeleteIssue(templContent)">
       <app-svg-icon name="file-delete" [size]="20"></app-svg-icon>Delete
@@ -30,5 +35,5 @@
     You're about to permanently delete this issue, its comments and attachments,
     and all of its data.
   </p>
-  <p>If you're not sure, you can resolve or close this issue instead.</p>
+  <p>If you're not sure, you can cancel and close this issue instead.</p>
 </ng-template>

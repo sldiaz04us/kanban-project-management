@@ -1,12 +1,6 @@
-<div class="sidebar-logo">
-  <a href="#" target="_blank">
-    <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
-    <h1>Ant Design Of Angular</h1>
-  </a>
-</div>
 <div
   *ngIf="currentProject"
-  class="sidebar-project"
+  class="project-info"
   [ngClass]="isCollapsed ? 'justify' : ''"
 >
   <img [src]="currentProject?.avatar" alt="Project logo" />

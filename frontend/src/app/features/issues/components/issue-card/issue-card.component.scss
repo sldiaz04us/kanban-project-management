@@ -32,6 +32,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
 
       .status {
         display: inline-flex;

@@ -1,29 +1,16 @@
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+project-header {
+  width: 100%;
+}
+.people {
+  display: inline-flex;
+  width: 100%;
+  padding: 0 24px;
+}
 
-  max-width: 900px;
-
-  project-header {
-    width: 100%;
-  }
-  .people {
-    display: inline-flex;
-    width: 100%;
-    padding: 0 24px;
-  }
-
-  nz-table {
-    width: 100%;
-    margin-top: 1rem;
-    padding: 0 24px;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
+nz-table {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0 24px;
 }
 
 .user-info {

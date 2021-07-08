@@ -11,16 +11,8 @@
 
 .menu-sidebar {
   position: relative;
-  z-index: 10;
   overflow: auto;
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
-}
-
-.content-layout {
-  display: flex;
-  flex: 1 1 0%;
-  flex-direction: column;
-  background: #fff;
 }
 
 nz-header {
@@ -32,6 +24,7 @@ nz-header {
 nz-content {
   flex: 1 1 0%;
   overflow: auto;
+  background: #fff;
 }
 
 nz-footer {

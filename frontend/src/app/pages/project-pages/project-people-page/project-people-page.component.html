@@ -1,4 +1,4 @@
-<div class="content" *ngIf="isCurrentProject$ | async; else projectNotSelected">
+<div *ngIf="isCurrentProject$ | async; else projectNotSelected">
   <project-header [subTitle]="'Project settings'" [title]="'People'">
     <button nz-button nzType="primary" (click)="onAddPeople()">
       Add people

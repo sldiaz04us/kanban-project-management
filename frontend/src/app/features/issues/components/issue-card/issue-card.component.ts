@@ -13,7 +13,6 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 
 import { Issue } from '@core/interfaces/issue';
 import { AppState } from '@core/interfaces/app.state';
-import { IssuePriorityIcon } from '@core/interfaces/issue-priority-icon';
 import { IssueUtil } from '@core/utils/issue';
 import { IssueDetailModalComponent } from '../issue-detail-modal/issue-detail-modal.component';
 import { getIssueById } from '@features/issues/state/selectors/issue.selectors';
@@ -29,7 +28,7 @@ import { getAssignedUsers } from '@features/project/state/project.selectors';
 export class IssueCardComponent implements OnInit {
   @Input() issue: Issue;
   issueTypeIcon: Observable<string>;
-  priorityIcon: Observable<IssuePriorityIcon>;
+  priorityIcon: Observable<string>;
 
   constructor(
     private store: Store<AppState>,

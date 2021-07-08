@@ -1,12 +1,12 @@
 .kanban {
-  padding: 16px 24px;
   display: inline-flex;
+  width: 100%;
+  padding: 16px 24px;
 
   .kanban-column {
-    width: 20rem;
+    width: 25%;
     padding: 0.75rem /* 12px */;
     margin-left: 0.75rem;
-    flex-shrink: 0;
     border-radius: 0.375rem;
     background-color: rgba(243, 244, 246, 1);
 

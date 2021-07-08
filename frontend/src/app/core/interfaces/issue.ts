@@ -23,14 +23,6 @@ export enum IssuePriority {
   HIGH = 'High',
   HIGHEST = 'Highest'
 }
-export const IssuePriorityColors = {
-  [IssuePriority.HIGHEST]: '#CD1317',
-  [IssuePriority.HIGH]: '#E9494A',
-  [IssuePriority.MEDIUM]: '#E97F33',
-  [IssuePriority.LOW]: '#2D8738',
-  [IssuePriority.LOWEST]: '#57A55A'
-};
-
 export interface Issue {
   id: string;
   title: string;

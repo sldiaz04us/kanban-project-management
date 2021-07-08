@@ -1,11 +1,11 @@
 <div class="app-header">
-  <span class="header-trigger" (click)="onCollapseSidebar()">
-    <i
-      class="trigger"
-      nz-icon
-      [nzType]="isSidebarCollapsed ? 'menu-unfold' : 'menu-fold'"
-    ></i>
-  </span>
+  <div class="logo" routerLink="/">
+    <img
+      src="https://res.cloudinary.com/comparte/image/upload/v1625633174/logo.svg"
+      alt="Project logo"
+    />
+    <span>Kanban Project Management</span>
+  </div>
   <div class="nav-options">
     <button
       nz-button
@@ -53,6 +53,7 @@
       nzTrigger="click"
       nz-dropdown
       [nzDropdownMenu]="peopleMenu"
+      [nzOverlayStyle]="{ 'min-width': '180px' }"
     >
       People
       <i nz-icon nzType="down"></i>
@@ -61,20 +62,27 @@
       <ul nz-menu nzMode="horizontal">
         <li nz-menu-group nzTitle="Your Collaborators">
           <ul>
-            <li nz-menu-item>
-              <i nz-icon nzType="plus" nzTheme="outline"></i>Invite a teammate
+            <li nz-menu-item class="toggle-on-hover">
+              <i nz-icon nzType="plus" nzTheme="outline"></i>
+              <span>Invite a teammate</span>
+              <span class="not-implemented">Not implemented</span>
             </li>
           </ul>
         </li>
         <li nz-menu-group nzTitle="Your Teams">
           <ul>
-            <li nz-menu-item>
-              <i nz-icon nzType="plus" nzTheme="outline"></i>Start a team
+            <li nz-menu-item class="toggle-on-hover">
+              <i nz-icon nzType="plus" nzTheme="outline"></i>
+              <span>Start a team</span>
+              <span class="not-implemented">Not implemented</span>
             </li>
           </ul>
         </li>
         <nz-divider></nz-divider>
-        <li nz-menu-item>Search people and teams</li>
+        <li nz-menu-item class="toggle-on-hover">
+          <span>Search people and teams</span>
+          <span class="not-implemented">Not implemented</span>
+        </li>
       </ul>
     </nz-dropdown-menu>
   </div>
@@ -93,19 +101,29 @@
       <nz-avatar
         nz-tooltip
         [nzTooltipTitle]="currentUser?.name"
+        [nzSrc]="currentUser?.avatarUrl"
         nzTooltipPlacement="rightBottom"
         nz-dropdown
         [nzDropdownMenu]="userMenu"
+        [nzOverlayStyle]="{ 'min-width': '138px' }"
         nzTrigger="click"
-        nzIcon="user"
       ></nz-avatar>
     </div>
     <nz-dropdown-menu #userMenu="nzDropdownMenu" nzPlacement="bottomRight">
       <ul nz-menu class="user-menu">
-        <li nz-menu-item>Profile</li>
-        <li nz-menu-item>Account settings</li>
+        <li nz-menu-item class="toggle-on-hover">
+          <span>Profile</span>
+          <span class="not-implemented">Not implemented</span>
+        </li>
+        <li nz-menu-item class="toggle-on-hover">
+          <span>Account settings</span>
+          <span class="not-implemented">Not implemented</span>
+        </li>
         <nz-divider></nz-divider>
-        <li nz-menu-item>Log out</li>
+        <li nz-menu-item class="toggle-on-hover">
+          <span>Log out</span>
+          <span class="not-implemented">Not implemented</span>
+        </li>
       </ul>
     </nz-dropdown-menu>
   </div>

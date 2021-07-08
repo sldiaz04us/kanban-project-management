@@ -2,18 +2,45 @@
 
 .app-header {
   display: flex;
+  align-items: center;
   position: relative;
   height: 64px;
-  padding: 0;
+  padding: 0 12px;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   div:last-of-type {
     margin-left: auto;
-    margin-right: 1rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #dbeafe;
+    }
+    img {
+      display: inline-block;
+      height: 24px;
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    span {
+      font-weight: 700;
+    }
   }
 
   .nav-options {
+    display: inline-flex;
+    align-items: center;
+
     [nz-button] {
       font-weight: 600;
     }
@@ -51,18 +78,6 @@
   }
 }
 
-.header-trigger {
-  height: 64px;
-  padding: 0 24px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s, padding 0s;
-}
-
-.trigger:hover {
-  color: #1890ff;
-}
-
 .user-menu {
   [nz-menu-item] {
     padding: 10px 12px;
@@ -94,6 +109,32 @@ nz-divider {
     }
     span:last-of-type {
       font-size: 11px;
+    }
+  }
+}
+
+.not-implemented {
+  display: inline-flex;
+  justify-content: center;
+  text-transform: uppercase;
+  width: 0;
+  visibility: hidden;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #253858;
+  cursor: not-allowed;
+}
+li.toggle-on-hover {
+  display: flex;
+  align-items: center;
+  &:hover {
+    span:first-of-type {
+      width: 0;
+      visibility: hidden;
+    }
+    span:last-of-type {
+      width: auto;
+      visibility: visible;
     }
   }
 }

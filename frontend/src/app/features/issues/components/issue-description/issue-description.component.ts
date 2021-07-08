@@ -1,10 +1,13 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { Store } from '@ngrx/store';
+import { ActionsSubject, Store } from '@ngrx/store';
+import { ofType } from '@ngrx/effects';
+
+import { take } from 'rxjs/operators';
 
 import { Issue } from '@core/interfaces/issue';
-import { IssuePageActions } from '@features/issues/state/actions';
+import { IssueApiActions, IssuePageActions } from '@features/issues/state/actions';
 import { AppState } from '@core/interfaces/app.state';
 import { QuillEditorUtil } from '@core/utils/quill';
 import { setIssueEditing } from '@features/issues/state/actions/issue-page.actions';
@@ -20,11 +23,12 @@ export class IssueDescriptionComponent implements OnChanges {
 
   descriptionControl: FormControl;
   isEditing = false;
+  isLoading: boolean;
 
   ops = QuillEditorUtil.getDefaultOps();
   defaultEditorOptions = QuillEditorUtil.getDefaultModuleOptions();
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private actionSubject: ActionsSubject) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     const issueChange = changes.issue;
@@ -45,6 +49,18 @@ export class IssueDescriptionComponent implements OnChanges {
   }
 
   save(): void {
+    this.isLoading = true;
+    this.actionSubject.pipe(
+      ofType(
+        IssueApiActions.updateIssueSuccess,
+        IssueApiActions.updateIssueFailure,
+      ),
+      take(1)
+    ).subscribe(() => {
+      this.isLoading = false;
+      this.changeEditMode();
+    })
+
     let description = this.descriptionControl.value;
 
     // Quill editor adds a new line (\n) always, even without content
@@ -55,7 +71,7 @@ export class IssueDescriptionComponent implements OnChanges {
       issue: { ...this.issue, description }
     }));
 
-    this.changeEditMode();
+
   }
 
   cancel(): void {

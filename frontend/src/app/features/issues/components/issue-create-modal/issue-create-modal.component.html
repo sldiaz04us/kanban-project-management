@@ -67,6 +67,7 @@
         <button
           nz-button
           nzType="primary"
+          [nzLoading]="isLoading"
           (click)="submitForm()"
           [disabled]="issueForm?.invalid"
         >

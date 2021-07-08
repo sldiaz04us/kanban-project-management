@@ -6,12 +6,10 @@
   justify-content: center;
   align-items: center;
 
-  .project-form {
-    width: 500px;
-    max-width: 500px;
-    h1 {
-      margin-top: 1rem;
-    }
+  padding: 16px 24px;
+
+  .project-form h1 {
+    margin-top: 1rem;
   }
 }
 

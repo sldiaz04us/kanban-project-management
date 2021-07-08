@@ -6,11 +6,7 @@
       [nzValue]="priority.value"
     >
       <div class="issue-priority-select">
-        <app-svg-icon
-          [name]="priority.icon"
-          [style.color]="priority.color"
-          [size]="18"
-        ></app-svg-icon>
+        <app-svg-icon [name]="priority.icon" [size]="18"></app-svg-icon>
         <span>{{ priority.value }}</span>
       </div>
     </nz-option>
@@ -19,8 +15,7 @@
   <ng-template #priorityTempl let-selected>
     <div class="issue-priority-select">
       <app-svg-icon
-        [name]="getPriorityIcon(selected.nzValue)?.icon"
-        [style.color]="getPriorityIcon(selected.nzValue)?.color"
+        [name]="getPriorityIcon(selected.nzValue)"
         [size]="18"
       ></app-svg-icon>
       <span>{{ selected.nzValue }}</span>

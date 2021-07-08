@@ -1,14 +1,12 @@
-import { IssuePriority, IssuePriorityColors } from "./issue";
+import { IssueUtil } from "@core/utils/issue";
+import { IssuePriority } from "./issue";
 
 export class IssuePriorityIcon {
-  icon: string;
   value: IssuePriority;
-  color: string;
+  icon: string;
 
   constructor(issuePriority: IssuePriority) {
-    const higherPriorities = [IssuePriority.HIGH, IssuePriority.HIGHEST];
     this.value = issuePriority;
-    this.icon = higherPriorities.includes(issuePriority) ? 'arrow-up' : 'arrow-down';
-    this.color = IssuePriorityColors[issuePriority];
+    this.icon = IssueUtil.getIssuePriorityIcon(issuePriority);
   }
 }

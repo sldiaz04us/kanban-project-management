@@ -15,13 +15,11 @@
         >
         </app-svg-icon>
         <app-svg-icon
-          *ngIf="priorityIcon | async as priorityIcon"
-          [name]="priorityIcon.icon"
+          [name]="priorityIcon | async"
           nz-tooltip
           [nzTooltipMouseEnterDelay]="0.3"
-          [nzTooltipTitle]="priorityIcon.value"
+          [nzTooltipTitle]="issue.priority"
           nzTooltipPlacement="bottom"
-          [style.color]="priorityIcon.color"
           [size]="20"
         >
         </app-svg-icon>

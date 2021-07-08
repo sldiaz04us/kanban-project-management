@@ -22,7 +22,7 @@ export class IssuePriorityComponent implements OnInit, OnChanges {
 
   constructor(private store: Store<AppState>) { }
 
-  get selectedPriorityIcon(): IssuePriorityIcon {
+  get selectedPriorityIcon(): string {
     return IssueUtil.getIssuePriorityIcon(this.selectedPriority);
   }
 

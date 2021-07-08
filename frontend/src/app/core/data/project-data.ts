@@ -14,7 +14,7 @@ export class ProjectData {
         name: 'Sergio Lopez Diaz',
         email: 'sergio@kanban.com',
         avatarUrl:
-          'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+          'https://res.cloudinary.com/comparte/image/upload/v1625469572/my-linkedin-avatar.jpg',
       },
       avatar: 'https://res.cloudinary.com/comparte/image/upload/v1624772344/140892.svg',
       category: 'Software',
@@ -26,7 +26,7 @@ export class ProjectData {
           name: 'Sergio Lopez Diaz',
           email: 'sergio@kanban.com',
           avatarUrl:
-            'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+            'https://res.cloudinary.com/comparte/image/upload/v1625469572/my-linkedin-avatar.jpg',
         },
         {
           id: '7ac265f9-b9ac-443f-a2b2-795682e579a4',
@@ -75,7 +75,7 @@ export class ProjectData {
           name: 'Sergio Lopez Diaz',
           email: 'sergio@kanban.com',
           avatarUrl:
-            'https://media-exp1.licdn.com/dms/image/C4D03AQGQfOf-CYNm_Q/profile-displayphoto-shrink_400_400/0/1560970587851?e=1625702400&v=beta&t=HrFDMHO2f49RfJd9iJMZExZ8XANAboTWFcphDfrXm34',
+            'https://res.cloudinary.com/comparte/image/upload/v1625469572/my-linkedin-avatar.jpg',
         },
         {
           id: '7ac265f9-b9ac-443f-a2b2-795682e579a4',

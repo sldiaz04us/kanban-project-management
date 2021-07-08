@@ -8,7 +8,9 @@
     (onEditorCreated)="editorCreated($event)"
   ></quill-editor>
   <div class="actions">
-    <app-button (click)="save()">Save</app-button>
+    <button nz-button nzType="primary" [nzLoading]="isLoading" (click)="save()">
+      Save
+    </button>
     <app-button className="btn-empty" (click)="cancel()">Cancel</app-button>
   </div>
 </ng-container>

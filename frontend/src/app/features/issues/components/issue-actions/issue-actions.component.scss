@@ -1,10 +1,35 @@
 .ant-dropdown-menu-item {
   padding: 10px 12px;
   display: flex;
-  justify-content: center;
   align-items: center;
 
   app-svg-icon {
     margin-right: 0.75rem;
+  }
+}
+
+.not-implemented {
+  display: inline-flex;
+  justify-content: center;
+  text-transform: uppercase;
+  width: 0;
+  visibility: hidden;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #253858;
+  cursor: not-allowed;
+}
+li.toggle-on-hover {
+  display: flex;
+  align-items: center;
+  &:hover {
+    span:first-of-type {
+      width: 0;
+      visibility: hidden;
+    }
+    span:last-of-type {
+      width: auto;
+      visibility: visible;
+    }
   }
 }
