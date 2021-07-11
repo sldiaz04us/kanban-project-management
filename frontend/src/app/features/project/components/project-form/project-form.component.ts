@@ -70,7 +70,9 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     this.actionSubject.pipe(
       ofType(
         ProjectApiActions.createProjectSuccess,
-        ProjectApiActions.updateProjectSuccess
+        ProjectApiActions.createProjectFailure,
+        ProjectApiActions.updateProjectSuccess,
+        ProjectApiActions.updateProjectFailure
       ),
       takeUntil(this.destroy$)
     ).subscribe(() => {

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+
 import { SvgDefinitionsComponent } from './svg-definitions/svg-definitions.component';
 
 
@@ -10,7 +13,9 @@ import { SvgDefinitionsComponent } from './svg-definitions/svg-definitions.compo
     SvgDefinitionsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NzNotificationModule,
+    NzMessageModule
   ],
   exports: [SvgDefinitionsComponent]
 })

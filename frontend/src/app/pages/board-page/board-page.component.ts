@@ -11,6 +11,7 @@ import { getAssignedUsers, getCurrentProject } from '@features/project/state/pro
 import { IssuePageActions } from '@features/issues/state/actions';
 import { AppState } from '@core/interfaces/app.state';
 import { User } from '@core/interfaces/user';
+import { getIssuesError } from '@features/issues/state/selectors/issue.selectors';
 
 @Component({
   selector: 'app-board-page',
@@ -21,6 +22,7 @@ import { User } from '@core/interfaces/user';
 export class BoardPageComponent implements OnInit {
   currentProject$: Observable<Project>;
   assignees$: Observable<User[]>;
+  issuesError$: Observable<string>;
 
   constructor(private store: Store<AppState>, private titleService: Title) {
     this.titleService.setTitle('Project board - Kanban Project Management');
@@ -35,6 +37,7 @@ export class BoardPageComponent implements OnInit {
       );
 
     this.assignees$ = this.store.select(getAssignedUsers);
+    this.issuesError$ = this.store.select(getIssuesError);
   }
 
 }

@@ -48,7 +48,7 @@ export const getAssignedUsers = createSelector(
   }
 );
 
-export const getProjectError = createSelector(
+export const getProjectsError = createSelector(
   getProjectFeatureState,
   state => state.error
 );

@@ -5,6 +5,14 @@
   </button>
 </div>
 <div class="projects-content">
+  <nz-alert
+    *ngIf="projecstError$ | async as errorMsg"
+    nzType="error"
+    nzMessage="Projects could not be loaded"
+    [nzDescription]="errorMsg"
+    nzShowIcon
+    nzCloseable
+  ></nz-alert>
   <form nz-form [nzLayout]="'inline'" [formGroup]="projectsForm">
     <nz-form-item>
       <nz-form-control>

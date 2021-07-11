@@ -12,7 +12,7 @@ export interface State {
 const initialState: State = {
   issues: [],
   isEditing: false,
-  error: '',
+  error: null
 }
 
 export const reducer = createReducer<State>(
@@ -21,7 +21,7 @@ export const reducer = createReducer<State>(
     return {
       ...state,
       issues: action.issues,
-      error: ''
+      error: null
     }
   }),
   on(IssueApiActions.loadIssuesFailure, (state, action): State => {
@@ -37,12 +37,6 @@ export const reducer = createReducer<State>(
       issues: updatedIssues
     }
   }),
-  on(IssueApiActions.createIssueFailure, (state, action): State => {
-    return {
-      ...state,
-      error: action.error
-    }
-  }),
   on(IssueApiActions.updateIssueSuccess, (state, action): State => {
     const updatedIssues = state.issues.map(
       issue => action.issue.id === issue.id ? action.issue : issue
@@ -52,23 +46,11 @@ export const reducer = createReducer<State>(
       issues: updatedIssues
     }
   }),
-  on(IssueApiActions.updateIssueFailure, (state, action): State => {
-    return {
-      ...state,
-      error: action.error
-    }
-  }),
   on(IssueApiActions.deleteIssueSuccess, (state, action): State => {
     const issuesUpdated = state.issues.filter(i => i.id !== action.issueId);
     return {
       ...state,
       issues: issuesUpdated
-    }
-  }),
-  on(IssueApiActions.deleteIssueFailure, (state, action): State => {
-    return {
-      ...state,
-      error: action.error
     }
   }),
   on(IssuePageActions.deleteAllIssuesByProjectId, (state, action): State => {

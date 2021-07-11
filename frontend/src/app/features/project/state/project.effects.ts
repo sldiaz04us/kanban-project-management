@@ -10,13 +10,16 @@ import { ProjectService } from "@features/project/services/project.service";
 import { ProjectPageActions, ProjectApiActions } from '@features/project/state/actions';
 import { getCurrentProject } from "@features/project/state/project.selectors";
 import { IssuePageActions } from "@features/issues/state/actions";
+import { FeedbackService } from "@core/services/feedback.service";
+import { FeedbackTypes } from "@core/enums/feedback-types.enum";
 
 @Injectable()
 export class ProjectEffects {
   constructor(
     private actions$: Actions,
     private projectService: ProjectService,
-    private store: Store
+    private store: Store,
+    private feedbackService: FeedbackService
   ) { }
 
   loadProjects$ = createEffect(() => {
@@ -25,7 +28,14 @@ export class ProjectEffects {
       mergeMap(() => {
         return this.projectService.getProjects().pipe(
           map(projects => ProjectApiActions.loadProjectsSuccess({ projects })),
-          catchError(error => of(ProjectApiActions.loadProjectsFailure({ error })))
+          catchError(error => {
+            this.feedbackService.createNotification(
+              FeedbackTypes.error,
+              'Projects could not be loaded',
+              error.body.error
+            );
+            return of(ProjectApiActions.loadProjectsFailure({ error: error.body.error }));
+          })
         )
       })
     )
@@ -43,7 +53,14 @@ export class ProjectEffects {
               ProjectApiActions.createProjectSuccess({ project })
             ]
           }),
-          catchError(error => of(ProjectApiActions.createProjectFailure({ error })))
+          catchError(error => {
+            this.feedbackService.createNotification(
+              FeedbackTypes.error,
+              'Project could not be created',
+              error.body.error
+            );
+            return of(ProjectApiActions.createProjectFailure({ error }));
+          })
         )
       })
     );
@@ -54,8 +71,18 @@ export class ProjectEffects {
       ofType(ProjectPageActions.updateProject),
       mergeMap(action => {
         return this.projectService.updateProject(action.project).pipe(
-          map(project => ProjectApiActions.updateProjectSuccess({ project })),
-          catchError(error => of(ProjectApiActions.updateProjectFailure({ error })))
+          map(project => {
+            this.feedbackService.createMessage(FeedbackTypes.success, 'Project successfully updated.')
+            return ProjectApiActions.updateProjectSuccess({ project });
+          }),
+          catchError(error => {
+            this.feedbackService.createNotification(
+              FeedbackTypes.error,
+              'Project could not be updated',
+              error.body.error
+            );
+            return of(ProjectApiActions.updateProjectFailure({ error }));
+          })
         )
       })
     );
@@ -67,12 +94,20 @@ export class ProjectEffects {
       mergeMap(action => {
         return this.projectService.deleteProject(action.projectId).pipe(
           mergeMap(projectId => {
+            this.feedbackService.createMessage(FeedbackTypes.success, 'Project successfully moved to trash.')
             return [
               ProjectApiActions.deleteProjectSuccess({ projectId }),
               IssuePageActions.deleteAllIssuesByProjectId({ projectId })
             ]
           }),
-          catchError(error => of(ProjectApiActions.deleteProjectFailure({ error })))
+          catchError(error => {
+            this.feedbackService.createNotification(
+              FeedbackTypes.error,
+              'Project could not be moved to trash',
+              error.body.error
+            );
+            return of(ProjectApiActions.deleteProjectFailure({ error }));
+          })
         )
       })
     );
@@ -87,7 +122,14 @@ export class ProjectEffects {
         projectToUpdate.users = currentProject.users.filter(u => u.id !== action.userId);
         return this.projectService.updateProject(projectToUpdate).pipe(
           map(project => ProjectApiActions.updateProjectSuccess({ project })),
-          catchError(error => of(ProjectApiActions.updateProjectFailure({ error })))
+          catchError(error => {
+            this.feedbackService.createNotification(
+              FeedbackTypes.error,
+              'User could not be removed',
+              error.body.error
+            );
+            return of(ProjectApiActions.updateProjectFailure({ error }));
+          })
         )
       })
     );

@@ -1,5 +1,13 @@
 <div *ngIf="currentProject$ | async; else projectNotSelected">
   <app-board-header [currentProject$]="currentProject$"></app-board-header>
+  <nz-alert
+    *ngIf="issuesError$ | async as errorMsg"
+    nzType="error"
+    nzMessage="Issues could not be loaded"
+    [nzDescription]="errorMsg"
+    nzShowIcon
+    nzCloseable
+  ></nz-alert>
   <app-board-filter [assignedUsers$]="assignees$"></app-board-filter>
   <app-board-kanban></app-board-kanban>
 </div>

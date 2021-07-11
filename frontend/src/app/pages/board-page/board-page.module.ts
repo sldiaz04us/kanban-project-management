@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+
 import { BoardPageRoutingModule } from './board-page-routing.module';
 import { BoardPageComponent } from './board-page.component';
 import { BoardModule } from '@features/board/board.module';
@@ -15,7 +17,8 @@ import { IssuesModule } from '@features/issues/issues.module';
     CommonModule,
     BoardModule,
     ProjectModule,
-    IssuesModule
+    IssuesModule,
+    NzAlertModule
   ],
   exports: [BoardPageComponent]
 })

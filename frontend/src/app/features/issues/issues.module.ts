@@ -12,6 +12,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzCommentModule } from 'ng-zorro-antd/comment';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -84,7 +85,8 @@ import { CommentEffects } from './state/effects/comment.effects';
     NzDropDownModule,
     TextFieldModule,
     QuillModule,
-    NzCommentModule
+    NzCommentModule,
+    NzAlertModule
   ],
   exports: [IssueCardComponent, IssueStatusPipe]
 })

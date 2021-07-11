@@ -9,7 +9,7 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
 import { Project } from '@core/interfaces/project';
-import { getProjects } from '@features/project/state/project.selectors';
+import { getProjectsError, getProjects } from '@features/project/state/project.selectors';
 import { setCurrentProject } from '@features/project/state/actions/project-page.actions';
 import * as fromFilterActions from '@features/board/state/filter.actions';
 
@@ -22,6 +22,7 @@ import * as fromFilterActions from '@features/board/state/filter.actions';
 export class ProjectListPageComponent implements OnInit {
   projects$: Observable<Project[]>;
   projectsForm!: FormGroup;
+  projecstError$: Observable<string>;
 
   constructor(
     private fb: FormBuilder,
@@ -46,6 +47,7 @@ export class ProjectListPageComponent implements OnInit {
         return of(projects?.filter(p => Boolean(searchTerm) ? p.name.toLowerCase().includes(searchTerm.toLowerCase()) : true));
       })
     );
+    this.projecstError$ = this.store.select(getProjectsError);
   }
 
   sortByNameFn(a: Project, b: Project): number {

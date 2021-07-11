@@ -6,13 +6,16 @@ import { mergeMap, map, catchError } from 'rxjs/operators';
 
 import { CommentService } from '@features/issues/services/comment.service';
 import { CommentApiActions, CommentPageActions } from '@features/issues/state/actions';
+import { FeedbackService } from '@core/services/feedback.service';
+import { FeedbackTypes } from '@core/enums/feedback-types.enum';
 
 @Injectable()
 export class CommentEffects {
 
   constructor(
     private actions$: Actions,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private feedbackService: FeedbackService
   ) { }
 
   loadCommentsByIssueId$ = createEffect(() => {
@@ -21,7 +24,7 @@ export class CommentEffects {
       mergeMap(action => {
         return this.commentService.getCommentsByIssueId(action.issueId).pipe(
           map(comments => CommentApiActions.loadCommentsSuccess({ comments })),
-          catchError(error => of(CommentApiActions.loadCommentsFailure({ error })))
+          catchError(error => of(CommentApiActions.loadCommentsFailure({ error: error.body.error })))
         )
       })
     );
@@ -32,10 +35,15 @@ export class CommentEffects {
       ofType(CommentPageActions.createComment),
       mergeMap(action => {
         return this.commentService.createComment(action.comment).pipe(
-          map(comment => {
-            return CommentApiActions.createCommentSuccess({ comment });
-          }),
-          catchError(error => of(CommentApiActions.createCommentFailure({ error })))
+          map(comment => CommentApiActions.createCommentSuccess({ comment })),
+          catchError(error => {
+            this.feedbackService.createNotification(
+              FeedbackTypes.error,
+              'Comment could not be created',
+              error.body.error
+            );
+            return of(CommentApiActions.createCommentFailure({ error }));
+          })
         )
       })
     );
@@ -49,7 +57,14 @@ export class CommentEffects {
           map(comment => {
             return CommentApiActions.updateCommentSuccess({ comment });
           }),
-          catchError(error => of(CommentApiActions.updateCommentFailure({ error })))
+          catchError(error => {
+            this.feedbackService.createNotification(
+              FeedbackTypes.error,
+              'Comment could not be updated',
+              error.body.error
+            );
+            return of(CommentApiActions.updateCommentFailure({ error }));
+          })
         )
       })
     );
@@ -63,7 +78,14 @@ export class CommentEffects {
           map(commentId => {
             return CommentApiActions.deleteCommentSuccess({ commentId });
           }),
-          catchError(error => of(CommentApiActions.deleteCommentFailure({ error })))
+          catchError(error => {
+            this.feedbackService.createNotification(
+              FeedbackTypes.error,
+              'Comment could not be deleted',
+              error.body.error
+            );
+            return of(CommentApiActions.deleteCommentFailure({ error }));
+          })
         )
       })
     );

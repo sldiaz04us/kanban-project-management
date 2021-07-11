@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 import { IconsProviderModule } from 'src/app/icons-provider.module';
 import { ProjectPagesRoutingModule } from './project-pages-routing.module';
@@ -24,7 +25,8 @@ import { ProjectListPageComponent } from './project-list-page/project-list-page.
     ProjectPagesRoutingModule,
     ProjectModule,
     IconsProviderModule,
-    NzTableModule
+    NzTableModule,
+    NzAlertModule
   ]
 })
 export class ProjectPagesModule { }

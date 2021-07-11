@@ -11,7 +11,7 @@ export interface State {
 
 export const initialState: State = {
   comments: [],
-  error: ''
+  error: null
 };
 
 
@@ -20,7 +20,8 @@ export const reducer = createReducer(
   on(CommentApiActions.loadCommentsSuccess, (state, action): State => {
     return {
       ...state,
-      comments: action.comments
+      comments: action.comments,
+      error: null
     }
   }),
   on(CommentApiActions.loadCommentsFailure, (state, action): State => {
@@ -35,23 +36,11 @@ export const reducer = createReducer(
       comments: [...state.comments, action.comment]
     }
   }),
-  on(CommentApiActions.createCommentFailure, (state, action): State => {
-    return {
-      ...state,
-      error: action.error
-    }
-  }),
   on(CommentApiActions.updateCommentSuccess, (state, action): State => {
     const commentsUpdated = state.comments.map(c => c.id === action.comment.id ? action.comment : c);
     return {
       ...state,
       comments: commentsUpdated
-    }
-  }),
-  on(CommentApiActions.updateCommentFailure, (state, action): State => {
-    return {
-      ...state,
-      error: action.error
     }
   }),
   on(CommentApiActions.deleteCommentSuccess, (state, action): State => {

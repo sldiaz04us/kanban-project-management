@@ -12,7 +12,7 @@ export interface ProjectState {
 const initialState: ProjectState = {
   currentProjectId: '130921',
   projects: [],
-  error: ''
+  error: null
 }
 
 export const projectReducer = createReducer<ProjectState>(
@@ -27,7 +27,7 @@ export const projectReducer = createReducer<ProjectState>(
     return {
       ...state,
       projects: action.projects,
-      error: ''
+      error: null
     }
   }),
   on(ProjectApiActions.loadProjectsFailure, (state, action): ProjectState => {
@@ -40,13 +40,6 @@ export const projectReducer = createReducer<ProjectState>(
     return {
       ...state,
       projects: [...state.projects, action.project],
-      error: ''
-    }
-  }),
-  on(ProjectApiActions.createProjectFailure, (state, action): ProjectState => {
-    return {
-      ...state,
-      error: action.error
     }
   }),
   on(ProjectApiActions.updateProjectSuccess, (state, action): ProjectState => {
@@ -56,27 +49,15 @@ export const projectReducer = createReducer<ProjectState>(
     return {
       ...state,
       projects: updatedProjects,
-      error: ''
     }
   }),
-  on(ProjectApiActions.updateProjectFailure, (state, action): ProjectState => {
-    return {
-      ...state,
-      error: action.error
-    }
-  }),
+
   on(ProjectApiActions.deleteProjectSuccess, (state, action): ProjectState => {
     const updatedProjects = state.projects.filter(p => p.id !== action.projectId)
     return {
       ...state,
       projects: updatedProjects,
-      error: ''
     }
-  }),
-  on(ProjectApiActions.deleteProjectFailure, (state, action): ProjectState => {
-    return {
-      ...state,
-      error: action.error
-    }
-  }),
+  })
+
 )

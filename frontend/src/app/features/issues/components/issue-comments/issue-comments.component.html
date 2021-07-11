@@ -54,3 +54,13 @@
   (editCommentEvent)="onEditComment($event)"
   (deleteCommentEvent)="onDeleteComment($event)"
 ></issue-comments-item>
+
+<nz-alert
+  *ngIf="commentsError$ | async as errorMsg"
+  nzType="error"
+  nzMessage="Comments could not be loaded"
+  [nzDescription]="errorMsg"
+  nzShowIcon
+  nzCloseable
+>
+</nz-alert>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -12,11 +12,15 @@ const routes: Routes = [
   {
     path: 'projects',
     loadChildren: () => import('./pages/project-pages/project-pages.module').then(m => m.ProjectPagesModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./pages/error404-page/error404-page.module').then(m => m.Error404PageModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -7,6 +7,7 @@ import * as fromSelectors from '@features/issues/state/selectors/index';
 
 const getIssues = (state: fromIssueReducer.State) => state.issues;
 const getIssueEditing = (state: fromIssueReducer.State) => state.isEditing;
+const getError = (state: fromIssueReducer.State) => state.error;
 
 export const getAllIssues = createSelector(
   fromSelectors.getIssueState,
@@ -28,6 +29,11 @@ export const getIssuesCountByStatus = createSelector(
 export const getIsIssueBeingEdited = createSelector(
   fromSelectors.getIssueState,
   getIssueEditing
+);
+
+export const getIssuesError = createSelector(
+  fromSelectors.getIssueState,
+  getError
 );
 
 // NOTE: this selector fires more than once because it changes the issues with the filter method

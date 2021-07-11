@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
 import { ActionsSubject, Store } from '@ngrx/store';
 import { ofType } from '@ngrx/effects';
 
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -24,7 +24,7 @@ import { Comment } from '@core/interfaces/comment';
 import { CommentApiActions, CommentPageActions } from '@features/issues/state/actions';
 import { QuillEditorUtil } from '@core/utils/quill';
 import { getIsIssueBeingEdited } from '@features/issues/state/selectors/issue.selectors';
-import { getAllComments } from '@features/issues/state/selectors/comment.selectors';
+import { getAllComments, getCommentsError } from '@features/issues/state/selectors/comment.selectors';
 
 @Component({
   selector: 'issue-comments',
@@ -37,6 +37,7 @@ export class IssueCommentsComponent implements OnInit, OnDestroy {
 
   currentUser: User;
   comments: Comment[];
+  commentsError$: Observable<string>;
 
   isEditing = false;
   commentControl = new FormControl();
@@ -60,6 +61,8 @@ export class IssueCommentsComponent implements OnInit, OnDestroy {
 
     this.store.select(getIsIssueBeingEdited).pipe(takeUntil(this.destroy$))
       .subscribe(isEditing => this.isIssueBeingEdited = isEditing);
+
+    this.commentsError$ = this.store.select(getCommentsError);
 
     this.actionSubject.pipe(
       takeUntil(this.destroy$),
