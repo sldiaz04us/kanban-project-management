@@ -45,7 +45,7 @@ export class IssueCardComponent implements OnInit {
 
     this.modalService.create({
       nzContent: IssueDetailModalComponent,
-      nzWidth: 1040,
+      nzWidth: 1280,
       nzClosable: false,
       nzFooter: null,
       nzComponentParams: {
