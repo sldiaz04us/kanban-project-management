@@ -2,7 +2,7 @@
 <ng-container *ngIf="isEditing; else readonlyModeTempl">
   <quill-editor
     [formControl]="descriptionControl"
-    [modules]="defaultEditorOptions"
+    [modules]="editorOptions"
     format="object"
     [styles]="{ 'min-height': '200px' }"
     (onEditorCreated)="editorCreated($event)"

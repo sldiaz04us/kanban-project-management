@@ -26,7 +26,7 @@ export class IssueDescriptionComponent implements OnChanges {
   isLoading: boolean;
 
   ops = QuillEditorUtil.getDefaultOps();
-  defaultEditorOptions = QuillEditorUtil.getDefaultModuleOptions();
+  editorOptions = QuillEditorUtil.getModuleOptionsWithMedia();
 
   constructor(private store: Store<AppState>, private actionSubject: ActionsSubject) { }
 

@@ -34,7 +34,7 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
   currentProjectId: string;
   currentUser: User;
 
-  defaultEditorOptions = QuillEditorUtil.getDefaultModuleOptions();
+  editorOptions = QuillEditorUtil.getModuleOptionsWithMedia();
   isLoading: boolean;
 
   constructor(
@@ -75,8 +75,7 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
       listPosition: 0,
       status: IssueStatus.BACKLOG,
       createdAt: now,
-      updatedAt: now,
-      comments: []
+      updatedAt: now
     }
 
     this.store.dispatch(IssuePageActions.createIssue({ issue }));
