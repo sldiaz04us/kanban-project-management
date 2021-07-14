@@ -10,7 +10,7 @@ export interface ProjectState {
 }
 
 const initialState: ProjectState = {
-  currentProjectId: '130921',
+  currentProjectId: '140892',
   projects: [],
   error: null
 }

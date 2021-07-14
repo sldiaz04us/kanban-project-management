@@ -30,12 +30,11 @@ export interface Issue {
   status: IssueStatus;
   priority: IssuePriority;
   listPosition: number;
-  description: string;
+  description: Object;
   createdAt: string;
   updatedAt: string;
   reporter: User;
   assignees: User[];
   projectId: string;
-  comments: Comment[];
 }
 
