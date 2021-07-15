@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import en from '@angular/common/locales/en';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
@@ -39,7 +41,7 @@ registerLocaleData(en);
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(AppData, { delay: 10 }),
+    HttpClientInMemoryWebApiModule.forRoot(AppData, { delay: 10 }),
     BrowserAnimationsModule,
     NzLayoutModule,
     NavigationModule,
@@ -53,7 +55,9 @@ registerLocaleData(en);
     }),
     ProjectModule,
     UserModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    environment.production ? AngularFireModule.initializeApp(environment.firebase) : [],
+    environment.production ? AngularFireAnalyticsModule : []
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
