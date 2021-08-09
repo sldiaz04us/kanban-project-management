@@ -5,22 +5,22 @@ import { ProjectCategory } from '@kanban-project-management/projects/project-cat
 export class CreateProjectDto {
   @IsNotEmpty()
   @MinLength(5)
-  readonly name: string;
+  name: string;
 
   @IsNotEmpty()
   @MinLength(2)
-  readonly key: string;
+  key: string;
 
   @IsOptional()
-  readonly description: string;
+  description: Record<string, unknown>;
 
   @IsOptional()
-  readonly url: string;
+  url: string;
 
   @IsOptional()
-  @IsIn([Object.values(ProjectCategory)])
-  readonly category: string;
+  @IsIn([...Object.values(ProjectCategory)])
+  category: string;
 
   @IsOptional()
-  readonly avatar: string;
+  avatar: string;
 }

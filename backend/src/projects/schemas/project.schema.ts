@@ -13,8 +13,8 @@ export class Project {
   @Prop({ unique: true, required: true })
   key: string;
 
-  @Prop()
-  description: string;
+  @Prop({ type: Object })
+  description: any;
 
   @Prop()
   url: string;
