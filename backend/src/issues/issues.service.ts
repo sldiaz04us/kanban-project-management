@@ -1,9 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { Model } from 'mongoose';
@@ -11,6 +6,7 @@ import { Model } from 'mongoose';
 import { CreateIssueDto } from './dto/create-issue.dto';
 import { UpdateIssueDto } from './dto/update-issue.dto';
 import { Issue, IssueDocument } from './schemas/issue.schema';
+import { mongooseErrorHandler } from '@kanban-project-management/common/helpers/mongoose-error-handler';
 
 @Injectable()
 export class IssuesService {
@@ -25,11 +21,7 @@ export class IssuesService {
       const result = await createIssue.save();
       return result;
     } catch (error) {
-      if (error.name === 'ValidationError' || error.name === 'CastError') {
-        throw new BadRequestException(error.message);
-      } else {
-        throw new InternalServerErrorException(error.message);
-      }
+      mongooseErrorHandler(error);
     }
   }
 
@@ -46,11 +38,17 @@ export class IssuesService {
   }
 
   async update(id: string, updateIssueDto: UpdateIssueDto) {
-    const result = await this.issueModel
-      .findOneAndUpdate({ _id: id }, updateIssueDto, {
-        new: true,
-      })
-      .exec();
+    let result: Issue;
+    try {
+      result = await this.issueModel
+        .findOneAndUpdate({ _id: id }, updateIssueDto, {
+          new: true,
+        })
+        .exec();
+    } catch (error) {
+      mongooseErrorHandler(error);
+    }
+
     if (!result) {
       throw new NotFoundException(`Issue with ID ${id} not found`);
     }

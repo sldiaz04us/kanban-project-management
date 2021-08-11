@@ -1,9 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { Model } from 'mongoose';
@@ -11,6 +6,7 @@ import { Model } from 'mongoose';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project, ProjectDocument } from './schemas/project.schema';
+import { mongooseErrorHandler } from '@kanban-project-management/common/helpers/mongoose-error-handler';
 
 @Injectable()
 export class ProjectsService {
@@ -25,14 +21,7 @@ export class ProjectsService {
       const result = await createProject.save();
       return result;
     } catch (error) {
-      if (
-        (error.name === 'MongoError' && error.code === 11000) ||
-        error.name === 'ValidationError'
-      ) {
-        throw new BadRequestException(error.message);
-      } else {
-        throw new InternalServerErrorException(error.message);
-      }
+      mongooseErrorHandler(error);
     }
   }
 
@@ -49,11 +38,16 @@ export class ProjectsService {
   }
 
   async update(id: string, updateProjectDto: UpdateProjectDto) {
-    const result = await this.projectModel
-      .findOneAndUpdate({ _id: id }, updateProjectDto, {
-        new: true,
-      })
-      .exec();
+    let result: Project;
+    try {
+      result = await this.projectModel
+        .findOneAndUpdate({ _id: id }, updateProjectDto, {
+          new: true,
+        })
+        .exec();
+    } catch (error) {
+      mongooseErrorHandler(error);
+    }
     if (!result) {
       throw new NotFoundException(`Project with ID ${id} not found`);
     }
