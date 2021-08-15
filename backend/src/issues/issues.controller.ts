@@ -6,11 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 
 import { IssuesService } from './issues.service';
 import { CreateIssueDto } from './dto/create-issue.dto';
 import { UpdateIssueDto } from './dto/update-issue.dto';
+import { GetIssueFilterDto } from './dto/get-issue-filter.dto';
 
 @Controller('issues')
 export class IssuesController {
@@ -22,8 +24,8 @@ export class IssuesController {
   }
 
   @Get()
-  findAll() {
-    return this.issuesService.findAll();
+  findAll(@Query() filterDto: GetIssueFilterDto) {
+    return this.issuesService.findAll(filterDto);
   }
 
   @Get(':id')

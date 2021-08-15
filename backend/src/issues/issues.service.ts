@@ -7,6 +7,7 @@ import { CreateIssueDto } from './dto/create-issue.dto';
 import { UpdateIssueDto } from './dto/update-issue.dto';
 import { Issue, IssueDocument } from './schemas/issue.schema';
 import { mongooseErrorHandler } from '@kanban-project-management/common/helpers/mongoose-error-handler';
+import { GetIssueFilterDto } from './dto/get-issue-filter.dto';
 
 @Injectable()
 export class IssuesService {
@@ -25,8 +26,14 @@ export class IssuesService {
     }
   }
 
-  findAll() {
-    return this.issueModel.find();
+  findAll(filterDto: GetIssueFilterDto) {
+    const { projectId } = filterDto;
+    const query = this.issueModel.find();
+
+    if (projectId) {
+      query.where('projectId', projectId);
+    }
+    return query.exec();
   }
 
   async findById(id: string) {

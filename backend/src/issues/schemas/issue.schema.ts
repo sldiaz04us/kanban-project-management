@@ -5,6 +5,7 @@ import { Document } from 'mongoose';
 import { IssuePriority } from '@kanban-project-management/issues/enums/issue-priority.enum';
 import { IssueStatus } from '@kanban-project-management/issues/enums/issue-status.enum';
 import { IssueType } from '@kanban-project-management/issues/enums/issue-type.enum';
+import { User } from '@kanban-project-management/users/schemas/user.schema';
 
 export type IssueDocument = Issue & Document;
 
@@ -30,6 +31,12 @@ export class Issue {
 
   @Prop({ required: true })
   projectId: string;
+
+  @Prop({ required: true, type: Object })
+  reporter: User;
+
+  @Prop()
+  assignees: User[];
 }
 
 export const IssueSchema = SchemaFactory.createForClass(Issue);

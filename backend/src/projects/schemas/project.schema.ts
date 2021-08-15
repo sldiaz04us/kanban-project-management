@@ -3,6 +3,7 @@ import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 import { ProjectCategory } from '@kanban-project-management/projects/project-category.enum';
+import { User } from '@kanban-project-management/users/schemas/user.schema';
 
 export type ProjectDocument = Project & Document;
 @Schema({ timestamps: true })
@@ -23,13 +24,13 @@ export class Project {
   category: string;
 
   @Prop()
-  avatar: string;
+  avatarUrl: string;
 
-  // @Prop({ default: new Date().toISOString() })
-  // createdAt: string;
+  @Prop({ required: true, type: Object })
+  leader: User;
 
-  // @Prop({ default: new Date().toISOString() })
-  // updatedAt: string;
+  @Prop()
+  assignees: User[];
 }
 
 export const ProjectSchema = SchemaFactory.createForClass(Project);

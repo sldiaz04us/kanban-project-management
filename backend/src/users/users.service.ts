@@ -7,6 +7,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './schemas/user.schema';
 import { mongooseErrorHandler } from '@kanban-project-management/common/helpers/mongoose-error-handler';
+import { GetUserFilterDto } from './dto/get-user-filter.dto';
 
 @Injectable()
 export class UsersService {
@@ -23,8 +24,14 @@ export class UsersService {
     }
   }
 
-  findAll() {
-    return this.userModel.find();
+  findAll(filterDto: GetUserFilterDto) {
+    const { name } = filterDto;
+    const query = this.userModel.find();
+
+    if (name) {
+      query.where('name', { $regex: '.*' + name + '.*', $options: 'i' });
+    }
+    return query.exec();
   }
 
   async findOne(id: string) {
