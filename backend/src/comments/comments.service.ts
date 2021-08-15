@@ -1,7 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
@@ -57,6 +61,25 @@ export class CommentsService {
     const result = await this.commentModel.deleteOne({ _id: id }).exec();
     if (result.deletedCount === 0) {
       throw new NotFoundException(`Comment with ID ${id} not found`);
+    }
+  }
+
+  async deleteCommentsByIssueIds(issueIds: string[], session: ClientSession) {
+    try {
+      const result = await this.commentModel.deleteMany(
+        {
+          issueId: { $in: issueIds },
+        },
+        { session },
+      );
+
+      if (result.ok !== 1) {
+        throw new InternalServerErrorException(
+          `Error to delete the comments associated to the issues of the Project`,
+        );
+      }
+    } catch (error) {
+      throw error;
     }
   }
 }

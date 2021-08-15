@@ -1,17 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project, ProjectDocument } from './schemas/project.schema';
 import { mongooseErrorHandler } from '@kanban-project-management/common/helpers/mongoose-error-handler';
+import { IssuesService } from '@kanban-project-management/issues/issues.service';
 
 @Injectable()
 export class ProjectsService {
   constructor(
     @InjectModel(Project.name) private projectModel: Model<ProjectDocument>,
+    private readonly issuesService: IssuesService,
   ) {}
 
   async create(createProjectDto: CreateProjectDto): Promise<Project> {
@@ -55,9 +57,25 @@ export class ProjectsService {
   }
 
   async remove(id: string): Promise<void> {
-    const result = await this.projectModel.deleteOne({ _id: id }).exec();
-    if (result.deletedCount === 0) {
-      throw new NotFoundException(`Project with ID ${id} not found`);
+    const session: ClientSession = await this.projectModel.startSession();
+    session.startTransaction();
+
+    try {
+      const result = await this.projectModel.deleteOne(
+        { _id: id },
+        { session },
+      );
+      if (result.deletedCount === 0) {
+        throw new NotFoundException(`Project with ID ${id} not found`);
+      }
+
+      await this.issuesService.deleteIssuesByProjectId(id, session);
+      await session.commitTransaction();
+    } catch (error) {
+      await session.abortTransaction();
+      throw error;
+    } finally {
+      session.endSession();
     }
   }
 }

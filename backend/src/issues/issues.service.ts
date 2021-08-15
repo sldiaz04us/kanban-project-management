@@ -1,18 +1,24 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 
 import { CreateIssueDto } from './dto/create-issue.dto';
 import { UpdateIssueDto } from './dto/update-issue.dto';
 import { Issue, IssueDocument } from './schemas/issue.schema';
 import { mongooseErrorHandler } from '@kanban-project-management/common/helpers/mongoose-error-handler';
 import { GetIssueFilterDto } from './dto/get-issue-filter.dto';
+import { CommentsService } from '@kanban-project-management/comments/comments.service';
 
 @Injectable()
 export class IssuesService {
   constructor(
     @InjectModel(Issue.name) private issueModel: Model<IssueDocument>,
+    private readonly commentsService: CommentsService,
   ) {}
 
   async create(createIssueDto: CreateIssueDto) {
@@ -66,6 +72,28 @@ export class IssuesService {
     const result = await this.issueModel.deleteOne({ _id: id }).exec();
     if (result.deletedCount === 0) {
       throw new NotFoundException(`Issue with ID ${id} not found`);
+    }
+  }
+
+  async deleteIssuesByProjectId(projectId: string, session: ClientSession) {
+    try {
+      const docs = await this.issueModel.find({ projectId });
+      const issueIds: string[] = docs.map((issue) => issue.id);
+
+      const result = await this.issueModel.deleteMany(
+        { projectId },
+        { session },
+      );
+
+      // Is 1 if the command executed correctly.
+      if (result.ok !== 1) {
+        throw new InternalServerErrorException(
+          `Error to delete the issues associated to the project with ID ${projectId}`,
+        );
+      }
+      await this.commentsService.deleteCommentsByIssueIds(issueIds, session);
+    } catch (error) {
+      throw error;
     }
   }
 }

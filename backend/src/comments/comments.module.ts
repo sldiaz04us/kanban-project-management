@@ -11,5 +11,6 @@ import { CommentsService } from '@kanban-project-management/comments/comments.se
   ],
   controllers: [CommentsController],
   providers: [CommentsService],
+  exports: [CommentsService],
 })
 export class CommentsModule {}
