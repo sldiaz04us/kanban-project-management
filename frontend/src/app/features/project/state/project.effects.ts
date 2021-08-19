@@ -1,17 +1,20 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { Store } from "@ngrx/store";
-import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
+import { Store } from '@ngrx/store';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 
-import { of } from "rxjs";
+import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
-import { ProjectService } from "@features/project/services/project.service";
-import { ProjectPageActions, ProjectApiActions } from '@features/project/state/actions';
-import { getCurrentProject } from "@features/project/state/project.selectors";
-import { IssuePageActions } from "@features/issues/state/actions";
-import { FeedbackService } from "@core/services/feedback.service";
-import { FeedbackTypes } from "@core/enums/feedback-types.enum";
+import { ProjectService } from '@features/project/services/project.service';
+import {
+  ProjectPageActions,
+  ProjectApiActions,
+} from '@features/project/state/actions';
+import { getCurrentProject } from '@features/project/state/project.selectors';
+import { IssuePageActions } from '@features/issues/state/actions';
+import { FeedbackService } from '@core/services/feedback.service';
+import { FeedbackTypes } from '@core/enums/feedback-types.enum';
 
 @Injectable()
 export class ProjectEffects {
@@ -20,48 +23,49 @@ export class ProjectEffects {
     private projectService: ProjectService,
     private store: Store,
     private feedbackService: FeedbackService
-  ) { }
+  ) {}
 
   loadProjects$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProjectPageActions.loadProjects),
       mergeMap(() => {
-        return this.projectService.getProjects().pipe(
-          map(projects => ProjectApiActions.loadProjectsSuccess({ projects })),
-          catchError(error => {
+        return this.projectService.findAll().pipe(
+          map((projects) => {
+            return ProjectApiActions.loadProjectsSuccess({ projects });
+          }),
+          catchError((error) => {
             this.feedbackService.createNotification(
               FeedbackTypes.error,
               'Projects could not be loaded',
-              error.body.error
+              error.message
             );
-            return of(ProjectApiActions.loadProjectsFailure({ error: error.body.error }));
+            return of(ProjectApiActions.loadProjectsFailure({ error }));
           })
-        )
+        );
       })
-    )
+    );
   });
-
 
   createProject$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProjectPageActions.createProject),
-      mergeMap(action => {
-        return this.projectService.createProject(action.project).pipe(
-          mergeMap(project => {
+      mergeMap((action) => {
+        return this.projectService.create(action.project).pipe(
+          mergeMap((project) => {
             return [
               ProjectPageActions.setCurrentProject({ projectId: project.id }),
-              ProjectApiActions.createProjectSuccess({ project })
-            ]
+              ProjectApiActions.createProjectSuccess({ project }),
+            ];
           }),
-          catchError(error => {
+          catchError((error) => {
             this.feedbackService.createNotification(
               FeedbackTypes.error,
               'Project could not be created',
-              error.body.error
+              error.message
             );
             return of(ProjectApiActions.createProjectFailure({ error }));
           })
-        )
+        );
       })
     );
   });
@@ -69,21 +73,26 @@ export class ProjectEffects {
   updateProject$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProjectPageActions.updateProject),
-      mergeMap(action => {
-        return this.projectService.updateProject(action.project).pipe(
-          map(project => {
-            this.feedbackService.createMessage(FeedbackTypes.success, 'Project successfully updated.')
-            return ProjectApiActions.updateProjectSuccess({ project });
-          }),
-          catchError(error => {
-            this.feedbackService.createNotification(
-              FeedbackTypes.error,
-              'Project could not be updated',
-              error.body.error
-            );
-            return of(ProjectApiActions.updateProjectFailure({ error }));
-          })
-        )
+      mergeMap((action) => {
+        return this.projectService
+          .update(action.project.id, action.project)
+          .pipe(
+            map((project) => {
+              this.feedbackService.createMessage(
+                FeedbackTypes.success,
+                'Project successfully updated.'
+              );
+              return ProjectApiActions.updateProjectSuccess({ project });
+            }),
+            catchError((error) => {
+              this.feedbackService.createNotification(
+                FeedbackTypes.error,
+                'Project could not be updated',
+                error.message
+              );
+              return of(ProjectApiActions.updateProjectFailure({ error }));
+            })
+          );
       })
     );
   });
@@ -91,24 +100,27 @@ export class ProjectEffects {
   deleteProject$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProjectPageActions.deleteProject),
-      mergeMap(action => {
-        return this.projectService.deleteProject(action.projectId).pipe(
-          mergeMap(projectId => {
-            this.feedbackService.createMessage(FeedbackTypes.success, 'Project successfully moved to trash.')
+      mergeMap((action) => {
+        return this.projectService.remove(action.projectId).pipe(
+          mergeMap((projectId) => {
+            this.feedbackService.createMessage(
+              FeedbackTypes.success,
+              'Project successfully moved to trash.'
+            );
             return [
               ProjectApiActions.deleteProjectSuccess({ projectId }),
-              IssuePageActions.deleteAllIssuesByProjectId({ projectId })
-            ]
+              IssuePageActions.deleteAllIssuesByProjectId({ projectId }),
+            ];
           }),
-          catchError(error => {
+          catchError((error) => {
             this.feedbackService.createNotification(
               FeedbackTypes.error,
               'Project could not be moved to trash',
-              error.body.error
+              error.message
             );
             return of(ProjectApiActions.deleteProjectFailure({ error }));
           })
-        )
+        );
       })
     );
   });
@@ -119,18 +131,24 @@ export class ProjectEffects {
       concatLatestFrom(() => this.store.select(getCurrentProject)),
       mergeMap(([action, currentProject]) => {
         const projectToUpdate = { ...currentProject };
-        projectToUpdate.users = currentProject.users.filter(u => u.id !== action.userId);
-        return this.projectService.updateProject(projectToUpdate).pipe(
-          map(project => ProjectApiActions.updateProjectSuccess({ project })),
-          catchError(error => {
-            this.feedbackService.createNotification(
-              FeedbackTypes.error,
-              'User could not be removed',
-              error.body.error
-            );
-            return of(ProjectApiActions.updateProjectFailure({ error }));
-          })
-        )
+        projectToUpdate.assignees = currentProject.assignees.filter(
+          (u) => u.id !== action.userId
+        );
+        return this.projectService
+          .update(projectToUpdate.id, projectToUpdate)
+          .pipe(
+            map((project) =>
+              ProjectApiActions.updateProjectSuccess({ project })
+            ),
+            catchError((error) => {
+              this.feedbackService.createNotification(
+                FeedbackTypes.error,
+                'User could not be removed',
+                error.message
+              );
+              return of(ProjectApiActions.updateProjectFailure({ error }));
+            })
+          );
       })
     );
   });

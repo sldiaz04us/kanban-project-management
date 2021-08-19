@@ -9,7 +9,10 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
 import { Project } from '@core/interfaces/project';
-import { getProjectsError, getProjects } from '@features/project/state/project.selectors';
+import {
+  getProjectsError,
+  getProjects,
+} from '@features/project/state/project.selectors';
 import { setCurrentProject } from '@features/project/state/actions/project-page.actions';
 import * as fromFilterActions from '@features/board/state/filter.actions';
 
@@ -17,12 +20,12 @@ import * as fromFilterActions from '@features/board/state/filter.actions';
   selector: 'app-project-list-page',
   templateUrl: './project-list-page.component.html',
   styleUrls: ['./project-list-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectListPageComponent implements OnInit {
   projects$: Observable<Project[]>;
   projectsForm!: FormGroup;
-  projecstError$: Observable<string>;
+  projectsError$: Observable<string>;
 
   constructor(
     private fb: FormBuilder,
@@ -35,19 +38,25 @@ export class ProjectListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectsForm = this.fb.group({
-      search: [null]
+      search: [null],
     });
 
     this.projects$ = combineLatest([
       this.store.select(getProjects),
-      this.projectsForm.valueChanges.pipe(startWith({ search: '' }))
+      this.projectsForm.valueChanges.pipe(startWith({ search: '' })),
     ]).pipe(
       switchMap(([projects, term]) => {
         const searchTerm = term.search as string;
-        return of(projects?.filter(p => Boolean(searchTerm) ? p.name.toLowerCase().includes(searchTerm.toLowerCase()) : true));
+        return of(
+          projects?.filter((p) =>
+            Boolean(searchTerm)
+              ? p.name.toLowerCase().includes(searchTerm.toLowerCase())
+              : true
+          )
+        );
       })
     );
-    this.projecstError$ = this.store.select(getProjectsError);
+    this.projectsError$ = this.store.select(getProjectsError);
   }
 
   sortByNameFn(a: Project, b: Project): number {
@@ -66,7 +75,5 @@ export class ProjectListPageComponent implements OnInit {
     this.store.dispatch(setCurrentProject({ projectId }));
     this.store.dispatch(fromFilterActions.clearAllFilters());
     this.router.navigateByUrl('board');
-
   }
-
 }

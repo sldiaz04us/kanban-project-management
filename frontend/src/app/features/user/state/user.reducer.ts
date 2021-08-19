@@ -3,7 +3,6 @@ import { createReducer, on } from '@ngrx/store';
 
 import * as fromUserActions from './actions/user.actions';
 
-
 export const userFeatureKey = 'user';
 
 export interface UserState {
@@ -13,26 +12,23 @@ export interface UserState {
 }
 
 export const initialState: UserState = {
-  currentUserId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+  currentUserId: '611df5ab26282791ec096608',
   users: [],
-  error: ''
+  error: '',
 };
-
 
 export const reducer = createReducer(
   initialState,
   on(fromUserActions.loadUsersSuccess, (state, action): UserState => {
     return {
       ...state,
-      users: action.users
-    }
+      users: action.users,
+    };
   }),
   on(fromUserActions.loadUsersFailure, (state, action): UserState => {
     return {
       ...state,
-      error: action.error
-    }
+      error: action.error,
+    };
   })
-
 );
-

@@ -8,6 +8,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project, ProjectDocument } from './schemas/project.schema';
 import { mongooseErrorHandler } from '@kanban-project-management/common/helpers/mongoose-error-handler';
 import { IssuesService } from '@kanban-project-management/issues/issues.service';
+import { GetProjectFilterDto } from './dto/get-project-filter.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -27,8 +28,18 @@ export class ProjectsService {
     }
   }
 
-  async findAll(): Promise<Project[]> {
-    return this.projectModel.find();
+  async findAll(filterDto: GetProjectFilterDto) {
+    const { name, key } = filterDto;
+    const query = this.projectModel.find();
+
+    if (name) {
+      query.where('name', { $regex: '^' + name + '$', $options: 'i' });
+    }
+
+    if (key) {
+      query.where('key', { $regex: '^' + key + '$', $options: 'i' });
+    }
+    return query.exec();
   }
 
   async findById(id: string) {

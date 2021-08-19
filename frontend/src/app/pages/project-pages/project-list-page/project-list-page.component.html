@@ -6,7 +6,7 @@
 </div>
 <div class="projects-content">
   <nz-alert
-    *ngIf="projecstError$ | async as errorMsg"
+    *ngIf="projectsError$ | async as errorMsg"
     nzType="error"
     nzMessage="Projects could not be loaded"
     [nzDescription]="errorMsg"
@@ -61,7 +61,7 @@
       <tr *ngFor="let data of projectsTable.data">
         <td class="hover" (click)="changeCurrentProject(data.id)">
           <div class="project-info">
-            <img [src]="data.avatar" alt="Project logo" />
+            <img [src]="data.avatarUrl" alt="Project logo" />
             <span>{{ data.name }}</span>
           </div>
         </td>

@@ -1,15 +1,14 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { ProjectState } from "./project.reducer";
+import { ProjectState } from './project.reducer';
 import { Project } from '@core/interfaces/project';
-
 
 const getProjectFeatureState = createFeatureSelector<ProjectState>('project');
 
 // Selectors
 export const getCurrentProjectId = createSelector(
   getProjectFeatureState,
-  state => state.currentProjectId
+  (state) => state.currentProjectId
 );
 
 // Compound selector
@@ -17,7 +16,7 @@ export const getCurrentProject = createSelector(
   getProjectFeatureState,
   getCurrentProjectId,
   (state, currentProjectId) => {
-    return state.projects.find(p => p.id === currentProjectId);
+    return state.projects.find((p) => p.id === currentProjectId);
   }
 );
 
@@ -25,30 +24,30 @@ export const isCurrentProject = createSelector(
   getProjectFeatureState,
   getCurrentProjectId,
   (state, currentProjectId) => {
-    return !!state.projects.find(p => p.id === currentProjectId);
+    return !!state.projects.find((p) => p.id === currentProjectId);
   }
 );
 
 export const getProjects = createSelector(
   getProjectFeatureState,
-  state => state.projects
+  (state) => state.projects
 );
 
 export const getProjectById = createSelector(
   getProjects,
   (projects: Project[], props: { projectId: string }) =>
-    projects.find(p => p.id === props.projectId)
+    projects.find((p) => p.id === props.projectId)
 );
 
 export const getAssignedUsers = createSelector(
   getProjectFeatureState,
   getCurrentProjectId,
   (state, currentProjectId) => {
-    return state.projects.find(p => p.id === currentProjectId)?.users;
+    return state.projects.find((p) => p.id === currentProjectId)?.assignees;
   }
 );
 
 export const getProjectsError = createSelector(
   getProjectFeatureState,
-  state => state.error
+  (state) => state.error
 );

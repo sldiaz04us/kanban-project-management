@@ -4,26 +4,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { User } from '@core/interfaces/user';
+import { ResourceService } from '@core/services/resource-service.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class UserService {
-  private usersUrl = 'api/users';
-
-  constructor(private http: HttpClient) { }
-
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.usersUrl);
+export class UserService extends ResourceService<User> {
+  getResourceUrl(): string {
+    return 'users';
   }
 
-  getUserById(userId: string): Observable<User> {
-    return this.http.get<User>(`${this.usersUrl}/${userId}`);
+  constructor(protected http: HttpClient) {
+    super(http);
   }
 
   searchUsersByName(userName: string): Observable<User[]> {
-    const url = `${this.usersUrl}?name=${userName}`;
+    const url = `${this.API_URL}?name=${userName}`;
     return this.http.get<User[]>(url);
   }
-
 }

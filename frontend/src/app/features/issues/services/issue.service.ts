@@ -1,58 +1,24 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
-import { Issue, IssueStatus } from '@core/interfaces/issue';
-import { DateUtil } from '@core/utils/date';
-
+import { Issue } from '@core/interfaces/issue';
+import { ResourceService } from '@core/services/resource-service.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class IssueService {
-  private issuesUrl = 'api/issues';
-  private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-
-  constructor(private http: HttpClient) { }
-
-  getIssues(): Observable<Issue[]> {
-    return this.http.get<Issue[]>(this.issuesUrl);
+export class IssueService extends ResourceService<Issue> {
+  getResourceUrl(): string {
+    return 'issues';
   }
 
-  getIssuesByStatus(status: IssueStatus): Observable<Issue[]> {
-    return this.http.get<Issue[]>(`${this.issuesUrl}?status=^${status}`);
+  constructor(protected http: HttpClient) {
+    super(http);
   }
 
   getIssuesByProjectId(projectId: string): Observable<Issue[]> {
-    return this.http.get<Issue[]>(`${this.issuesUrl}?projectId=^${projectId}`);
+    return this.http.get<Issue[]>(`${this.API_URL}?projectId=${projectId}`);
   }
-
-  createIssue(issue: Issue): Observable<Issue> {
-    return this.http.post<Issue>(this.issuesUrl, issue, this.httpOptions).pipe(
-      map(() => issue)
-    );
-  }
-
-  updateIssue(issue: Issue): Observable<Issue> {
-    const url = `${this.issuesUrl}/${issue.id}`;
-    const issueUpdated: Issue = {
-      ...issue,
-      updatedAt: DateUtil.getNow()
-    }
-    return this.http.put<Issue>(url, issueUpdated, this.httpOptions).pipe(
-      map(() => issueUpdated)
-    );
-  }
-
-  deleteIssue(issueId: string): Observable<string> {
-    const url = `${this.issuesUrl}/${issueId}`;
-    return this.http.delete<string>(url, this.httpOptions).pipe(
-      map(() => issueId)
-    );
-  }
-
 }
