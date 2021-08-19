@@ -1,4 +1,4 @@
-import { User } from "./user";
+import { User } from './user';
 
 export interface Project {
   id: string;
@@ -6,12 +6,12 @@ export interface Project {
   key: string;
   url: string;
   description: string;
-  avatar: string;
+  avatarUrl: string;
   category: ProjectCategory;
   leader: User;
   createdAt: string;
   updatedAt: string;
-  users: User[];
+  assignees: User[];
 }
 
 export type ProjectCategory = 'Software' | 'Marketing' | 'Business';

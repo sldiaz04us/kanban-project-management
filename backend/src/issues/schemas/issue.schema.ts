@@ -9,7 +9,7 @@ import { User } from '@kanban-project-management/users/schemas/user.schema';
 
 export type IssueDocument = Issue & Document;
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, toJSON: { virtuals: true } })
 export class Issue {
   @Prop({ required: true, minlength: 5 })
   title: string;

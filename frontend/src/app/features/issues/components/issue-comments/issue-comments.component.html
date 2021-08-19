@@ -50,7 +50,7 @@
 <issue-comments-item
   *ngFor="let comment of comments"
   [comment]="comment"
-  [canBeEditByCurrentUser]="currentUser.id === comment.user.id"
+  [canBeEditByCurrentUser]="currentUser.id === comment.author.id"
   (editCommentEvent)="onEditComment($event)"
   (deleteCommentEvent)="onDeleteComment($event)"
 ></issue-comments-item>

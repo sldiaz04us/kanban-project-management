@@ -6,12 +6,12 @@ import { ProjectCategory } from '@kanban-project-management/projects/project-cat
 import { User } from '@kanban-project-management/users/schemas/user.schema';
 
 export type ProjectDocument = Project & Document;
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, toJSON: { virtuals: true } })
 export class Project {
   @Prop({ unique: true, required: true })
   name: string;
 
-  @Prop({ unique: true, required: true })
+  @Prop({ unique: true, required: true, uppercase: true })
   key: string;
 
   @Prop({ type: Object })

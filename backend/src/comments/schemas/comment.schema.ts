@@ -6,7 +6,7 @@ import { User } from '@kanban-project-management/users/schemas/user.schema';
 
 export type CommentDocument = Comment & Document;
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, toJSON: { virtuals: true } })
 export class Comment {
   @Prop({ required: true, type: Object })
   content: any;

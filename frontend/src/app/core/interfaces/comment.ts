@@ -1,4 +1,4 @@
-import { User } from "./user";
+import { User } from './user';
 
 export interface Comment {
   id: string;
@@ -7,5 +7,5 @@ export interface Comment {
   updatedAt: string;
   isEdited: boolean;
   issueId: string;
-  user: User;
+  author: User;
 }

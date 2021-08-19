@@ -1,12 +1,12 @@
 <nz-comment
-  [nzAuthor]="comment.user.name"
+  [nzAuthor]="comment.author.name"
   [nzDatetime]="displayTime"
   class="issue-comment"
 >
   <nz-avatar
     nz-comment-avatar
     nzIcon="user"
-    [nzSrc]="comment.user.avatarUrl"
+    [nzSrc]="comment.author.avatarUrl"
   ></nz-avatar>
   <nz-comment-content>
     <ng-container *ngIf="isEditing; else readonlyCommentTempl">

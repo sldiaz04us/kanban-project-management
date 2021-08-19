@@ -12,12 +12,15 @@ import { User } from '@core/interfaces/user';
 import { UserService } from '@features/user/services/user.service';
 import { Project } from '@core/interfaces/project';
 import { getCurrentProject } from '@features/project/state/project.selectors';
-import { ProjectApiActions, ProjectPageActions } from '@features/project/state/actions';
+import {
+  ProjectApiActions,
+  ProjectPageActions,
+} from '@features/project/state/actions';
 
 @Component({
   selector: 'project-people-add-modal',
   templateUrl: './project-people-add-modal.component.html',
-  styleUrls: ['./project-people-add-modal.component.scss']
+  styleUrls: ['./project-people-add-modal.component.scss'],
 })
 export class ProjectPeopleAddModalComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
@@ -33,24 +36,27 @@ export class ProjectPeopleAddModalComponent implements OnInit, OnDestroy {
     private store: Store<{}>,
     private actionSubject: ActionsSubject,
     private modalRef: NzModalRef
-  ) { }
-
+  ) {}
 
   ngOnInit(): void {
-    this.store.select(getCurrentProject).pipe(first())
-      .subscribe(currentProject => this.currentProject = currentProject);
+    this.store
+      .select(getCurrentProject)
+      .pipe(first())
+      .subscribe((currentProject) => (this.currentProject = currentProject));
 
-    this.actionSubject.pipe(
-      skip(1),
-      takeUntil(this.destroy$),
-      ofType(
-        ProjectApiActions.updateProjectSuccess,
-        ProjectApiActions.updateProjectFailure
+    this.actionSubject
+      .pipe(
+        skip(1),
+        takeUntil(this.destroy$),
+        ofType(
+          ProjectApiActions.updateProjectSuccess,
+          ProjectApiActions.updateProjectFailure
+        )
       )
-    ).subscribe(() => {
-      this.isLoading = false;
-      this.closeModal();
-    })
+      .subscribe(() => {
+        this.isLoading = false;
+        this.closeModal();
+      });
   }
 
   ngOnDestroy(): void {
@@ -59,7 +65,7 @@ export class ProjectPeopleAddModalComponent implements OnInit, OnDestroy {
   }
 
   isSelected(user: User): boolean {
-    return !!this.listOfSelectedValues.find(u => u.id === user.id);
+    return !!this.listOfSelectedValues.find((u) => u.id === user.id);
   }
 
   onSelected(users: any): void {
@@ -69,28 +75,31 @@ export class ProjectPeopleAddModalComponent implements OnInit, OnDestroy {
   onSearch(value: string): void {
     if (!Boolean(value)) return;
     this.isSearching = true;
-    this.listOfOptions = this.userService.searchUsersByName(value)
-      .pipe(tap(() => this.isSearching = false));
+    this.listOfOptions = this.userService
+      .searchUsersByName(value)
+      .pipe(tap(() => (this.isSearching = false)));
   }
 
   addPeople(): void {
     this.isLoading = true;
-    const users = [...this.currentProject.users];
+    const assignees = [...this.currentProject.assignees];
 
-    this.listOfSelectedValues.forEach(user => {
-      if (users.findIndex(u => u.id === user.id) === -1) users.push(user);
-    })
+    this.listOfSelectedValues.forEach((user) => {
+      if (assignees.findIndex((u) => u.id === user.id) === -1)
+        assignees.push(user);
+    });
 
     const projectUpdated = {
       ...this.currentProject,
-      users
+      assignees,
     };
 
-    this.store.dispatch(ProjectPageActions.updateProject({ project: projectUpdated }));
+    this.store.dispatch(
+      ProjectPageActions.updateProject({ project: projectUpdated })
+    );
   }
 
   closeModal(): void {
     this.modalRef.destroy();
   }
-
 }

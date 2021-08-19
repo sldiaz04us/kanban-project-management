@@ -3,7 +3,7 @@ import {
   Input,
   OnInit,
   OnDestroy,
-  HostListener
+  HostListener,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -13,23 +13,27 @@ import { ofType } from '@ngrx/effects';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import { Issue } from '@core/interfaces/issue';
 import { User } from '@core/interfaces/user';
 import { AppState } from '@core/interfaces/app.state';
 import { getCurrentUser } from '@features/user/state/user.selectors';
 import { DateUtil } from '@core/utils/date';
 import { Comment } from '@core/interfaces/comment';
-import { CommentApiActions, CommentPageActions } from '@features/issues/state/actions';
+import {
+  CommentApiActions,
+  CommentPageActions,
+} from '@features/issues/state/actions';
 import { QuillEditorUtil } from '@core/utils/quill';
 import { getIsIssueBeingEdited } from '@features/issues/state/selectors/issue.selectors';
-import { getAllComments, getCommentsError } from '@features/issues/state/selectors/comment.selectors';
+import {
+  getAllComments,
+  getCommentsError,
+} from '@features/issues/state/selectors/comment.selectors';
 
 @Component({
   selector: 'issue-comments',
   templateUrl: './issue-comments.component.html',
-  styleUrls: ['./issue-comments.component.scss']
+  styleUrls: ['./issue-comments.component.scss'],
 })
 export class IssueCommentsComponent implements OnInit, OnDestroy {
   @Input() issue: Issue;
@@ -50,30 +54,38 @@ export class IssueCommentsComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<AppState>,
     private actionSubject: ActionsSubject
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.store.select(getAllComments).pipe(takeUntil(this.destroy$))
-      .subscribe(comments => this.comments = comments);
+    this.store
+      .select(getAllComments)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((comments) => (this.comments = comments));
 
-    this.store.select(getCurrentUser).pipe(takeUntil(this.destroy$))
-      .subscribe(user => this.currentUser = user);
+    this.store
+      .select(getCurrentUser)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((user) => (this.currentUser = user));
 
-    this.store.select(getIsIssueBeingEdited).pipe(takeUntil(this.destroy$))
-      .subscribe(isEditing => this.isIssueBeingEdited = isEditing);
+    this.store
+      .select(getIsIssueBeingEdited)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((isEditing) => (this.isIssueBeingEdited = isEditing));
 
     this.commentsError$ = this.store.select(getCommentsError);
 
-    this.actionSubject.pipe(
-      takeUntil(this.destroy$),
-      ofType(
-        CommentApiActions.createCommentSuccess,
-        CommentApiActions.createCommentFailure
+    this.actionSubject
+      .pipe(
+        takeUntil(this.destroy$),
+        ofType(
+          CommentApiActions.createCommentSuccess,
+          CommentApiActions.createCommentFailure
+        )
       )
-    ).subscribe(() => {
-      this.isLoading = false;
-      this.cancel();
-    })
+      .subscribe(() => {
+        this.isLoading = false;
+        this.cancel();
+      });
   }
 
   @HostListener('window:keyup', ['$event']) handleKeyUp(event: KeyboardEvent) {
@@ -102,24 +114,22 @@ export class IssueCommentsComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
 
-    const now = DateUtil.getNow();
-    const newComment: Comment = {
-      id: uuidv4(),
+    const newComment: Partial<Comment> = {
       content: this.commentControl.value,
-      createdAt: now,
-      updatedAt: now,
       issueId: this.issue.id,
-      user: this.currentUser,
-      isEdited: false
-    }
-    this.store.dispatch(CommentPageActions.createComment({ comment: newComment }))
+      author: this.currentUser,
+      isEdited: false,
+    };
+    this.store.dispatch(
+      CommentPageActions.createComment({ comment: newComment })
+    );
   }
 
-  onEditComment(event: { commentId: string, content: string }): void {
+  onEditComment(event: { commentId: string; content: string }): void {
     const comment: Comment = {
-      ...this.comments.find(comment => comment.id === event.commentId),
+      ...this.comments.find((comment) => comment.id === event.commentId),
       content: event.content,
-      isEdited: true
+      isEdited: true,
     };
     this.store.dispatch(CommentPageActions.updateComment({ comment }));
   }
@@ -140,5 +150,4 @@ export class IssueCommentsComponent implements OnInit, OnDestroy {
     this.commentControl.setValue('');
     this.changeEditMode();
   }
-
 }

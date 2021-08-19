@@ -9,20 +9,20 @@ import { ofType } from '@ngrx/effects';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import { Project } from '@core/interfaces/project';
 import { ProjectConst } from '@core/constants/project-const';
 import { QuillEditorUtil } from '@core/utils/quill';
 import { ProjectValidators } from '@core/validators/project-validators';
-import { ProjectApiActions, ProjectPageActions } from '@features/project/state/actions';
-import { DateUtil } from '@core/utils/date';
+import {
+  ProjectApiActions,
+  ProjectPageActions,
+} from '@features/project/state/actions';
 import { User } from '@core/interfaces/user';
 
 @Component({
   selector: 'project-form',
   templateUrl: './project-form.component.html',
-  styleUrls: ['./project-form.component.scss']
+  styleUrls: ['./project-form.component.scss'],
 })
 export class ProjectFormComponent implements OnInit, OnDestroy {
   @Input() currentProject: Project;
@@ -43,49 +43,61 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     private actionSubject: ActionsSubject,
     private router: Router,
     private location: Location
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.projectForm = this.fb.group({
-      name: ['', {
-        validators: [Validators.required, Validators.minLength(5)],
-        asyncValidators: this.projectValidators.uniqueProjectNameValidator(this.currentProject, this.editMode),
-        updateOn: 'blur'
-      }],
-      key: ['',
+      name: [
+        '',
+        {
+          validators: [Validators.required, Validators.minLength(5)],
+          asyncValidators: this.projectValidators.uniqueProjectNameValidator(
+            this.currentProject,
+            this.editMode
+          ),
+          updateOn: 'blur',
+        },
+      ],
+      key: [
+        '',
         {
           validators: [Validators.required, Validators.minLength(2)],
-          asyncValidators: this.projectValidators.uniqueProjectKeyValidator(this.currentProject, this.editMode),
-          updateOn: 'blur'
-        }],
+          asyncValidators: this.projectValidators.uniqueProjectKeyValidator(
+            this.currentProject,
+            this.editMode
+          ),
+          updateOn: 'blur',
+        },
+      ],
       url: [],
       category: ['Software'],
       description: [],
       leader: [this.currentUser],
-      users: [[this.currentUser]]
+      assignees: [[this.currentUser]],
     });
 
     if (this.editMode) this.projectForm.patchValue(this.currentProject);
 
-    this.actionSubject.pipe(
-      ofType(
-        ProjectApiActions.createProjectSuccess,
-        ProjectApiActions.createProjectFailure,
-        ProjectApiActions.updateProjectSuccess,
-        ProjectApiActions.updateProjectFailure
-      ),
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      this.isLoading = false;
-      this.router.navigateByUrl('board');
-    })
+    this.actionSubject
+      .pipe(
+        ofType(
+          ProjectApiActions.createProjectSuccess,
+          ProjectApiActions.createProjectFailure,
+          ProjectApiActions.updateProjectSuccess,
+          ProjectApiActions.updateProjectFailure
+        ),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => {
+        this.isLoading = false;
+        this.router.navigateByUrl('board');
+      });
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
 
   submitForm() {
     if (this.projectForm.invalid) {
@@ -96,26 +108,25 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     if (this.editMode) {
       const projectUpdated: Project = {
         ...this.currentProject,
-        ...this.projectForm.getRawValue()
-      }
-      this.store.dispatch(ProjectPageActions.updateProject({ project: projectUpdated }));
+        ...this.projectForm.getRawValue(),
+      };
+      this.store.dispatch(
+        ProjectPageActions.updateProject({ project: projectUpdated })
+      );
     } else {
-      const newProjectId = uuidv4();
-      const now = DateUtil.getNow();
       const newProject: Project = {
         ...this.projectForm.getRawValue(),
-        id: newProjectId,
         leader: this.currentUser,
-        avatar: 'https://res.cloudinary.com/comparte/image/upload/v1624858092/viewavatar.svg',
-        createdAt: now,
-        updatedAt: now
-      }
-      this.store.dispatch(ProjectPageActions.createProject({ project: newProject }));
+        avatarUrl:
+          'https://res.cloudinary.com/comparte/image/upload/v1624858092/viewavatar.svg',
+      };
+      this.store.dispatch(
+        ProjectPageActions.createProject({ project: newProject })
+      );
     }
   }
 
   onCancel(): void {
     this.location.back();
   }
-
 }
