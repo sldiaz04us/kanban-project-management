@@ -64,6 +64,23 @@ export class CommentsService {
     }
   }
 
+  async deleteCommentsByIssueId(issueId: string, session: ClientSession) {
+    try {
+      const result = await this.commentModel.deleteMany(
+        { issueId },
+        { session },
+      );
+
+      if (result.ok !== 1) {
+        throw new InternalServerErrorException(
+          `Error to delete the comments associated to the Issue with ID ${issueId}`,
+        );
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async deleteCommentsByIssueIds(issueIds: string[], session: ClientSession) {
     try {
       const result = await this.commentModel.deleteMany(

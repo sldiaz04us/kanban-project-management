@@ -69,9 +69,23 @@ export class IssuesService {
   }
 
   async remove(id: string) {
-    const result = await this.issueModel.deleteOne({ _id: id }).exec();
-    if (result.deletedCount === 0) {
-      throw new NotFoundException(`Issue with ID ${id} not found`);
+    const session: ClientSession = await this.issueModel.startSession();
+    session.startTransaction();
+
+    try {
+      const result = await this.issueModel
+        .deleteOne({ _id: id }, { session })
+        .exec();
+      if (result.deletedCount === 0) {
+        throw new NotFoundException(`Issue with ID ${id} not found`);
+      }
+      await this.commentsService.deleteCommentsByIssueId(id, session);
+      await session.commitTransaction();
+    } catch (error) {
+      await session.abortTransaction();
+      throw error;
+    } finally {
+      session.endSession();
     }
   }
 
