@@ -27,6 +27,7 @@ import {
   IssuePageActions,
 } from '@features/issues/state/actions';
 import { QuillEditorUtil } from '@core/utils/quill';
+import { getCurrentProjectKey } from '@features/project/state/project.selectors';
 
 @Component({
   selector: 'app-issue-create-modal',
@@ -40,6 +41,7 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
 
   users$: Observable<User[]>;
   currentProjectId: string;
+  currentProjectKey: string;
   currentUser: User;
 
   editorOptions = QuillEditorUtil.getModuleOptionsWithMedia();
@@ -95,6 +97,11 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
       .subscribe((projectId) => (this.currentProjectId = projectId));
 
     this.store
+      .select(getCurrentProjectKey)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((projectKey) => (this.currentProjectKey = projectKey));
+
+    this.store
       .select(getCurrentUser)
       .pipe(takeUntil(this.destroy$))
       .subscribe((user) => (this.currentUser = user));
@@ -103,6 +110,7 @@ export class IssueCreateModalComponent implements OnInit, OnDestroy {
   private initForm(): void {
     this.issueForm = this.fb.group({
       projectId: [this.currentProjectId],
+      projectKey: [this.currentProjectKey],
       type: ['Story', Validators.required],
       priority: [IssuePriority.MEDIUM, Validators.required],
       title: ['', [Validators.required, Validators.minLength(5)]],

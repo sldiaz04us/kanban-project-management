@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
@@ -12,7 +12,8 @@ import { IssuePageActions } from '@features/issues/state/actions';
 @Component({
   selector: 'issue-type',
   templateUrl: './issue-type.component.html',
-  styleUrls: ['./issue-type.component.scss']
+  styleUrls: ['./issue-type.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IssueTypeComponent {
   @Input() issue: Issue;
@@ -29,13 +30,12 @@ export class IssueTypeComponent {
   updateIssue(issueType: IssueType): void {
     const issueUpdated: Issue = {
       ...this.issue,
-      type: issueType
-    }
-    this.store.dispatch(IssuePageActions.updateIssue({ issue: issueUpdated }))
+      type: issueType,
+    };
+    this.store.dispatch(IssuePageActions.updateIssue({ issue: issueUpdated }));
   }
 
   isTypeSelected(type: IssueType): boolean {
     return this.issue.type === type;
   }
-
 }

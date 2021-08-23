@@ -47,6 +47,14 @@ export const getAssignedUsers = createSelector(
   }
 );
 
+export const getCurrentProjectKey = createSelector(
+  getProjectFeatureState,
+  getCurrentProject,
+  (_, currentProject) => {
+    return currentProject.key;
+  }
+);
+
 export const getProjectsError = createSelector(
   getProjectFeatureState,
   (state) => state.error

@@ -43,7 +43,7 @@ export class IssueEffects {
           map((issue) => {
             this.feedbackService.createMessage(
               FeedbackTypes.success,
-              `Issue ${issue.id} has been successfully created.`
+              `Issue ${issue.projectKey}-${issue.key} has been successfully created.`
             );
             return IssueApiActions.createIssueSuccess({ issue });
           }),
@@ -87,7 +87,7 @@ export class IssueEffects {
           map((issueId) => {
             this.feedbackService.createMessage(
               FeedbackTypes.success,
-              `Issue ${issueId} has been deleted.`
+              `The issue has been deleted.`
             );
             return IssueApiActions.deleteIssueSuccess({ issueId });
           }),

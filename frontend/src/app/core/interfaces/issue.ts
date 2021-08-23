@@ -1,5 +1,4 @@
-import { Comment } from "./comment";
-import { User } from "./user";
+import { User } from './user';
 
 export type IssueType = 'Story' | 'Task' | 'Bug';
 
@@ -14,14 +13,14 @@ export const IssueStatusDisplay = {
   [IssueStatus.IN_PROGRESS]: 'In progress',
   [IssueStatus.IN_REVIEW]: 'In review',
   [IssueStatus.DONE]: 'Done',
-}
+};
 
 export enum IssuePriority {
   LOWEST = 'Lowest',
   LOW = 'Low',
   MEDIUM = 'Medium',
   HIGH = 'High',
-  HIGHEST = 'Highest'
+  HIGHEST = 'Highest',
 }
 export interface Issue {
   id: string;
@@ -29,6 +28,7 @@ export interface Issue {
   type: IssueType;
   status: IssueStatus;
   priority: IssuePriority;
+  key: number;
   listPosition: number;
   description: Object;
   createdAt: string;
@@ -36,5 +36,5 @@ export interface Issue {
   reporter: User;
   assignees: User[];
   projectId: string;
+  projectKey: string;
 }
-

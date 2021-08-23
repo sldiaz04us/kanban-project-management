@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit
+  OnInit,
 } from '@angular/core';
 
 import { Store } from '@ngrx/store';
@@ -23,7 +23,7 @@ import { getAssignedUsers } from '@features/project/state/project.selectors';
   selector: 'app-issue-card',
   templateUrl: './issue-card.component.html',
   styleUrls: ['./issue-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IssueCardComponent implements OnInit {
   @Input() issue: Issue;
@@ -33,7 +33,7 @@ export class IssueCardComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private modalService: NzModalService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.issueTypeIcon = of(IssueUtil.getIssueTypeIcon(this.issue.type));
@@ -50,9 +50,8 @@ export class IssueCardComponent implements OnInit {
       nzFooter: null,
       nzComponentParams: {
         issue$: this.store.select(getIssueById, { issueId }),
-        assignees$: this.store.select(getAssignedUsers)
-      }
+        assignees$: this.store.select(getAssignedUsers),
+      },
     });
   }
-
 }

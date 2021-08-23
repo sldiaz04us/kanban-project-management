@@ -32,6 +32,9 @@ export class Issue {
   @Prop({ required: true })
   projectId: string;
 
+  @Prop({ required: true })
+  projectKey: string;
+
   @Prop({ required: true, type: Object })
   reporter: User;
 
