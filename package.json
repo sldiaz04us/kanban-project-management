@@ -4,10 +4,10 @@
   "description": "",
   "scripts": {
     "install-dependencies": "npm i && cd frontend && npm i",
-    "start:front": "cd frontend && npm start",
-    "build:front": "cd frontend && npm run build",
-    "start": "npm run start:front",
-    "build": "npm run build:front"
+    "start:frontend": "cd frontend && npm start",
+    "build:frontend": "cd frontend && npm run build",
+    "start:backend": "cd backend && npm run start:dev",
+    "start:backend:prod": "cd backend && npm run start:prod"
   },
   "repository": {
     "type": "git",
