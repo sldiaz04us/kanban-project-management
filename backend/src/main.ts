@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { ConfigService } from '@nestjs/config';
 
 import * as express from 'express';
 
@@ -18,6 +19,10 @@ async function bootstrap() {
       parameterLimit: 50000,
     }),
   );
-  await app.listen(3000);
+
+  const configService = app.get(ConfigService);
+  const port = configService.get('PORT');
+
+  await app.listen(port);
 }
 bootstrap();
