@@ -18,7 +18,11 @@ import { CommentsModule } from '@kanban-project-management/comments/comments.mod
           // eslint-disable-next-line @typescript-eslint/no-var-requires
           const AutoIncrementFactory = require('mongoose-sequence');
           const AutoIncrement = AutoIncrementFactory(connection);
-          schema.plugin(AutoIncrement, { inc_field: 'key' });
+          schema.plugin(AutoIncrement, {
+            id: 'project_issues_seq',
+            inc_field: 'key',
+            reference_fields: ['projectId'],
+          });
           return schema;
         },
         inject: [getConnectionToken()],
