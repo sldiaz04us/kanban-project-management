@@ -19,10 +19,14 @@ async function bootstrap() {
       parameterLimit: 50000,
     }),
   );
-
   const configService = app.get(ConfigService);
-  const port = configService.get('PORT');
 
+  const isProduction = configService.get('STAGE') === 'prod';
+  if (isProduction) {
+    require('newrelic');
+  }
+
+  const port = configService.get('PORT');
   await app.listen(port);
 }
 bootstrap();

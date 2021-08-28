@@ -7,6 +7,7 @@ import { IssuesModule } from './issues/issues.module';
 import { UsersModule } from './users/users.module';
 import { CommentsModule } from './comments/comments.module';
 import { configValidationSchema } from './config/config.schema';
+import { HealthController } from './health/health.controller';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { configValidationSchema } from './config/config.schema';
     UsersModule,
     CommentsModule,
   ],
-  controllers: [],
+  controllers: [HealthController],
   providers: [],
 })
 export class AppModule {}
