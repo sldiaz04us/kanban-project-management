@@ -6,7 +6,7 @@ import { Model, ClientSession } from 'mongoose';
 import {
   User,
   UserDocument,
-} from '@kanban-project-management/users/schemas/user.schema';
+} from '@kanban-project-management/features/users/schemas/user.schema';
 import { users } from './users';
 
 @Injectable()

@@ -6,7 +6,7 @@ import { Model, ClientSession } from 'mongoose';
 import {
   Comment,
   CommentDocument,
-} from '@kanban-project-management/comments/schemas/comment.schema';
+} from '@kanban-project-management/features/comments/schemas/comment.schema';
 import { comments } from './comments';
 
 @Injectable()

@@ -7,7 +7,7 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project, ProjectDocument } from './schemas/project.schema';
 import { mongooseErrorHandler } from '@kanban-project-management/common/helpers/mongoose-error-handler';
-import { IssuesService } from '@kanban-project-management/issues/issues.service';
+import { IssuesService } from '@kanban-project-management/features/issues/issues.service';
 import { GetProjectFilterDto } from './dto/get-project-filter.dto';
 
 @Injectable()

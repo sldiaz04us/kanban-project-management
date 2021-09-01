@@ -2,10 +2,10 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 import { Document } from 'mongoose';
 
-import { IssuePriority } from '@kanban-project-management/issues/enums/issue-priority.enum';
-import { IssueStatus } from '@kanban-project-management/issues/enums/issue-status.enum';
-import { IssueType } from '@kanban-project-management/issues/enums/issue-type.enum';
-import { User } from '@kanban-project-management/users/schemas/user.schema';
+import { IssuePriority } from '@kanban-project-management/features/issues/enums/issue-priority.enum';
+import { IssueStatus } from '@kanban-project-management/features/issues/enums/issue-status.enum';
+import { IssueType } from '@kanban-project-management/features/issues/enums/issue-type.enum';
+import { User } from '@kanban-project-management/features/users/schemas/user.schema';
 
 export type IssueDocument = Issue & Document;
 

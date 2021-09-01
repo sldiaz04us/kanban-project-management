@@ -1,7 +1,7 @@
 import { IsIn, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
 
-import { ProjectCategory } from '@kanban-project-management/projects/project-category.enum';
-import { User } from '@kanban-project-management/users/schemas/user.schema';
+import { ProjectCategory } from '@kanban-project-management/features/projects/project-category.enum';
+import { User } from '@kanban-project-management/features/users/schemas/user.schema';
 
 export class CreateProjectDto {
   @IsNotEmpty()

@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {
   User,
   UserSchema,
-} from '@kanban-project-management/users/schemas/user.schema';
+} from '@kanban-project-management/features/users/schemas/user.schema';
 import { UserSeeder } from './user-seeder.service';
 
 @Module({

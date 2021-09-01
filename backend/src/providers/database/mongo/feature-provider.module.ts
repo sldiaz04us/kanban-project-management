@@ -6,7 +6,7 @@ import { Connection } from 'mongoose';
 import {
   Issue,
   IssueSchema,
-} from '@kanban-project-management/issues/schemas/issue.schema';
+} from '@kanban-project-management/features/issues/schemas/issue.schema';
 
 @Module({
   imports: [

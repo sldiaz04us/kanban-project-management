@@ -12,7 +12,7 @@ import { UpdateIssueDto } from './dto/update-issue.dto';
 import { Issue, IssueDocument } from './schemas/issue.schema';
 import { mongooseErrorHandler } from '@kanban-project-management/common/helpers/mongoose-error-handler';
 import { GetIssueFilterDto } from './dto/get-issue-filter.dto';
-import { CommentsService } from '@kanban-project-management/comments/comments.service';
+import { CommentsService } from '@kanban-project-management/features/comments/comments.service';
 
 @Injectable()
 export class IssuesService {

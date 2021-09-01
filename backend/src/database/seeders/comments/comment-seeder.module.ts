@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {
   Comment,
   CommentSchema,
-} from '@kanban-project-management/comments/schemas/comment.schema';
+} from '@kanban-project-management/features/comments/schemas/comment.schema';
 import { CommentSeeder } from './comment-seeder.service';
 
 @Module({

@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { ProjectsModule } from './projects/projects.module';
-import { IssuesModule } from './issues/issues.module';
-import { UsersModule } from './users/users.module';
-import { CommentsModule } from './comments/comments.module';
+import { ProjectsModule } from '@kanban-project-management/features/projects/projects.module';
+import { IssuesModule } from '@kanban-project-management/features/issues/issues.module';
+import { UsersModule } from '@kanban-project-management/features/users/users.module';
+import { CommentsModule } from '@kanban-project-management/features/comments/comments.module';
 import { configValidationSchema } from './config/app/config.schema';
-import { HealthController } from './health/health.controller';
+import { HealthController } from '@kanban-project-management/features/health/health.controller';
 import { MongoRootProviderModule } from '@kanban-project-management/providers/database/mongo/root-provider.module';
 
 @Module({

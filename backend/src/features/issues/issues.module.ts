@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { IssuesService } from './issues.service';
 import { IssuesController } from './issues.controller';
-import { CommentsModule } from '@kanban-project-management/comments/comments.module';
+import { CommentsModule } from '@kanban-project-management/features/comments/comments.module';
 import { MongoFeatureProviderModule } from '@kanban-project-management/providers/database/mongo/feature-provider.module';
 
 @Module({

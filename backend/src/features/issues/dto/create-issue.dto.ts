@@ -6,10 +6,10 @@ import {
   MinLength,
 } from 'class-validator';
 
-import { IssueType } from '@kanban-project-management/issues/enums/issue-type.enum';
-import { IssueStatus } from '@kanban-project-management/issues/enums/issue-status.enum';
-import { IssuePriority } from '@kanban-project-management/issues/enums/issue-priority.enum';
-import { User } from '@kanban-project-management/users/schemas/user.schema';
+import { IssueType } from '@kanban-project-management/features/issues/enums/issue-type.enum';
+import { IssueStatus } from '@kanban-project-management/features/issues/enums/issue-status.enum';
+import { IssuePriority } from '@kanban-project-management/features/issues/enums/issue-priority.enum';
+import { User } from '@kanban-project-management/features/users/schemas/user.schema';
 
 export class CreateIssueDto {
   @IsNotEmpty()

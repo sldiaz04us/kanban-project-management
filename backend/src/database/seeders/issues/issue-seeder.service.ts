@@ -6,7 +6,7 @@ import { Model, ClientSession } from 'mongoose';
 import {
   Issue,
   IssueDocument,
-} from '@kanban-project-management/issues/schemas/issue.schema';
+} from '@kanban-project-management/features/issues/schemas/issue.schema';
 import { issues } from './issues';
 
 @Injectable()

@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 import { Document } from 'mongoose';
 
-import { User } from '@kanban-project-management/users/schemas/user.schema';
+import { User } from '@kanban-project-management/features/users/schemas/user.schema';
 
 export type CommentDocument = Comment & Document;
 

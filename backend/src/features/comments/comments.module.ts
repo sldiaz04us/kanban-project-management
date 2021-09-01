@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { CommentsController } from './comments.controller';
 import { Comment, CommentSchema } from './schemas/comment.schema';
-import { CommentsService } from '@kanban-project-management/comments/comments.service';
+import { CommentsService } from '@kanban-project-management/features/comments/comments.service';
 
 @Module({
   imports: [
